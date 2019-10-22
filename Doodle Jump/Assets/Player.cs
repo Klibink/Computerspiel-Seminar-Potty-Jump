@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         movement = Input.GetAxis("Horizontal") * movementSpeed;
+        //movement = Input.acceleration.x * movementSpeed;
     }
 
     void FixedUpdate()
