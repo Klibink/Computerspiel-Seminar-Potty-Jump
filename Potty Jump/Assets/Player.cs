@@ -22,11 +22,9 @@ public class Player : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-
         movement = Input.GetAxis("Horizontal") * movementSpeed;
-#endif
 
-#if UNITY_ANDROID
+#elif UNITY_ANDROID
         movement = Input.acceleration.x * movementSpeed;
 #endif
     }
