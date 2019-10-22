@@ -212,10 +212,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 2468471202045593482, guid: 3a75c9476f6213e4c8432899f6aaa3f5,
     type: 3}
-  numberOfPlatforms: 200
+  player: {fileID: 0}
+  numberOfStartPlatforms: 20
+  numberOfPlatforms: 10
   levelWidth: 3
   minY: 0.2
   maxY: 1.5
+  levelNo: 1
 --- !u!4 &279868154
 Transform:
   m_ObjectHideFlags: 0

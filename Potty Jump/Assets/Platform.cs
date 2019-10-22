@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    public GameObject mainCamera;
     public float jumpForce = 10f;
+
+    void Start()
+    {
+        mainCamera = GameObject.Find("Main Camera");
+    }
+
+    private void Update()
+    {
+        //Löscht untere Plattformen, wenn Camera bestimmte Höhe erreicht
+        if (mainCamera.transform.position.y > transform.position.y + 10)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -18,6 +33,6 @@ public class Platform : MonoBehaviour
                 rb.velocity = velocity;
             }
         }
-        
+
     }
 }
