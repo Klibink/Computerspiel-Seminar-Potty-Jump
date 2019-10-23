@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
     private int playerPoints;
     private int counter = 1;
     public int numberOfStartPlatforms = 20;
-    public int numberOfPlatforms = 50;
+    public int numberOfPlatforms = 10;
     public float levelWidth = 3f;
     public float minY = .2f;
     public float maxY = 1.5f;
@@ -39,7 +39,7 @@ public class LevelGenerator : MonoBehaviour
         Debug.Log(playerPoints);
 
         Vector3 spawnPosition = player.transform.position;
-        // Y-Wert des Vektors versetzt, damit Platformen außerhalb des Sichtfeldes spawnen
+        // Y-Wert des Vektors versetzt, damit Plattformen außerhalb des Sichtfeldes spawnen
         spawnPosition.y += 6;
 
         if (spawnPlatforms)
@@ -54,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
             }
             // wenn Spieler bestimmte Punktzahl erreicht hat werden neue Plattformen gespawnt
         }
-        if (counter * 100 < playerPoints)
+        else if (counter * 100 < playerPoints)
         {
             spawnPlatforms = true;
             counter++;
