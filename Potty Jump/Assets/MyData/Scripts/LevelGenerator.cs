@@ -5,7 +5,9 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject platformPrefab;
+    public GameObject crackingPlatformPrefab;
     public GameObject player;
+    public GameObject mainCamera;
     private int playerPoints;
     private int counter = 1;
     public int numberOfStartPlatforms = 20;
@@ -15,6 +17,7 @@ public class LevelGenerator : MonoBehaviour
     public float maxY = 1.5f;
     public float levelNo = 1f;
     private bool spawnPlatforms = false;
+    private bool spawnedSpecialPlatform = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +41,8 @@ public class LevelGenerator : MonoBehaviour
 
         Debug.Log(playerPoints);
 
-        Vector3 spawnPosition = player.transform.position;
+        Vector2 spawnPosition = Camera.main.transform.position;
+        
         // Y-Wert des Vektors versetzt, damit Plattformen außerhalb des Sichtfeldes spawnen
         spawnPosition.y += 6;
 
@@ -50,7 +54,21 @@ public class LevelGenerator : MonoBehaviour
             {
                 spawnPosition.y += Random.Range(minY * (1 + levelNo / 5), maxY * (1 + levelNo / 10));
                 spawnPosition.x = Random.Range(-levelWidth, levelWidth);
-                Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+
+                int randomNum = Random.Range(0, 99);
+
+                if (randomNum > 20)
+                {
+                    Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+                }
+                else
+                {// Spawnt Cracking Plattform und normale Plattform ein wenig versetzt, damit die Chance auf unerreichbare Plattformen verringert wird
+                    Instantiate(crackingPlatformPrefab, spawnPosition, Quaternion.identity);
+                    spawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                    spawnPosition.y += Random.Range(0.2f, 0.8f);
+                    Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+                }
+                
             }
             // wenn Spieler bestimmte Punktzahl erreicht hat werden neue Plattformen gespawnt
         }

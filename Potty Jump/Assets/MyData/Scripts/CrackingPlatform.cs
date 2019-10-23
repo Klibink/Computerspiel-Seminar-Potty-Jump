@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class CrackingPlatform : MonoBehaviour
 {
     public GameObject mainCamera;
     public float jumpForce = 10f;
@@ -25,13 +25,7 @@ public class Platform : MonoBehaviour
     {
         if (collision.relativeVelocity.y <= 0)
         {
-            Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 velocity = rb.velocity;
-                velocity.y = jumpForce;
-                rb.velocity = velocity;
-            }
+            Destroy(gameObject);
         }
 
     }
