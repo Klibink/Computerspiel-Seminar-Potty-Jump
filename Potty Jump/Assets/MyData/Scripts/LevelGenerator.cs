@@ -6,6 +6,7 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject platformPrefab;
     public GameObject crackingPlatformPrefab;
+    public GameObject bouncyPlatformPrefab;
     public GameObject player;
     public GameObject mainCamera;
     private int playerPoints;
@@ -57,16 +58,18 @@ public class LevelGenerator : MonoBehaviour
 
                 int randomNum = Random.Range(0, 99);
 
-                if (randomNum > 20)
+                if (randomNum >= 40)
                 {
                     Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
                 }
-                else
+                else if (randomNum < 40 && randomNum > 20)
                 {// Spawnt Cracking Plattform und normale Plattform ein wenig versetzt, damit die Chance auf unerreichbare Plattformen verringert wird
                     Instantiate(crackingPlatformPrefab, spawnPosition, Quaternion.identity);
                     spawnPosition.x = Random.Range(-levelWidth, levelWidth);
                     spawnPosition.y += Random.Range(0.2f, 0.8f);
                     Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+                } else {
+                    Instantiate(bouncyPlatformPrefab, spawnPosition, Quaternion.identity);
                 }
                 
             }

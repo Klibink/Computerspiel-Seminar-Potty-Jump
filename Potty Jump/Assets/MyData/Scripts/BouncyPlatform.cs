@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class BouncyPlatform : MonoBehaviour
 {
     public GameObject mainCamera;
-    public float jumpForce = 10f;
+    public float jumpForce = 20f;
 
     void Start()
     {
@@ -36,3 +36,4 @@ public class Platform : MonoBehaviour
         }
     }
 }
+
