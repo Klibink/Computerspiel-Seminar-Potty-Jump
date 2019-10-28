@@ -57,7 +57,7 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int playerPoints = player.GetComponent<Player>().Points;
+        float playerPoints = player.GetComponent<Player>().Points;
 
         //Debug.Log(playerPoints);
 
