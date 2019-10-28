@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
             //transform.position = Vector3.SmoothDamp(transform.position, newPos, ref currentVelocity, smoothSpeed * Time.deltaTime);
             transform.position = newPos;
             target.GetComponent<Player>().Points++;
-            Debug.Log(target.GetComponent<Player>().Points);
+            //Debug.Log(target.GetComponent<Player>().Points);
         }
 
 
