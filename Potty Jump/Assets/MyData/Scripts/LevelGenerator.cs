@@ -131,12 +131,12 @@ public class LevelGenerator : MonoBehaviour
             float xPos = RandomX();
             Instantiate(platformPrefab, new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
 
-            if (spawnCrackingPlatform && Random.Range(0f, 1f)<crackingPlatformChance)
+            if (spawnCrackingPlatform && Random.Range(0f, 1f)< crackingPlatformChance)
             {
                 Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f,avgOff) + tmp.y, 0f), Quaternion.identity);
             }
             
-            if (spawnSpringPlaftform && Random.Range(0f, 1f) < crackingPlatformChance)
+            if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
             {
                 Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
