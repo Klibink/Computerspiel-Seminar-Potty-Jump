@@ -19,8 +19,8 @@ public class LevelGenerator : MonoBehaviour
     public int numberOfPlatforms = 10;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
-    public bool spawmSpringPlaftform = false;
-    public float springPlatformChance = 0.1f;
+    public bool spawnSpringPlaftform = true;
+    public float springPlatformChance = 0.05f;
     public Vector2 entryPlatform = new Vector2();
     
 
@@ -135,6 +135,12 @@ public class LevelGenerator : MonoBehaviour
             {
                 Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f,avgOff) + tmp.y, 0f), Quaternion.identity);
             }
+            
+            if (spawnSpringPlaftform && Random.Range(0f, 1f) < crackingPlatformChance)
+            {
+                Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+            }
+            
             /*
             if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {

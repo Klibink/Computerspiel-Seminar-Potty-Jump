@@ -31,18 +31,8 @@ public class Player : MonoBehaviour
         movement = Input.acceleration.x * movementSpeed;
 #endif
 
-        if (movement < 0) isMovingLeft = true;
-        else isMovingLeft = false;
-
-        if (movement <= 0 && isMovingLeft)
-        {
-            transform.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if(movement>0 && !isMovingLeft)
-        {
-            transform.GetComponent<SpriteRenderer>().flipX = false;
-            
-        }
+        Flip();
+        
         Debug.Log(movement);
         //erhöht die Punktzahl und zeigt sie in der Szene an
         if (rb.velocity.y > 0 && transform.position.y >points)
@@ -58,5 +48,35 @@ public class Player : MonoBehaviour
         Vector2 velocity = rb.velocity;
         velocity.x = movement;
         rb.velocity = velocity;
+    }
+
+    private void Flip()
+    {/*
+        if (movement < 0) isMovingLeft = true;
+        else isMovingLeft = false;
+
+        if (movement <= 0 && isMovingLeft)
+        {
+            //transform.GetComponent<SpriteRenderer>().flipX = true;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+        else if (movement > 0 && !isMovingLeft)
+        {
+            //transform.GetComponent<SpriteRenderer>().flipX = false;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }*/
+
+        if(movement>0 && !isMovingLeft || movement < 0 && isMovingLeft)
+        {
+            isMovingLeft = !isMovingLeft;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+
+        }
     }
 }
