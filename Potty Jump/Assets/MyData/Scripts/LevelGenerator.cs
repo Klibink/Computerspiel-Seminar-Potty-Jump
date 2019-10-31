@@ -63,7 +63,6 @@ public class LevelGenerator : MonoBehaviour
         //Debug.Log(playerPoints);
 
         Vector2 spawnPosition = player.transform.position;
-        Debug.Log(currentHeight);
 
         if (spawnPosition.y < currentHeight - SECTION_HEIGHT)
         {

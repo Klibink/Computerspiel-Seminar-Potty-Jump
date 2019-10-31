@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
 
         Flip();
         
-        Debug.Log(movement);
         //erhöht die Punktzahl und zeigt sie in der Szene an
         if (rb.velocity.y > 0 && transform.position.y >points)
         {
