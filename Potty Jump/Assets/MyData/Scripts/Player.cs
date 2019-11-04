@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private bool isMovingLeft = true;
     Rigidbody2D rb;
     public Text scoreText;
+    public LevelGenerator lvlGenerator;
 
     public float Points { get => points; set => points = value; }
 
@@ -39,6 +40,21 @@ public class Player : MonoBehaviour
             points = transform.position.y;
         }
         scoreText.text = "Score: " + Mathf.Round(points*1.75f).ToString();
+
+        //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
+        if(transform.position.x < -lvlGenerator.FrustumWidth/2f - 0.5f)
+        {
+            Vector2 temp = new Vector2();
+            temp.y = transform.position.y;
+            temp.x = lvlGenerator.FrustumWidth / 2f;
+            transform.position = temp;
+        }else if(transform.position.x > lvlGenerator.FrustumWidth / 2f + 0.5f)
+        {
+            Vector2 temp = new Vector2();
+            temp.y = transform.position.y;
+            temp.x = -lvlGenerator.FrustumWidth / 2f;
+            transform.position = temp;
+        }
 
     }
 
@@ -69,7 +85,7 @@ public class Player : MonoBehaviour
             transform.localScale = theScale;
         }*/
 
-        if(movement>0 && !isMovingLeft || movement < 0 && isMovingLeft)
+        if(movement > 0 && !isMovingLeft || movement < 0 && isMovingLeft)
         {
             isMovingLeft = !isMovingLeft;
             Vector3 theScale = transform.localScale;

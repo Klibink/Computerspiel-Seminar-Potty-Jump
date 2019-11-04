@@ -31,9 +31,9 @@ public class LevelGenerator : MonoBehaviour
     private float frustumWidth = 0f;
     private Vector2 tmp = new Vector2();
 
-
-
-
+    public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
+    public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -114,6 +114,7 @@ public class LevelGenerator : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
+        Debug.Log(FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 

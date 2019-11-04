@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02356eefbc1ddcc42a8632d46f290937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefab: {fileID: 2468471202045593482, guid: 3a75c9476f6213e4c8432899f6aaa3f5,
+  platformPrefab: {fileID: 1846268716812480612, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
     type: 3}
   crackingPlatformPrefab: {fileID: 5667243067452125954, guid: 533c5328af2f9224aaba3c9b75220375,
     type: 3}
@@ -624,6 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   scoreText: {fileID: 1600160656}
+  lvlGenerator: {fileID: 279868155}
 --- !u!1001 &1592773485
 PrefabInstance:
   m_ObjectHideFlags: 0
