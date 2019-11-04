@@ -15,7 +15,7 @@ public class Platform : MonoBehaviour
     private void Update()
     {
         //Löscht untere Plattformen, wenn Camera bestimmte Höhe erreicht
-        if (mainCamera.transform.position.y > transform.position.y + 7)
+        if (mainCamera.transform.position.y > transform.position.y + 6)
         {
             Destroy(gameObject);
         }
