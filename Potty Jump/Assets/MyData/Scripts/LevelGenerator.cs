@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject bouncyPlatformPrefab;
     public GameObject player;
     public GameObject mainCamera;
+    public GameObject[] enemyPrefabs;
 
     //public int numberOfStartPlatforms = 20;
     //public float levelWidth = 3f;
@@ -21,7 +22,8 @@ public class LevelGenerator : MonoBehaviour
     public float crackingPlatformChance = 0.1f;
     public bool spawnSpringPlaftform = true;
     public float springPlatformChance = 0.05f;
-    public Vector2 entryPlatform = new Vector2();
+    public bool spawnEnemy = true;
+    public float enemySpawnChance = 0.05f;
     
 
     public static float SECTION_HEIGHT = 15f;
@@ -29,6 +31,7 @@ public class LevelGenerator : MonoBehaviour
     private float currentHeight = -SECTION_HEIGHT;/*-15f * 2f;*/
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
+    public Vector2 entryPlatform = new Vector2();
     private Vector2 tmp = new Vector2();
 
     public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
@@ -130,6 +133,11 @@ public class LevelGenerator : MonoBehaviour
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
             Instantiate(platformPrefab, new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
+
+            if(spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
+            {
+                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length-1)], new Vector3(xPos, yPos + tmp.y+0.4f, 0f), Quaternion.identity);
+            }
 
             if (spawnCrackingPlatform && Random.Range(0f, 1f)< crackingPlatformChance)
             {

@@ -235,13 +235,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60629668}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1588691278}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &60629670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31fc743c65694f9e82f7ea066cb1291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 418814954982556353, guid: 0477f09167fbe4596a122737bd343765,
+  bulletPrefab: {fileID: 784080171493384561, guid: 2bceb5b12249b4a0ab30a4447531e571,
     type: 3}
 --- !u!1 &170076733
 GameObject:
@@ -376,11 +376,15 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 0}
   mainCamera: {fileID: 534669902}
+  enemyPrefabs:
+  - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}
   numberOfPlatforms: 10
   spawnCrackingPlatform: 1
   crackingPlatformChance: 0.1
   spawnSpringPlaftform: 1
   springPlatformChance: 0.1
+  spawnEnemy: 1
+  enemySpawnChance: 0.03
   entryPlatform: {x: 0, y: 0}
 --- !u!1 &534669902
 GameObject:
@@ -495,7 +499,7 @@ GameObject:
   - component: {fileID: 1588691280}
   m_Layer: 0
   m_Name: Doodler
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +562,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: fbf179b3e17b76b45abe83ed3267c396, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dbd7d619dc605e4f920a74eb99e7787, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -578,7 +582,7 @@ Transform:
   m_GameObject: {fileID: 1588691275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.16, y: -2.42, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.46586, y: 0.46586, z: 0.46586}
   m_Children:
   - {fileID: 60629669}
   m_Father: {fileID: 0}
@@ -597,18 +601,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25732458, y: -0.8984671}
+  m_Offset: {x: 0.053569496, y: -1.0388272}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1.95}
+    oldSize: {x: 3.36, y: 2.19}
     newSize: {x: 2, y: 1.95}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1422515, y: 0.01530658}
+  m_Size: {x: 1.9392389, y: 0.032709956}
   m_EdgeRadius: 0
 --- !u!114 &1588691280
 MonoBehaviour:
@@ -910,7 +914,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 8d146848b4d0f254196304f83b65f0b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a54c4d9cd1c7d340946fdad0ea2fb2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
