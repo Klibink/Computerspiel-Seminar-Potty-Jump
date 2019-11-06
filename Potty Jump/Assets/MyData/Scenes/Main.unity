@@ -258,6 +258,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 784080171493384561, guid: 2bceb5b12249b4a0ab30a4447531e571,
     type: 3}
   rot_range: 90
+  canShoot: 1
+  delayInSeconds: 0.4
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0

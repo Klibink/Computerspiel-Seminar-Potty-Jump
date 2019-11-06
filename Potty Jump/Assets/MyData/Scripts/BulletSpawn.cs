@@ -6,6 +6,9 @@ public class BulletSpawn : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float rot_range = 90f;
+    public bool canShoot = true;
+    public float delayInSeconds = .4f;
+
     private float rot;
 
     // Update is called once per frame
@@ -14,11 +17,16 @@ public class BulletSpawn : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject spawn = GameObject.Find("Spawn");
-            //Rotation des Spawn-Objects zwischen 45 und -45 Grad, lässt sich durch rot_range ändern
-            rot = -(rot_range * (Input.mousePosition.x / Screen.width) - (rot_range/2));
-            transform.rotation = Quaternion.Euler(0f, 0f, rot);
-            Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
+            if (canShoot == true)
+            {
+                GameObject spawn = GameObject.Find("Spawn");
+                //Rotation des Spawn-Objects zwischen 45 und -45 Grad, lässt sich durch rot_range ändern
+                rot = -(rot_range * (Input.mousePosition.x / Screen.width) - (rot_range / 2));
+                transform.rotation = Quaternion.Euler(0f, 0f, rot);
+                Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
+                canShoot = false;
+                StartCoroutine(ShootDelay());
+            }
         }
 
 #elif UNITY_ANDROID
@@ -26,12 +34,23 @@ public class BulletSpawn : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0)
-            GameObject spawn = GameObject.Find("Spawn");
-            rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
-            transform.rotation = Quaternion.Euler(0f, 0f, rot);
-            Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
+            if (canShoot == true)
+            {
+                Touch touch = Input.GetTouch(0)
+                GameObject spawn = GameObject.Find("Spawn");
+                rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
+                transform.rotation = Quaternion.Euler(0f, 0f, rot);
+                Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
+                canShoot = false;
+                StartCoroutine(ShootDelay());
+            }
         }
 #endif
+    }
+
+    IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(delayInSeconds);
+        canShoot = true;
     }
 }
