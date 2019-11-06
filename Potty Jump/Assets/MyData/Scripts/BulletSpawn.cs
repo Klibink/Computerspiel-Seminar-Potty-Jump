@@ -24,7 +24,7 @@ public class BulletSpawn : MonoBehaviour
 #elif UNITY_ANDROID
         //TODO: Touch input
 
-        if (Input.GetTouch(0))
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0)
             GameObject spawn = GameObject.Find("Spawn");
