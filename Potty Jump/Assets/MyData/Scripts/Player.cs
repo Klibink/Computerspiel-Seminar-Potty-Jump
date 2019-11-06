@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public float movementSpeed = 10f;
+    public float movementSpeed = 15f;
     private float points = 0f;
     float movement = 0f;
     private bool isMovingLeft = true;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 #elif UNITY_ANDROID
         movement = Input.acceleration.x * movementSpeed;
 #endif
-
+        CheckDeath();
         Flip();
         
         //erhöht die Punktzahl und zeigt sie in der Szene an
@@ -92,6 +92,14 @@ public class Player : MonoBehaviour
             theScale.x *= -1;
             transform.localScale = theScale;
 
+        }
+    }
+
+    private void CheckDeath()
+    {
+        if (transform.position.y+10 < Camera.main.transform.position.y && GameManager.instance.GameIsRunning==true)
+        {
+            GameManager.instance.PlayerDeath();
         }
     }
 }
