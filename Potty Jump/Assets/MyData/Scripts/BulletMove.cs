@@ -20,7 +20,7 @@ public class BulletMove : MonoBehaviour
         //transform.Translate(Vector2.down * speed, Space.World);
         //Zerstört Bullet wenn 5 > x-Position < -5
         //Evtl. dynamisch an Spielfeldbreite anpassen
-        if(transform.position.y > cameraObject.transform.position.y + 20 || transform.position.x < -5)
+        if(transform.position.y > cameraObject.transform.position.y + 20 || transform.position.x < -5 || transform.position.x > 5)
         {
             Destroy(gameObject);
         }

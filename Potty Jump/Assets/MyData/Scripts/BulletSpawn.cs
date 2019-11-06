@@ -36,7 +36,7 @@ public class BulletSpawn : MonoBehaviour
         {
             if (canShoot == true)
             {
-                Touch touch = Input.GetTouch(0)
+                Touch touch = Input.GetTouch(0);
                 GameObject spawn = GameObject.Find("Spawn");
                 rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
                 transform.rotation = Quaternion.Euler(0f, 0f, rot);
