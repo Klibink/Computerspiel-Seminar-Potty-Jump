@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject camera;
     public GameObject deathScreen;
     private bool gameIsRunning = true;
+    private float frustumHeight = 0f;
+    private float frustumWidth = 0f;
     Vector3 targetPos;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
+    public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
+    public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
 
     private void Awake()
     {
@@ -30,6 +34,11 @@ public class GameManager : MonoBehaviour
     {
         // Disable screen dimming, evtl. für Pausen- bzw. Startmenü anpassen
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        // sorgt dafür, dass das Spielfeld unabhängig vom Device gleich bleibt(20f, weil der Z-Wert der Kamera -10 beträgt -> 2 * distance)
+        //https://docs.unity3d.com/Manual/FrustumSizeAtDistance.html
+        frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        frustumWidth = frustumHeight * Camera.main.aspect;
     }
 
     // Update is called once per frame

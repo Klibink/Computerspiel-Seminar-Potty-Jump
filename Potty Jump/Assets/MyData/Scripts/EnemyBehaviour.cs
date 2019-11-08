@@ -6,6 +6,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public int leben;
     private Vector2 startPos;
+    bool isMovingRight = false;
+    bool turnedAlready = false;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,10 @@ public class EnemyBehaviour : MonoBehaviour
         if (gameObject.name.StartsWith("Abgaswolke"))
         {
             leben = 5;
+        }
+        else if (gameObject.name.StartsWith("Flugzeug01"))
+        {
+            leben = 2;
         }
     }
 
@@ -31,6 +37,25 @@ public class EnemyBehaviour : MonoBehaviour
             Vector2 tempPos = startPos;
             tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.5f;
             transform.position = tempPos;
+        }
+        else if (gameObject.name.StartsWith("Flugzeug01"))
+        {
+            float speed = 1.0f;
+            Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) -1f, transform.position.y);
+            Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) +1f, transform.position.y);
+            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
+
+            isMovingRight = GetVelocity();
+            
+            if (isMovingRight && !turnedAlready )
+            {
+                Scale();
+            }
+            else if (!isMovingRight && turnedAlready)
+            {
+                Scale();
+            }
+            
         }
     }
 
@@ -66,5 +91,36 @@ public class EnemyBehaviour : MonoBehaviour
             Destroy(collision.gameObject);
             leben--;
         }
+    }
+
+    private bool GetVelocity()
+    {
+        bool direction;
+        float velocity=0f;
+        if (transform.position.x != startPos.x)
+        {
+            velocity = startPos.x - transform.position.x;
+            startPos.x = transform.position.x;
+        }
+
+        if (velocity >= 0)
+        {
+            direction = false;
+
+        }
+        else
+        {
+            direction = true;
+        }
+        
+        return direction;
+    }
+
+    private void Scale()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+        turnedAlready = !turnedAlready;
     }
 }

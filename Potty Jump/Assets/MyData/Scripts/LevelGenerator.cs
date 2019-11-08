@@ -29,22 +29,17 @@ public class LevelGenerator : MonoBehaviour
     public static float SECTION_HEIGHT = 15f;
     private float MAX_JUMP_HEIGHT = 3.2f; // abhängig von Jumpforce. Setzt voraus, dass Spieler diagonal nicht höher springt
     private float currentHeight = -SECTION_HEIGHT;/*-15f * 2f;*/
-    private float frustumHeight = 0f;
-    private float frustumWidth = 0f;
+    
     public Vector2 entryPlatform = new Vector2();
     private Vector2 tmp = new Vector2();
 
-    public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
-    public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
+    
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Doodler");
-        // sorgt dafür, dass das Spielfeld unabhängig vom Device gleich bleibt(20f, weil der Z-Wert der Kamera -10 beträgt -> 2 * distance)
-        //https://docs.unity3d.com/Manual/FrustumSizeAtDistance.html
-        frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        frustumWidth = frustumHeight * Camera.main.aspect;
+        
 
         /*
         Vector3 spawnPosition = new Vector3();
@@ -117,7 +112,7 @@ public class LevelGenerator : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
-        Debug.Log(FrustumWidth);
+        Debug.Log(GameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 
@@ -136,7 +131,7 @@ public class LevelGenerator : MonoBehaviour
 
             if(spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length-1)], new Vector3(xPos, yPos + tmp.y+0.4f, 0f), Quaternion.identity);
+                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y+0.4f, 0f), Quaternion.identity);
             }
 
             if (spawnCrackingPlatform && Random.Range(0f, 1f)< crackingPlatformChance)
@@ -165,7 +160,7 @@ public class LevelGenerator : MonoBehaviour
 
     private float RandomX()
     {
-        return  Random.Range(-frustumWidth / 2f, frustumWidth / 2f);
+        return  Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)

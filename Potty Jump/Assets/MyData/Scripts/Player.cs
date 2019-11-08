@@ -42,17 +42,17 @@ public class Player : MonoBehaviour
         scoreText.text = "Score: " + Mathf.Round(points*1.75f).ToString();
 
         //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
-        if(transform.position.x < -lvlGenerator.FrustumWidth/2f - 0.5f)
+        if(transform.position.x < -GameManager.instance.FrustumWidth / 2f - 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;
-            temp.x = lvlGenerator.FrustumWidth / 2f;
+            temp.x = GameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
-        }else if(transform.position.x > lvlGenerator.FrustumWidth / 2f + 0.5f)
+        }else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;
-            temp.x = -lvlGenerator.FrustumWidth / 2f;
+            temp.x = -GameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
         }
 
