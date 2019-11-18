@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrackingPlatform : MonoBehaviour
 {
     public GameObject mainCamera;
+    public Sprite brokenSprite;
     public float jumpForce = 10f;
 
     void Start()
@@ -25,8 +26,16 @@ public class CrackingPlatform : MonoBehaviour
     {
         if (collision.relativeVelocity.y <= 0)
         {
-            Destroy(gameObject);
+            transform.GetComponent<EdgeCollider2D>().enabled = false;
+            transform.GetComponent<SpriteRenderer>().sprite = brokenSprite;
+            StartCoroutine(DestroyPlattform());
         }
 
+    }
+
+    IEnumerator DestroyPlattform()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }

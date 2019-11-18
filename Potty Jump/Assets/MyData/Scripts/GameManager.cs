@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
     Vector3 targetPos;
+    public int currentLevel = 0;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
     public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }

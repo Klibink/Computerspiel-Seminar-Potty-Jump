@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject platformPrefab;
+    public GameObject[] platformPrefab;
     public GameObject crackingPlatformPrefab;
     public GameObject bouncyPlatformPrefab;
     public GameObject player;
@@ -127,7 +127,7 @@ public class LevelGenerator : MonoBehaviour
         {
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
-            Instantiate(platformPrefab, new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
+            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
 
             if(spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
@@ -152,6 +152,8 @@ public class LevelGenerator : MonoBehaviour
             */
             tmp.Set(xPos, yPos + tmp.y);
         }
+
+        numberOfPlatforms = Random.Range(5, 20);
 
         entryPlatform.Set(tmp.x, tmp.y);
 
