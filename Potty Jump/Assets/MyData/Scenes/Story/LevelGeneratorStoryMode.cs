@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGeneratorStoryMode : MonoBehaviour
 {
     public GameObject[] platformPrefab;
     public GameObject crackingPlatformPrefab;
@@ -24,22 +24,22 @@ public class LevelGenerator : MonoBehaviour
     public float springPlatformChance = 0.05f;
     public bool spawnEnemy = true;
     public float enemySpawnChance = 0.05f;
-    
+
 
     public static float SECTION_HEIGHT = 15f;
     private float MAX_JUMP_HEIGHT = 3.2f; // abhängig von Jumpforce. Setzt voraus, dass Spieler diagonal nicht höher springt
     private float currentHeight = -SECTION_HEIGHT;/*-15f * 2f;*/
-    
+
     public Vector2 entryPlatform = new Vector2();
     private Vector2 tmp = new Vector2();
 
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Doodler");
-        
+
 
         /*
         Vector3 spawnPosition = new Vector3();
@@ -112,7 +112,7 @@ public class LevelGenerator : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
-        Debug.Log(EndlessGameManager.instance.FrustumWidth);
+        Debug.Log(StoryModeGameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 
@@ -123,27 +123,27 @@ public class LevelGenerator : MonoBehaviour
 
         tmp.Set(entryPlatform.x, entryPlatform.y);
 
-        for(int p = 0; p < numberOfPlatforms; p++)
+        for (int p = 0; p < numberOfPlatforms; p++)
         {
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
-            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
+            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
 
-            if(spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
+            if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y+0.4f, 0f), Quaternion.identity);
+                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }
 
-            if (spawnCrackingPlatform && Random.Range(0f, 1f)< crackingPlatformChance)
+            if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {
-                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f,avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
-            
+
             if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
             {
                 Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
-            
+
             /*
             if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {
@@ -162,7 +162,7 @@ public class LevelGenerator : MonoBehaviour
 
     private float RandomX()
     {
-        return  Random.Range(-EndlessGameManager.instance.FrustumWidth / 2f, EndlessGameManager.instance.FrustumWidth / 2f);
+        return Random.Range(-StoryModeGameManager.instance.FrustumWidth / 2f, StoryModeGameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)

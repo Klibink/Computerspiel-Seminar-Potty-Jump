@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private bool isMovingLeft = true;
     Rigidbody2D rb;
     public Text scoreText;
-    public LevelGenerator lvlGenerator;
+    //public LevelGeneratorEndless lvlGenerator;
 
     public float Points { get => points; set => points = value; }
 

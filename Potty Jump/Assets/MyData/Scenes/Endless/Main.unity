@@ -568,7 +568,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 701619316}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1733953452}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &701619316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,7 +1059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 15
   scoreText: {fileID: 1600160656}
-  lvlGenerator: {fileID: 279868155}
 --- !u!1 &1600160654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,13 +1508,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1733953452}
         m_MethodName: LoadScene
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1932346456

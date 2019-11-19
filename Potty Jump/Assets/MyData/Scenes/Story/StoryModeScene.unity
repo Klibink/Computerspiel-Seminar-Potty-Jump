@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 734998764}
   - component: {fileID: 734998763}
   - component: {fileID: 734998762}
+  - component: {fileID: 734998765}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -634,6 +635,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734998765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734998761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd778fb2f0f0fe449e2d6f1bf3b4e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  camera: {fileID: 1438194773}
+  deathScreen: {fileID: 389873431}
+  currentLevel: 0
 --- !u!1 &784671053
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042938942}
-  - component: {fileID: 1042938941}
+  - component: {fileID: 1042938943}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -728,7 +745,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1042938941
+--- !u!4 &1042938942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042938940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042938943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -737,7 +768,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1042938940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02356eefbc1ddcc42a8632d46f290937, type: 3}
+  m_Script: {fileID: 11500000, guid: a8d0cfaac7401974eb7b9ec3330df9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab:
@@ -756,24 +787,10 @@ MonoBehaviour:
   spawnCrackingPlatform: 1
   crackingPlatformChance: 0.1
   spawnSpringPlaftform: 1
-  springPlatformChance: 0.1
+  springPlatformChance: 0.05
   spawnEnemy: 1
-  enemySpawnChance: 0.03
+  enemySpawnChance: 0.05
   entryPlatform: {x: 0, y: 0}
---- !u!4 &1042938942
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042938940}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1132171138
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 15
   scoreText: {fileID: 288134673}
-  lvlGenerator: {fileID: 1042938941}
 --- !u!61 &1132171141
 BoxCollider2D:
   m_ObjectHideFlags: 0
