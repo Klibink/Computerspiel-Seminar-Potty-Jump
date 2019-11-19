@@ -381,7 +381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &623005106
 GameObject:
@@ -461,7 +461,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 623005109}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734998762}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &623005109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &734998765
 MonoBehaviour:
@@ -740,7 +751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1042938943
 MonoBehaviour:
@@ -807,7 +818,7 @@ Transform:
   m_Children:
   - {fileID: 373004908}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1132171140
 MonoBehaviour:
@@ -818,7 +829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1132171138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e311a15e6c1eb4f820adb5570417f3, type: 3}
+  m_Script: {fileID: 11500000, guid: ea01547d7debb472ab9f152dfff3fc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 15
@@ -1065,13 +1076,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 734998762}
         m_MethodName: LoadScene
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: StoryModeScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1327423822
@@ -1205,7 +1216,7 @@ Transform:
   m_Children:
   - {fileID: 1449367158}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1449367157
 GameObject:
@@ -1473,7 +1484,7 @@ RectTransform:
   - {fileID: 288134672}
   - {fileID: 389873434}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1667,7 +1678,7 @@ PrefabInstance:
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}
@@ -1736,7 +1747,7 @@ PrefabInstance:
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}

@@ -56,7 +56,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float playerPoints = player.GetComponent<Player>().Points;
+        float playerPoints = player.GetComponent<EndlessPlayer>().Points;
 
         //Debug.Log(playerPoints);
 
@@ -112,7 +112,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
-        Debug.Log(EndlessGameManager.instance.FrustumWidth);
+        Debug.Log(GameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 
@@ -162,7 +162,7 @@ public class LevelGeneratorEndless : MonoBehaviour
 
     private float RandomX()
     {
-        return  Random.Range(-EndlessGameManager.instance.FrustumWidth / 2f, EndlessGameManager.instance.FrustumWidth / 2f);
+        return  Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)

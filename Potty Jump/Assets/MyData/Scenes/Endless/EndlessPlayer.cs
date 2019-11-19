@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class EndlessPlayer : MonoBehaviour
 {
-    public static Player instance = null; 
+    public static EndlessPlayer instance = null; 
     public float movementSpeed = 15f;
     private float points = 0f;
     float movement = 0f;
     private bool isMovingLeft = true;
     Rigidbody2D rb;
     public Text scoreText;
-    //public LevelGeneratorEndless lvlGenerator;
 
     public float Points { get => points; set => points = value; }
 
@@ -79,25 +78,7 @@ public class Player : MonoBehaviour
     }
 
     private void Flip()
-    {/*
-        if (movement < 0) isMovingLeft = true;
-        else isMovingLeft = false;
-
-        if (movement <= 0 && isMovingLeft)
-        {
-            //transform.GetComponent<SpriteRenderer>().flipX = true;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }
-        else if (movement > 0 && !isMovingLeft)
-        {
-            //transform.GetComponent<SpriteRenderer>().flipX = false;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }*/
-
+    {
         if(movement > 0 && !isMovingLeft || movement < 0 && isMovingLeft)
         {
             isMovingLeft = !isMovingLeft;

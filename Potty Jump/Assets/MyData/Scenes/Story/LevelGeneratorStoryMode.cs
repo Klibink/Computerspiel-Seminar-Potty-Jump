@@ -56,7 +56,7 @@ public class LevelGeneratorStoryMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float playerPoints = player.GetComponent<Player>().Points;
+        float playerPoints = player.GetComponent<StoryPlayer>().Points;
 
         //Debug.Log(playerPoints);
 
@@ -112,7 +112,7 @@ public class LevelGeneratorStoryMode : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
-        Debug.Log(StoryModeGameManager.instance.FrustumWidth);
+        Debug.Log(GameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 
@@ -162,7 +162,7 @@ public class LevelGeneratorStoryMode : MonoBehaviour
 
     private float RandomX()
     {
-        return Random.Range(-StoryModeGameManager.instance.FrustumWidth / 2f, StoryModeGameManager.instance.FrustumWidth / 2f);
+        return Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)
