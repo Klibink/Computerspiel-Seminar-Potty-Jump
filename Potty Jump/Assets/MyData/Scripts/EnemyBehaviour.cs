@@ -41,8 +41,8 @@ public class EnemyBehaviour : MonoBehaviour
         else if (gameObject.name.StartsWith("Flugzeug01"))
         {
             float speed = 1.0f;
-            Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) -1f, transform.position.y);
-            Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) +1f, transform.position.y);
+            Vector2 tempPos1 = new Vector2((EndlessGameManager.instance.FrustumWidth / 2f) -1f, transform.position.y);
+            Vector2 tempPos2 = new Vector2((-EndlessGameManager.instance.FrustumWidth / 2f) +1f, transform.position.y);
             transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
 
             isMovingRight = GetVelocity();

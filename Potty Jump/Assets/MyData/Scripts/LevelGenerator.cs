@@ -112,7 +112,7 @@ public class LevelGenerator : MonoBehaviour
     private float SpawnSection()
     {
         Debug.Log("Spawnsection");
-        Debug.Log(GameManager.instance.FrustumWidth);
+        Debug.Log(EndlessGameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
 
@@ -162,7 +162,7 @@ public class LevelGenerator : MonoBehaviour
 
     private float RandomX()
     {
-        return  Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
+        return  Random.Range(-EndlessGameManager.instance.FrustumWidth / 2f, EndlessGameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)

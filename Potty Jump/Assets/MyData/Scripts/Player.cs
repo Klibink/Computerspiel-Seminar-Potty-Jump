@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public static Player instance = null; 
     public float movementSpeed = 15f;
     private float points = 0f;
     float movement = 0f;
@@ -15,6 +16,18 @@ public class Player : MonoBehaviour
     public LevelGenerator lvlGenerator;
 
     public float Points { get => points; set => points = value; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +55,17 @@ public class Player : MonoBehaviour
         scoreText.text = "Score: " + Mathf.Round(points*1.75f).ToString();
 
         //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
-        if(transform.position.x < -GameManager.instance.FrustumWidth / 2f - 0.5f)
+        if(transform.position.x < -EndlessGameManager.instance.FrustumWidth / 2f - 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;
-            temp.x = GameManager.instance.FrustumWidth / 2f;
+            temp.x = EndlessGameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
-        }else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
+        }else if(transform.position.x > EndlessGameManager.instance.FrustumWidth / 2f + 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;
-            temp.x = -GameManager.instance.FrustumWidth / 2f;
+            temp.x = -EndlessGameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
         }
 
@@ -97,9 +110,9 @@ public class Player : MonoBehaviour
 
     private void CheckDeath()
     {
-        if (transform.position.y+10 < Camera.main.transform.position.y && GameManager.instance.GameIsRunning==true)
+        if (transform.position.y+10 < Camera.main.transform.position.y && EndlessGameManager.instance.GameIsRunning==true)
         {
-            GameManager.instance.PlayerDeath();
+            EndlessGameManager.instance.PlayerDeath();
         }
     }
 }
