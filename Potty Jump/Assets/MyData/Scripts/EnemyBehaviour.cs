@@ -31,15 +31,18 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (EndlessPlayer.instance.CanDie)
+        if(EndlessPlayer.instance != null)
         {
-            transform.GetComponent<BoxCollider2D>().enabled = true;
+            if (EndlessPlayer.instance.CanDie)
+            {
+                transform.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            else
+            {
+                transform.GetComponent<BoxCollider2D>().enabled = false;
+            }
         }
-        else
-        {
-            transform.GetComponent<BoxCollider2D>().enabled = false;
-        }
+        
 
         if(gameObject.name.StartsWith("Abgaswolke"))
         {
