@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndlessGameManager : MonoBehaviour
 {
@@ -66,6 +67,8 @@ public class EndlessGameManager : MonoBehaviour
     {
         Debug.Log("Sie sind tot");
         gameIsRunning = false;
+        deathScreen.transform.Find("ScoreEndscreenText").GetComponent<Text>().text = "Score: " + Mathf.Round(EndlessPlayer.instance.Points).ToString();
+        deathScreen.transform.Find("HighscoreEndscreenText").GetComponent<Text>().text = "Highscore: " + Mathf.Round(GameManager.instance.highScore).ToString();
         StartCoroutine(ShowDeathScreen());
         
     }

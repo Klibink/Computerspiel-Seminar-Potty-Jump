@@ -7,7 +7,7 @@ public class BulletSpawn : MonoBehaviour
     public GameObject bulletPrefab;
     public float rot_range = 90f;
     public bool canShoot = true;
-    public float delayInSeconds = .4f;
+    public float delayInSeconds = .3f;
 
     private float rot;
 
@@ -37,12 +37,16 @@ public class BulletSpawn : MonoBehaviour
             if (canShoot == true)
             {
                 Touch touch = Input.GetTouch(0);
-                GameObject spawn = GameObject.Find("Spawn");
-                rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
-                transform.rotation = Quaternion.Euler(0f, 0f, rot);
-                Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
-                canShoot = false;
-                StartCoroutine(ShootDelay());
+                if(touch.phase == TouchPhase.Began)
+                    {
+                        GameObject spawn = GameObject.Find("Spawn");
+                        rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
+                        transform.rotation = Quaternion.Euler(0f, 0f, rot);
+                        Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
+                        canShoot = false;
+                        StartCoroutine(ShootDelay());
+                    }
+                
             }
         }
 #endif

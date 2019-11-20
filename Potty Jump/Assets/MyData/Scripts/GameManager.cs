@@ -41,9 +41,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.instance!=null && highScore < Player.instance.Points)
+        if(EndlessPlayer.instance!=null && highScore < EndlessPlayer.instance.Points)
         {
-            highScore = Player.instance.Points;
+            highScore = Mathf.Round(EndlessPlayer.instance.Points);
         }
     }
 }

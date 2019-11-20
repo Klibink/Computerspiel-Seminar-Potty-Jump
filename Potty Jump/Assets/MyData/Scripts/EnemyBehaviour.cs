@@ -27,9 +27,18 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (leben <= 0)
+        if (leben <= 0 || Camera.main.transform.position.y > transform.position.y + 6)
         {
             Destroy(gameObject);
+        }
+
+        if (EndlessPlayer.instance.CanDie)
+        {
+            transform.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else
+        {
+            transform.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         if(gameObject.name.StartsWith("Abgaswolke"))
@@ -63,23 +72,23 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(collision.collider.tag == "Player")
         {
-            if(collision.relativeVelocity.y > 0)
-            {
-                BoxCollider2D bCollider = collision.collider.GetComponent<BoxCollider2D>();
-                bCollider.enabled = false;
-            }
-            else if (collision.relativeVelocity.y <= 0)
-            {
-                Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    Vector2 velocity = rb.velocity;
-                    velocity.y = 15;
-                    rb.velocity = velocity;
-                }
-                Destroy(gameObject);
-            }
-            
+              if (collision.relativeVelocity.y > 0)
+              {
+                    BoxCollider2D bCollider = collision.collider.GetComponent<BoxCollider2D>();
+                    bCollider.enabled = false;
+              }
+              else if (collision.relativeVelocity.y <= 0)
+              {
+                    Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        Vector2 velocity = rb.velocity;
+                        velocity.y = 15;
+                        rb.velocity = velocity;
+                    }
+                    Destroy(gameObject);
+              }
+        
         }
         
     }
