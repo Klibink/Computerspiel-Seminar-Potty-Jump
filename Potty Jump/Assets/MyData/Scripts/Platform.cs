@@ -23,11 +23,11 @@ public class Platform : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Player")
+        if(collision.collider.tag == "PlayerFeet")
         {
             if (collision.relativeVelocity.y <= 0)
             {
-                Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
+                Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
                 if (rb != null)
                 {
                     Vector2 velocity = rb.velocity;

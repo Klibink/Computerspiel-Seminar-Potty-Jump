@@ -25,7 +25,7 @@ public class BouncyPlatform : MonoBehaviour
     {
         if (collision.relativeVelocity.y <= 0)
         {
-            Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
             if (rb != null)
             {
                 Vector2 velocity = rb.velocity;

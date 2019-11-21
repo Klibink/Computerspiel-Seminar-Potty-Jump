@@ -73,7 +73,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Player")
+        if(collision.collider.tag == "PlayerFeet")
         {
               if (collision.relativeVelocity.y > 0)
               {
@@ -82,7 +82,7 @@ public class EnemyBehaviour : MonoBehaviour
               }
               else if (collision.relativeVelocity.y <= 0)
               {
-                    Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
+                    Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
                     if (rb != null)
                     {
                         Vector2 velocity = rb.velocity;
@@ -94,6 +94,7 @@ public class EnemyBehaviour : MonoBehaviour
         
         }
         
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -102,6 +103,14 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(collision.gameObject);
             leben--;
+        }
+        else if (collision.tag == "PlayerBody")
+        {
+            
+                BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
+                bCollider.enabled = false;
+                Debug.Log("DIE!!!!");
+            
         }
     }
 
