@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    private GameObject panelHolder;
     public int currentLevel = 0;
     public float highScore = 0;
 
@@ -36,12 +37,20 @@ public class GameManager : MonoBehaviour
         //https://docs.unity3d.com/Manual/FrustumSizeAtDistance.html
         frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight * Camera.main.aspect;
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(EndlessPlayer.instance!=null && highScore < EndlessPlayer.instance.Points)
+        if (GameObject.Find("PanelHolder") != null)
+        {
+            panelHolder = GameObject.Find("PanelHolder");
+            currentLevel = panelHolder.GetComponent<PageSwiper>().currentPage - 1;
+        }
+
+        if (EndlessPlayer.instance!=null && highScore < EndlessPlayer.instance.Points)
         {
             highScore = Mathf.Round(EndlessPlayer.instance.Points);
         }
