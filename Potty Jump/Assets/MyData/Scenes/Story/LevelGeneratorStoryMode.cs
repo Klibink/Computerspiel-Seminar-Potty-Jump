@@ -38,7 +38,7 @@ public class LevelGeneratorStoryMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Doodler");
+        player = GameObject.Find("Potty");
 
 
         /*
