@@ -54,5 +54,10 @@ public class GameManager : MonoBehaviour
         {
             highScore = Mathf.Round(EndlessPlayer.instance.Points);
         }
+
+        if (StoryPlayer.instance != null && highScore < StoryPlayer.instance.Points)
+        {
+            highScore = Mathf.Round(StoryPlayer.instance.Points);
+        }
     }
 }

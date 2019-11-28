@@ -61,7 +61,7 @@ public class EndlessPlayer : MonoBehaviour
         }
 
         //erhöht die Punktzahl und zeigt sie in der Szene an
-        if (rb.velocity.y > 0 && transform.position.y >currentHeight)
+        if (rb.velocity.y > 0 && transform.position.y > currentHeight)
         {
             currentHeight = transform.position.y;
             points = currentHeight * 2.5f;
@@ -75,7 +75,8 @@ public class EndlessPlayer : MonoBehaviour
             temp.y = transform.position.y;
             temp.x = GameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
-        }else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
+        }
+        else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;

@@ -80,5 +80,4 @@ public class EndlessGameManager : MonoBehaviour
         deathScreen.SetActive(!deathScreen.activeSelf);
 
     }
-
 }

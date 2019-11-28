@@ -8,13 +8,16 @@ public class StoryPlayer : MonoBehaviour
 {
     public static StoryPlayer instance = null; 
     public float movementSpeed = 15f;
-    private float points = 0f;
+    private float currentHeight = 0f;
+    private float points = 1f;
     float movement = 0f;
     private bool isMovingLeft = true;
+    private bool canDie = true;
     Rigidbody2D rb;
     public Text scoreText;
 
     public float Points { get => points; set => points = value; }
+    public bool CanDie { get => canDie; set => canDie = value; }
 
     private void Awake()
     {
@@ -45,13 +48,25 @@ public class StoryPlayer : MonoBehaviour
 #endif
         CheckDeath();
         Flip();
-        
-        //erhöht die Punktzahl und zeigt sie in der Szene an
-        if (rb.velocity.y > 0 && transform.position.y >points)
+
+        if(transform.GetComponent<Rigidbody2D>().velocity.y > 10)
         {
-            points = transform.position.y;
+            CanDie = false;
+            Debug.Log("Ich bin unsterblich");
         }
-        scoreText.text = "Score: " + Mathf.Round(points*1.75f).ToString();
+        else if (transform.GetComponent<Rigidbody2D>().velocity.y < 0)
+        {
+            CanDie = true;
+            Debug.Log("Ich kann sterben");
+        }
+
+        //erhöht die Punktzahl und zeigt sie in der Szene an
+        if (rb.velocity.y > 0 && transform.position.y > currentHeight)
+        {
+            currentHeight = transform.position.y;
+            points = currentHeight * 2.5f;
+        }
+        scoreText.text = "Score: " + Mathf.Round(points).ToString();
 
         //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
         if(transform.position.x < -GameManager.instance.FrustumWidth / 2f - 0.5f)
@@ -60,7 +75,8 @@ public class StoryPlayer : MonoBehaviour
             temp.y = transform.position.y;
             temp.x = GameManager.instance.FrustumWidth / 2f;
             transform.position = temp;
-        }else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
+        }
+        else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
         {
             Vector2 temp = new Vector2();
             temp.y = transform.position.y;

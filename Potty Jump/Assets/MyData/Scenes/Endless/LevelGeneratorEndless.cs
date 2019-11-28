@@ -123,20 +123,20 @@ public class LevelGeneratorEndless : MonoBehaviour
 
         tmp.Set(entryPlatform.x, entryPlatform.y);
 
-        for(int p = 0; p < numberOfPlatforms; p++)
+        for (int p = 0; p < numberOfPlatforms; p++)
         {
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
-            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f),Quaternion.identity);
+            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
 
-            if(spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
+            if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y+0.4f, 0f), Quaternion.identity);
+                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }
 
-            if (spawnCrackingPlatform && Random.Range(0f, 1f)< crackingPlatformChance)
+            if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {
-                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f,avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
             
             if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
@@ -162,7 +162,7 @@ public class LevelGeneratorEndless : MonoBehaviour
 
     private float RandomX()
     {
-        return  Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
+        return Random.Range(-GameManager.instance.FrustumWidth / 2f, GameManager.instance.FrustumWidth / 2f);
     }
 
     private float RandomY(float offSet)
