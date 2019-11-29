@@ -39,6 +39,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             }
             StartCoroutine(SmoothMove(transform.position, newLocation, easing));
             panelLocation = newLocation;
+            Debug.Log(newLocation);
         }
         else
         {

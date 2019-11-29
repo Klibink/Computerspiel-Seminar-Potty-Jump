@@ -6,6 +6,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public int leben;
     private Vector2 startPos;
+    private Vector2 tempPos1;
+    private Vector2 tempPos2;
     bool isMovingRight = false;
     bool turnedAlready = false;
 
@@ -21,6 +23,19 @@ public class EnemyBehaviour : MonoBehaviour
         else if (gameObject.name.StartsWith("Flugzeug01"))
         {
             leben = 2;
+        }
+        else if (gameObject.name.StartsWith("Laus"))
+        {
+            leben = 1;
+            Vector2 temp = transform.position;
+            temp.x = Random.Range((GameManager.instance.FrustumWidth / 2f) - 1f, (-GameManager.instance.FrustumWidth / 2f) + 1f);
+            transform.position = temp;
+        }
+        else if (gameObject.name.StartsWith("Mistkäfer"))
+        {
+            leben = 2;
+            tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y);
+            tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y);
         }
     }
 
@@ -42,7 +57,17 @@ public class EnemyBehaviour : MonoBehaviour
                 transform.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
-        
+        else if(StoryPlayer.instance != null)
+        {
+            if (StoryPlayer.instance.CanDie)
+            {
+                transform.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            else
+            {
+                transform.GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
 
         if(gameObject.name.StartsWith("Abgaswolke"))
         {
@@ -68,6 +93,14 @@ public class EnemyBehaviour : MonoBehaviour
                 Scale();
             }
             
+        }
+        else if (gameObject.name.StartsWith("Laus"))
+        {
+            
+        }
+        else if (gameObject.name.StartsWith("Mistkäfer"))
+        {
+            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
         }
     }
 

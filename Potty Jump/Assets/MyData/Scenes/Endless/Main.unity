@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -429,6 +429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02356eefbc1ddcc42a8632d46f290937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 2103906391}
+  backgroundSprites:
+  - {fileID: 21300000, guid: 0ecca56bbd079ae47ac9a1602a85cbd6, type: 3}
+  - {fileID: 21300000, guid: 47c678a96f1014142a93917edd297dd2, type: 3}
   platformPrefab:
   - {fileID: 1846268716812480612, guid: d6dc8d4bdb105db419c14e8de6cbbb00, type: 3}
   - {fileID: 8047136126074471919, guid: 253291f050c162042a63d0436f057467, type: 3}
@@ -441,6 +445,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}
   - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
+  - {fileID: 5671647870287348162, guid: d21781db9b1ef0540916cae54203c866, type: 3}
+  - {fileID: 3424953535111856432, guid: c6d8fb5f8885d8c4ab0b9494bef83f8f, type: 3}
   numberOfPlatforms: 10
   spawnCrackingPlatform: 1
   crackingPlatformChance: 0.1
@@ -2100,7 +2106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103906391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0.47, y: 0, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 534669905}

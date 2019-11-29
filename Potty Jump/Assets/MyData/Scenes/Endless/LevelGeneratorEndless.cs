@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelGeneratorEndless : MonoBehaviour
 {
+    public GameObject background;
+    public Sprite[] backgroundSprites;
     public GameObject[] platformPrefab;
     public GameObject crackingPlatformPrefab;
     public GameObject bouncyPlatformPrefab;
@@ -17,7 +19,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     //public float maxY = 1.5f;
     //public float levelNo = 1f;
     //private bool spawnPlatforms = false;
-    public int numberOfPlatforms = 10;
+    public int numberOfPlatforms = 15;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
     public bool spawnSpringPlaftform = true;
@@ -39,6 +41,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Potty");
+        background.GetComponent<SpriteRenderer>().sprite = backgroundSprites[GameManager.instance.currentLevel];
         
 
         /*
@@ -153,7 +156,7 @@ public class LevelGeneratorEndless : MonoBehaviour
             tmp.Set(xPos, yPos + tmp.y);
         }
 
-        numberOfPlatforms = Random.Range(5, 20);
+        numberOfPlatforms = Random.Range(5, 25);
 
         entryPlatform.Set(tmp.x, tmp.y);
 
