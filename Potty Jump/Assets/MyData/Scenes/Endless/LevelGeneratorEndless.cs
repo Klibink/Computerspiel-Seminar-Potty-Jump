@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class LevelGeneratorEndless : MonoBehaviour
 {
     public GameObject background;
     public Sprite[] backgroundSprites;
     public GameObject[] platformPrefab;
     public GameObject crackingPlatformPrefab;
+    public GameObject breakingPlatformPrefab;
     public GameObject bouncyPlatformPrefab;
     public GameObject player;
     public GameObject mainCamera;
-    public GameObject[] enemyPrefabs;
+    private GameObject[] currentEnemyPrefabs;
+    public GameObject[] enemyPrefabsLevelEins;
+    public GameObject[] enemyPrefabsLevelZwei;
 
     //public int numberOfStartPlatforms = 20;
     //public float levelWidth = 3f;
@@ -22,6 +26,8 @@ public class LevelGeneratorEndless : MonoBehaviour
     public int numberOfPlatforms = 15;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
+    public bool spawnBreakingPlatform = true;
+    public float breakingPlatformChance = 0.05f;
     public bool spawnSpringPlaftform = true;
     public float springPlatformChance = 0.05f;
     public bool spawnEnemy = true;
@@ -42,6 +48,45 @@ public class LevelGeneratorEndless : MonoBehaviour
     {
         player = GameObject.Find("Potty");
         background.GetComponent<SpriteRenderer>().sprite = backgroundSprites[GameManager.instance.currentLevel];
+
+        switch (GameManager.instance.currentLevel)
+        {
+            case 0:
+                spawnCrackingPlatform = true;
+                spawnBreakingPlatform = false;
+                spawnSpringPlaftform = true;
+                spawnEnemy = false;
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
+                for(int i = 0; i < enemyPrefabsLevelEins.Length; i++)
+                {
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelEins[i];
+                }
+                break;
+
+            case 1:
+                spawnCrackingPlatform = false;
+                spawnBreakingPlatform = true;
+                spawnSpringPlaftform = true;
+                spawnEnemy = false;
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelZwei.Length];
+                for (int i = 0; i < enemyPrefabsLevelZwei.Length; i++)
+                {
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelZwei[i];
+                }
+                break;
+
+            default:
+                spawnCrackingPlatform = true;
+                spawnBreakingPlatform = false;
+                spawnSpringPlaftform = true;
+                spawnEnemy = false;
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
+                for (int i = 0; i < enemyPrefabsLevelEins.Length; i++)
+                {
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelEins[i];
+                }
+                break;
+        }
         
 
         /*
@@ -134,14 +179,19 @@ public class LevelGeneratorEndless : MonoBehaviour
 
             if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+                Instantiate(currentEnemyPrefabs[Random.Range(0, currentEnemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }
 
             if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {
                 Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
-            
+
+            if (spawnBreakingPlatform && Random.Range(0f, 1f) < breakingPlatformChance)
+            {
+                Instantiate(breakingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+            }
+
             if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
             {
                 Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
@@ -157,6 +207,10 @@ public class LevelGeneratorEndless : MonoBehaviour
         }
 
         numberOfPlatforms = Random.Range(5, 25);
+        if (!spawnEnemy)
+        {
+            spawnEnemy = true;
+        }
 
         entryPlatform.Set(tmp.x, tmp.y);
 

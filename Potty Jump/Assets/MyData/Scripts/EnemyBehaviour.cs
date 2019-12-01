@@ -37,6 +37,10 @@ public class EnemyBehaviour : MonoBehaviour
             tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y);
             tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y);
         }
+        else if (gameObject.name.StartsWith("Feuerball"))
+        {
+            leben = 2;
+        }
     }
 
     // Update is called once per frame
