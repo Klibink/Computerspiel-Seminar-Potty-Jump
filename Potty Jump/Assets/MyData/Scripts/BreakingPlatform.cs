@@ -5,6 +5,7 @@ using UnityEngine;
 public class BreakingPlatform : MonoBehaviour
 {
     public GameObject mainCamera;
+    private bool movePlattform = false;
     //public Sprite brokenSprite;
 
     void Start()
@@ -19,6 +20,12 @@ public class BreakingPlatform : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (movePlattform)
+        {
+            //solange keine Zerfallanimation vorhanden ist fällt die Plattform einfach nach unten
+            transform.Translate(-transform.up * Time.deltaTime * 3f);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -26,7 +33,7 @@ public class BreakingPlatform : MonoBehaviour
         if (collision.relativeVelocity.y <= 0)
         {
             transform.GetComponent<EdgeCollider2D>().enabled = false;
-            //transform.GetComponent<SpriteRenderer>().sprite = brokenSprite;
+            movePlattform = true;
             StartCoroutine(DestroyPlattform());
         }
 
@@ -34,7 +41,7 @@ public class BreakingPlatform : MonoBehaviour
 
     IEnumerator DestroyPlattform()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }

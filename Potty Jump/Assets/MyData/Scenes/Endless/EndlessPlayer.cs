@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EndlessPlayer : MonoBehaviour
 {
-    public static EndlessPlayer instance = null; 
+    public static EndlessPlayer instance = null;
+    private Transform[] allChildren;
     public float movementSpeed = 15f;
     private float currentHeight = 0f;
     private float points = 1f;
@@ -15,6 +16,7 @@ public class EndlessPlayer : MonoBehaviour
     private bool canDie = true;
     Rigidbody2D rb;
     public Text scoreText;
+    public Sprite deathSprite;
 
     public float Points { get => points; set => points = value; }
     public bool CanDie { get => canDie; set => canDie = value; }
@@ -35,6 +37,7 @@ public class EndlessPlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        allChildren = GetComponentsInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -110,6 +113,19 @@ public class EndlessPlayer : MonoBehaviour
         if (transform.position.y+10 < Camera.main.transform.position.y && EndlessGameManager.instance.GameIsRunning==true)
         {
             EndlessGameManager.instance.PlayerDeath();
+        }
+    }
+
+    public void ChangeToDeathSprite()
+    {
+        foreach(Transform child in allChildren)
+        {
+            if(child.name == "SpriteHolder")
+            {
+                child.GetComponent<SpriteRenderer>().sprite = deathSprite;
+                Vector3 newScale = new Vector3(1.5f, 1.5f, 0);
+                child.localScale = newScale;
+            }
         }
     }
 }

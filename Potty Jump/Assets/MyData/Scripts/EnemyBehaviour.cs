@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (gameObject.name.StartsWith("Abgaswolke"))
         {
-            leben = 5;
+            leben = 3;
         }
         else if (gameObject.name.StartsWith("Flugzeug01"))
         {
@@ -39,7 +39,17 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (gameObject.name.StartsWith("Feuerball"))
         {
-            leben = 2;
+            leben = 1;
+            if(startPos.x > 0)
+            {
+                tempPos1 = new Vector2(startPos.x + 10, startPos.y + 5);
+                tempPos2 = new Vector2(startPos.x - 10, startPos.y - 5);
+            }
+            else
+            {
+                tempPos1 = new Vector2(startPos.x - 10, startPos.y + 5);
+                tempPos2 = new Vector2(startPos.x + 10, startPos.y - 5);
+            }
         }
     }
 
@@ -106,6 +116,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
         }
+        else if (gameObject.name.StartsWith("Feuerball"))
+        {
+            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.2f, 1.0f));
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -116,6 +130,7 @@ public class EnemyBehaviour : MonoBehaviour
               {
                     BoxCollider2D bCollider = collision.collider.GetComponent<BoxCollider2D>();
                     bCollider.enabled = false;
+                    EndlessPlayer.instance.ChangeToDeathSprite();
               }
               else if (collision.relativeVelocity.y <= 0)
               {
@@ -144,9 +159,10 @@ public class EnemyBehaviour : MonoBehaviour
         else if (collision.tag == "PlayerBody")
         {
             
-                BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
-                bCollider.enabled = false;
-                Debug.Log("DIE!!!!");
+             BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
+             bCollider.enabled = false;
+             EndlessPlayer.instance.ChangeToDeathSprite();
+             Debug.Log("DIE!!!!");
             
         }
     }

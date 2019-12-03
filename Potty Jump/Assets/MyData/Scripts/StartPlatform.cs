@@ -17,7 +17,7 @@ public class StartPlatform : MonoBehaviour
 
                 break;
             case 1:
-                transform.localScale = new Vector3(0.66172f, 0.66172f, 0.66172f);
+                transform.localScale = new Vector3(0.13f, 0.13f, 0.13f);
 
                 break;
         }

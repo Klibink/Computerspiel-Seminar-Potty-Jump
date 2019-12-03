@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class LevelGeneratorEndless : MonoBehaviour
 {
     public GameObject background;
@@ -23,6 +22,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     //public float maxY = 1.5f;
     //public float levelNo = 1f;
     //private bool spawnPlatforms = false;
+    private int roundsToWait = 3;
     public int numberOfPlatforms = 15;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
@@ -114,7 +114,6 @@ public class LevelGeneratorEndless : MonoBehaviour
         {
             return;
         }
-
         currentHeight += SpawnSection();
 
 
@@ -206,11 +205,20 @@ public class LevelGeneratorEndless : MonoBehaviour
             tmp.Set(xPos, yPos + tmp.y);
         }
 
-        numberOfPlatforms = Random.Range(5, 25);
-        if (!spawnEnemy)
+        if (roundsToWait > 0)
         {
-            spawnEnemy = true;
+            numberOfPlatforms = Random.Range(15, 25);
+            roundsToWait--;
         }
+        else
+        {
+            numberOfPlatforms = Random.Range(5, 20);
+            if (!spawnEnemy)
+            {
+                spawnEnemy = true;
+            }
+        }
+        
 
         entryPlatform.Set(tmp.x, tmp.y);
 
