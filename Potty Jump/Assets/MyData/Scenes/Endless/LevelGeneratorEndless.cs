@@ -7,14 +7,19 @@ public class LevelGeneratorEndless : MonoBehaviour
     public GameObject background;
     public Sprite[] backgroundSprites;
     public GameObject[] platformPrefab;
+    public GameObject[] specialPlatformPrefab;
     public GameObject crackingPlatformPrefab;
     public GameObject breakingPlatformPrefab;
     public GameObject bouncyPlatformPrefab;
+    public GameObject movingPlatformPrefab;
     public GameObject player;
     public GameObject mainCamera;
     private GameObject[] currentEnemyPrefabs;
     public GameObject[] enemyPrefabsLevelEins;
     public GameObject[] enemyPrefabsLevelZwei;
+    private GameObject[] currentPowerUps;
+    public GameObject[] powerUpPrefabsLevelEins;
+    public GameObject[] powerUpPrefabsLevelZwei;
 
     //public int numberOfStartPlatforms = 20;
     //public float levelWidth = 3f;
@@ -24,14 +29,20 @@ public class LevelGeneratorEndless : MonoBehaviour
     //private bool spawnPlatforms = false;
     private int roundsToWait = 3;
     public int numberOfPlatforms = 15;
+    public bool spawnSpecialPlaform = true;
+    public float specialPlatformChance = 0.2f;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
     public bool spawnBreakingPlatform = true;
     public float breakingPlatformChance = 0.05f;
     public bool spawnSpringPlaftform = true;
     public float springPlatformChance = 0.05f;
+    public bool spawnMovingPlatform = true;
+    public float movingPlatformChance = 0.2f;
     public bool spawnEnemy = true;
     public float enemySpawnChance = 0.05f;
+    public bool spawnPowerUp = true;
+    public float powerUpSpawnChance = 0.0005f;
     
 
     public static float SECTION_HEIGHT = 15f;
@@ -52,38 +63,65 @@ public class LevelGeneratorEndless : MonoBehaviour
         switch (GameManager.instance.currentLevel)
         {
             case 0:
+                spawnSpecialPlaform = true;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
+                spawnMovingPlatform = false;
                 spawnEnemy = false;
+                spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
                 for(int i = 0; i < enemyPrefabsLevelEins.Length; i++)
                 {
                     currentEnemyPrefabs[i] = enemyPrefabsLevelEins[i];
                 }
+
+                currentPowerUps = new GameObject[powerUpPrefabsLevelEins.Length];
+                for (int i = 0; i < powerUpPrefabsLevelEins.Length; i++)
+                {
+                    currentPowerUps[i] = powerUpPrefabsLevelEins[i];
+                }
                 break;
 
             case 1:
+                spawnSpecialPlaform = false; ;
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = true;
                 spawnSpringPlaftform = true;
+                spawnMovingPlatform = false;
                 spawnEnemy = false;
+                spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelZwei.Length];
                 for (int i = 0; i < enemyPrefabsLevelZwei.Length; i++)
                 {
                     currentEnemyPrefabs[i] = enemyPrefabsLevelZwei[i];
                 }
+
+                currentPowerUps = new GameObject[powerUpPrefabsLevelZwei.Length];
+                for (int i = 0; i < powerUpPrefabsLevelZwei.Length; i++)
+                {
+                    currentPowerUps[i] = powerUpPrefabsLevelZwei[i];
+                }
                 break;
 
             default:
+                spawnSpecialPlaform = true;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
+                spawnMovingPlatform = true;
                 spawnEnemy = false;
+                spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
                 for (int i = 0; i < enemyPrefabsLevelEins.Length; i++)
                 {
                     currentEnemyPrefabs[i] = enemyPrefabsLevelEins[i];
+                }
+
+                currentPowerUps = new GameObject[powerUpPrefabsLevelEins.Length];
+                for (int i = 0; i < powerUpPrefabsLevelEins.Length; i++)
+                {
+                    currentPowerUps[i] = powerUpPrefabsLevelEins[i];
                 }
                 break;
         }
@@ -162,6 +200,7 @@ public class LevelGeneratorEndless : MonoBehaviour
         Debug.Log(GameManager.instance.FrustumWidth);
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
+        bool powerUpSpawned;
 
         if (avgOff >= MAX_JUMP_HEIGHT)
         {
@@ -174,11 +213,24 @@ public class LevelGeneratorEndless : MonoBehaviour
         {
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
-            Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
+            if(numberOfPlatforms < 7 && spawnSpecialPlaform) 
+            {
+                Instantiate(specialPlatformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
+            }
 
             if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
             {
                 Instantiate(currentEnemyPrefabs[Random.Range(0, currentEnemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+            }
+
+            if (spawnPowerUp && Random.Range(0f, 2f) < powerUpSpawnChance)
+            {
+                Instantiate(currentPowerUps[Random.Range(0, currentPowerUps.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+                spawnPowerUp = false;
             }
 
             if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
@@ -195,30 +247,112 @@ public class LevelGeneratorEndless : MonoBehaviour
             {
                 Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
+
             
-            /*
-            if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
+            if (spawnMovingPlatform && Random.Range(0f, 1f) < movingPlatformChance)
             {
-                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(movingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
-            */
+            
+
+            /*
+           if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
+           {
+               Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+           }
+           */
             tmp.Set(xPos, yPos + tmp.y);
         }
 
         if (roundsToWait > 0)
         {
+            spawnEnemy = false;
             numberOfPlatforms = Random.Range(15, 25);
             roundsToWait--;
         }
         else
         {
             numberOfPlatforms = Random.Range(5, 20);
-            if (!spawnEnemy)
+            //bei geringer Anzahl von Plattformen wird Standard-Prefab mit Special-Prefab ausgetauscht und verhindert, dass zusätzliche Plattformen spawnen
+            if (numberOfPlatforms < 7)
             {
-                spawnEnemy = true;
+                switch (GameManager.instance.currentLevel)
+                {
+                    case 0:
+                        spawnSpecialPlaform = true;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = false;
+                        spawnPowerUp = false;
+                        
+                        break;
+
+                    case 1:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = false;
+                        spawnPowerUp = false;
+
+                        break;
+
+                    default:
+                        spawnSpecialPlaform = true;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = false;
+                        spawnPowerUp = false;
+
+                        break;
+                }
             }
+            else
+            {
+                switch (GameManager.instance.currentLevel)
+                {
+                    case 0:
+                        spawnSpecialPlaform = true;
+                        spawnCrackingPlatform = true;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = true;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = true;
+                        spawnPowerUp = true;
+
+                        break;
+
+                    case 1:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = true;
+                        spawnSpringPlaftform = true;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = true;
+                        spawnPowerUp = true;
+
+                        break;
+
+                    default:
+                        spawnSpecialPlaform = true;
+                        spawnCrackingPlatform = true;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = true;
+                        spawnMovingPlatform = true;
+                        spawnEnemy = true;
+                        spawnPowerUp = true;
+
+                        break;
+                }
+            }
+
+            
         }
-        
 
         entryPlatform.Set(tmp.x, tmp.y);
 
