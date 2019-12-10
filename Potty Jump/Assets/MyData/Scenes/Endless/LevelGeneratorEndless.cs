@@ -229,7 +229,10 @@ public class LevelGeneratorEndless : MonoBehaviour
 
             if (spawnPowerUp && Random.Range(0f, 2f) < powerUpSpawnChance)
             {
-                Instantiate(currentPowerUps[Random.Range(0, currentPowerUps.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+                if (currentPowerUps.Length > 0)
+                {
+                    Instantiate(currentPowerUps[Random.Range(0, currentPowerUps.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+                }
                 spawnPowerUp = false;
             }
 
