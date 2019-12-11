@@ -51,20 +51,20 @@ public class EndlessPlayer : MonoBehaviour
 #elif UNITY_ANDROID
         movement = Input.acceleration.x * movementSpeed;
 #endif
-        if(rb.velocity.y == 0) CheckIfMoving();
+        CheckIfMoving();
         CheckDeath();
         Flip();
+
+        if (isInvincible)
+        {
+            ActivateInvincibility();
+        }
         
         if(transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
         {
             CanDie = false;
             Debug.Log("Ich bin unsterblich");
         }
-        /*else if(transform.GetComponent<Rigidbody2D>().velocity.y <= 10)
-        {
-            CanDie = true;
-            Debug.Log("Ich kann sterben");
-        }*/
         else
         {
             CanDie = true;
@@ -104,6 +104,29 @@ public class EndlessPlayer : MonoBehaviour
         rb.velocity = velocity;
     }
 
+    public void ActivateInvincibility()
+    {
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == "SpriteHolder")
+            {
+                //child.GetComponentInChildren<SpriteRenderer>().enabled = true;
+                GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = true;
+                isInvincible = true;
+                StartCoroutine(InvincibleTime());
+            }
+        }
+    }
+
+    IEnumerator InvincibleTime()
+    {
+        yield return new WaitForSeconds(4f);
+        isInvincible = false;
+        GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
+        Debug.Log(EndlessPlayer.instance.IsInvincible);
+
+    }
+
     public void SetDeathStatus()
     {
         canDie = !canDie;
@@ -123,10 +146,15 @@ public class EndlessPlayer : MonoBehaviour
 
     private void CheckIfMoving()
     {
-        Vector2 velocity = rb.velocity;
-        velocity.y = 10f;
-        rb.velocity = velocity;
-        Debug.Log("Notjump aktiviert");
+        if (rb.velocity.y == 0)
+        {
+            Vector2 velocity = rb.velocity;
+            velocity.y = 10f;
+            rb.velocity = velocity;
+            Debug.Log("Notjump aktiviert");
+        }
+        else return;
+            
     }
 
     private void CheckDeath()

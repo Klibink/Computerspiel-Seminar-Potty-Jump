@@ -9,7 +9,6 @@ public class PowerUps : MonoBehaviour
     private float jumpForce = 10f;
     private float distance = 20f;
     private bool startMoving = false;
-    private bool activateBubble = false;
     private bool isActivated = false;
     // Start is called before the first frame update
     void Start()
@@ -47,18 +46,6 @@ public class PowerUps : MonoBehaviour
                 startMoving = false;
             }
         }
-
-        if (activateBubble)
-        {
-           GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = true;
-           EndlessPlayer.instance.IsInvincible = true;
-           Debug.Log(EndlessPlayer.instance.IsInvincible);
-            
-           StartCoroutine(DeOrActivateGameObject());
-           //StartCoroutine(DestroyPlattform());
-           activateBubble = false;
-        }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,21 +66,22 @@ public class PowerUps : MonoBehaviour
                     velocity.y = jumpForce;
                     rb.velocity = velocity;
                 }
-                StartCoroutine(DestroyPlattform());
+                StartCoroutine(DestroyPlattform(2.5f));
             }
             else if (gameObject.name.StartsWith("Gießkanne"))
             {
                 isActivated = true;
-                activateBubble = true;
+                EndlessPlayer.instance.IsInvincible = true;
+                StartCoroutine(DestroyPlattform(0.5f));
             }
             
         }
         
     }
 
-    IEnumerator DestroyPlattform()
+    IEnumerator DestroyPlattform(float waitTime)
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(waitTime);
         Destroy(gameObject);
     }
 
@@ -103,6 +91,6 @@ public class PowerUps : MonoBehaviour
         EndlessPlayer.instance.IsInvincible = false;
         GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
         Debug.Log(EndlessPlayer.instance.IsInvincible);
-        yield return StartCoroutine(DestroyPlattform());
+        yield return StartCoroutine(DestroyPlattform(1f));
     }
 }
