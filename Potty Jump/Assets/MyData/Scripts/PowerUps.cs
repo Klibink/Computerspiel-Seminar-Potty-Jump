@@ -9,6 +9,8 @@ public class PowerUps : MonoBehaviour
     private float jumpForce = 10f;
     private float distance = 20f;
     private bool startMoving = false;
+    private bool activateBubble = false;
+    private bool isActivated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class PowerUps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Camera.main.transform.position.y > transform.position.y + 6)
+        if (Camera.main.transform.position.y > transform.position.y + 6 && !isActivated)
         {
             Destroy(gameObject);
         }
@@ -46,24 +48,45 @@ public class PowerUps : MonoBehaviour
             }
         }
 
+        if (activateBubble)
+        {
+           GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = true;
+           EndlessPlayer.instance.IsInvincible = true;
+           Debug.Log(EndlessPlayer.instance.IsInvincible);
+            
+           StartCoroutine(DeOrActivateGameObject());
+           //StartCoroutine(DestroyPlattform());
+           activateBubble = false;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerBody" && EndlessPlayer.instance.CanDie || collision.tag == "PlayerFeet" && EndlessPlayer.instance.CanDie)
         {
-            startMoving = true;
-            transform.position = player.transform.position;
-            transform.parent = player.transform;
-            //transform.Translate(transform.up * Time.deltaTime * 6f);
-            Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
-            if (rb != null)
+            if (gameObject.name.StartsWith("Butterfly"))
             {
-                Vector2 velocity = rb.velocity;
-                velocity.y = jumpForce;
-                rb.velocity = velocity;
+                isActivated = true;
+                startMoving = true;
+                transform.position = player.transform.position;
+                transform.parent = player.transform;
+                //transform.Translate(transform.up * Time.deltaTime * 6f);
+                Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                }
+                StartCoroutine(DestroyPlattform());
             }
-            StartCoroutine(DestroyPlattform());
+            else if (gameObject.name.StartsWith("Gießkanne"))
+            {
+                isActivated = true;
+                activateBubble = true;
+            }
+            
         }
         
     }
@@ -74,5 +97,12 @@ public class PowerUps : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    IEnumerator DeOrActivateGameObject()
+    {
+        yield return new WaitForSeconds(2f);
+        EndlessPlayer.instance.IsInvincible = false;
+        GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
+        Debug.Log(EndlessPlayer.instance.IsInvincible);
+        yield return StartCoroutine(DestroyPlattform());
+    }
 }

@@ -14,12 +14,14 @@ public class EndlessPlayer : MonoBehaviour
     float movement = 0f;
     private bool isMovingLeft = true;
     private bool canDie = true;
+    private bool isInvincible = false;
     Rigidbody2D rb;
     public Text scoreText;
     public Sprite deathSprite;
 
     public float Points { get => points; set => points = value; }
     public bool CanDie { get => canDie; set => canDie = value; }
+    public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
 
     private void Awake()
     {
@@ -49,15 +51,21 @@ public class EndlessPlayer : MonoBehaviour
 #elif UNITY_ANDROID
         movement = Input.acceleration.x * movementSpeed;
 #endif
+        if(rb.velocity.y == 0) CheckIfMoving();
         CheckDeath();
         Flip();
         
-        if(transform.GetComponent<Rigidbody2D>().velocity.y > 10)
+        if(transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
         {
             CanDie = false;
             Debug.Log("Ich bin unsterblich");
         }
-        else if(transform.GetComponent<Rigidbody2D>().velocity.y < 0)
+        /*else if(transform.GetComponent<Rigidbody2D>().velocity.y <= 10)
+        {
+            CanDie = true;
+            Debug.Log("Ich kann sterben");
+        }*/
+        else
         {
             CanDie = true;
             Debug.Log("Ich kann sterben");
@@ -96,6 +104,11 @@ public class EndlessPlayer : MonoBehaviour
         rb.velocity = velocity;
     }
 
+    public void SetDeathStatus()
+    {
+        canDie = !canDie;
+    }
+
     private void Flip()
     {
         if(movement > 0 && !isMovingLeft || movement < 0 && isMovingLeft)
@@ -106,6 +119,14 @@ public class EndlessPlayer : MonoBehaviour
             transform.localScale = theScale;
 
         }
+    }
+
+    private void CheckIfMoving()
+    {
+        Vector2 velocity = rb.velocity;
+        velocity.y = 10f;
+        rb.velocity = velocity;
+        Debug.Log("Notjump aktiviert");
     }
 
     private void CheckDeath()

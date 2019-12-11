@@ -46,12 +46,12 @@ public class movetest : MonoBehaviour
         if (velocity >= 0)
         {
             
-            Debug.Log("rechts");
+            //Debug.Log("rechts");
 
         }
         else
         {
-            Debug.Log("links");
+            //Debug.Log("links");
         }
 
         animator.SetFloat("Velocity", velocity);
