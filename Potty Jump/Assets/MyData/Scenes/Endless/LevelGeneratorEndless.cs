@@ -104,6 +104,27 @@ public class LevelGeneratorEndless : MonoBehaviour
                 }
                 break;
 
+            case 2:
+                spawnSpecialPlaform = false; ;
+                spawnCrackingPlatform = false;
+                spawnBreakingPlatform = true;
+                spawnSpringPlaftform = true;
+                spawnMovingPlatform = false;
+                spawnEnemy = false;
+                spawnPowerUp = false;
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelZwei.Length];
+                for (int i = 0; i < enemyPrefabsLevelZwei.Length; i++)
+                {
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelZwei[i];
+                }
+
+                currentPowerUps = new GameObject[powerUpPrefabsLevelZwei.Length];
+                for (int i = 0; i < powerUpPrefabsLevelZwei.Length; i++)
+                {
+                    currentPowerUps[i] = powerUpPrefabsLevelZwei[i];
+                }
+                break;
+
             default:
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = true;
@@ -303,6 +324,17 @@ public class LevelGeneratorEndless : MonoBehaviour
 
                         break;
 
+                    case 2:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = false;
+                        spawnPowerUp = false;
+
+                        break;
+
                     default:
                         spawnSpecialPlaform = true;
                         spawnCrackingPlatform = false;
@@ -331,6 +363,17 @@ public class LevelGeneratorEndless : MonoBehaviour
                         break;
 
                     case 1:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = true;
+                        spawnSpringPlaftform = true;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = true;
+                        spawnPowerUp = true;
+
+                        break;
+
+                    case 2:
                         spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
                         spawnBreakingPlatform = true;
