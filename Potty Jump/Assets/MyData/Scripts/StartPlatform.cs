@@ -12,7 +12,11 @@ public class StartPlatform : MonoBehaviour
     {
         edgeCol = GetComponent<EdgeCollider2D>();
         colliderPoints = edgeCol.points;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         transform.GetComponent<SpriteRenderer>().sprite = sprites[GameManager.instance.currentLevel];
         switch (GameManager.instance.currentLevel)
         {
@@ -34,12 +38,6 @@ public class StartPlatform : MonoBehaviour
                 transform.localScale = new Vector3(1.2f, 1f, 1f);
                 break;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

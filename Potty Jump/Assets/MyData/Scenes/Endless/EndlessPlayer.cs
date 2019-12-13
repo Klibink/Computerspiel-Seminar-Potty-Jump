@@ -8,6 +8,8 @@ public class EndlessPlayer : MonoBehaviour
 {
     public static EndlessPlayer instance = null;
     private Transform[] allChildren;
+    public GameObject[] skins;
+    public GameObject[] flowers;
     public float movementSpeed = 15f;
     private float currentHeight = 0f;
     private float points = 1f;
@@ -39,7 +41,33 @@ public class EndlessPlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        allChildren = GetComponentsInChildren<Transform>();
+        allChildren = transform.GetComponentsInChildren<Transform>();
+
+        //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
+        for(int i = 0; i < skins.Length; i++)
+        {
+            if (i == GameManager.instance.currentSkin)
+            {
+                skins[i].SetActive(true);
+            }
+            else
+            {
+                skins[i].SetActive(false);
+            }
+        }
+        //Das Gleiche für die Blume
+        for (int i = 0; i < flowers.Length; i++)
+        {
+            if (i == GameManager.instance.currentFlower)
+            {
+                flowers[i].SetActive(true);
+            }
+            else
+            {
+                flowers[i].SetActive(false);
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -122,7 +150,10 @@ public class EndlessPlayer : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         isInvincible = false;
-        GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
+        if (GameObject.Find("BubbleSprite") != null)
+        {
+            GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
+        }
         Debug.Log(EndlessPlayer.instance.IsInvincible);
 
     }
@@ -169,11 +200,16 @@ public class EndlessPlayer : MonoBehaviour
     {
         foreach(Transform child in allChildren)
         {
-            if(child.name == "SpriteHolder")
+            if(child.name == "DeathSprite")
             {
-                child.GetComponent<SpriteRenderer>().sprite = deathSprite;
-                Vector3 newScale = new Vector3(1.5f, 1.5f, 0);
-                child.localScale = newScale;
+                child.GetComponent<SpriteRenderer>().enabled = true;
+                //child.GetComponent<SpriteRenderer>().sprite = deathSprite;
+                //Vector3 newScale = new Vector3(1.5f, 1.5f, 0);
+                //child.localScale = newScale;
+            }
+            else if(child.name!="Potty" && child.name!="DeathSprite")
+            {
+                child.gameObject.SetActive(false);
             }
         }
     }

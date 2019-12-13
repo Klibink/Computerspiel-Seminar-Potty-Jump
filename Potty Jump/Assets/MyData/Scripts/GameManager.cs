@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     private GameObject panelHolder;
     public int currentLevel = 0;
     public float highScore = 0;
+    public int currentSkin = 0;
+    public int currentFlower = 0;
 
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;

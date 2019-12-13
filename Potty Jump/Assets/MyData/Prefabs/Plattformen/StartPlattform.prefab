@@ -149,3 +149,4 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 2c902ad5d82217d4ebd8610684015b13, type: 3}
   - {fileID: 21300000, guid: 290c3ecfa4aed6d46b4f3a5ff936a4c2, type: 3}
+  - {fileID: 21300000, guid: f3fe3a324186aad4dbe30aa0d1b317b2, type: 3}
