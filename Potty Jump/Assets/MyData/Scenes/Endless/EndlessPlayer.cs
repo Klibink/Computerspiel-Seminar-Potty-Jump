@@ -17,6 +17,7 @@ public class EndlessPlayer : MonoBehaviour
     private bool isMovingLeft = true;
     private bool canDie = true;
     private bool isInvincible = false;
+    private bool isUsingPowerUp = false;
     Rigidbody2D rb;
     public Text scoreText;
     public Sprite deathSprite;
@@ -24,6 +25,7 @@ public class EndlessPlayer : MonoBehaviour
     public float Points { get => points; set => points = value; }
     public bool CanDie { get => canDie; set => canDie = value; }
     public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
+    public bool IsUsingPowerUp { get => isUsingPowerUp; set => isUsingPowerUp = value; }
 
     private void Awake()
     {
@@ -86,6 +88,11 @@ public class EndlessPlayer : MonoBehaviour
         if (isInvincible)
         {
             ActivateInvincibility();
+        }
+
+        if (isUsingPowerUp)
+        {
+            StartCoroutine(DeactivatePowerUp());
         }
         
         if(transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
@@ -156,6 +163,12 @@ public class EndlessPlayer : MonoBehaviour
         }
         Debug.Log(EndlessPlayer.instance.IsInvincible);
 
+    }
+
+    public IEnumerator DeactivatePowerUp()
+    {
+        yield return new WaitForSeconds(4f);
+        isUsingPowerUp = false;
     }
 
     public void SetDeathStatus()

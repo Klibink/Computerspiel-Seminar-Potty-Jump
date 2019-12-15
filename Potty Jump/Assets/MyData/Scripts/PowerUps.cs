@@ -50,10 +50,11 @@ public class PowerUps : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerBody" && EndlessPlayer.instance.CanDie || collision.tag == "PlayerFeet" && EndlessPlayer.instance.CanDie)
+        if (collision.tag == "PlayerBody" && !EndlessPlayer.instance.IsUsingPowerUp || collision.tag == "PlayerFeet" && !EndlessPlayer.instance.IsUsingPowerUp)
         {
             if (gameObject.name.StartsWith("Butterfly"))
             {
+                EndlessPlayer.instance.IsUsingPowerUp = true;
                 isActivated = true;
                 startMoving = true;
                 transform.position = player.transform.position;
@@ -70,6 +71,7 @@ public class PowerUps : MonoBehaviour
             }
             else if (gameObject.name.StartsWith("Gießkanne"))
             {
+                EndlessPlayer.instance.IsUsingPowerUp = true;
                 isActivated = true;
                 EndlessPlayer.instance.IsInvincible = true;
                 StartCoroutine(DestroyPlattform(0.5f));

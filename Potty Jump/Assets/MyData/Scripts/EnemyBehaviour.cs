@@ -62,7 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if(EndlessPlayer.instance != null)
         {
-            if (EndlessPlayer.instance.CanDie)
+            if (EndlessPlayer.instance.CanDie || EndlessPlayer.instance.IsUsingPowerUp)
             {
                 transform.GetComponent<BoxCollider2D>().enabled = true;
             }
@@ -126,14 +126,16 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(collision.collider.tag == "PlayerFeet")
         {
-              if (collision.relativeVelocity.y > 0)
-              {
+            if (!EndlessPlayer.instance.IsUsingPowerUp)
+            {
+                if (collision.relativeVelocity.y > 0)
+                {
                     BoxCollider2D bCollider = collision.collider.GetComponent<BoxCollider2D>();
                     bCollider.enabled = false;
                     EndlessPlayer.instance.ChangeToDeathSprite();
-              }
-              else if (collision.relativeVelocity.y <= 0)
-              {
+                }
+                else if (collision.relativeVelocity.y <= 0)
+                {
                     Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
                     if (rb != null)
                     {
@@ -142,7 +144,13 @@ public class EnemyBehaviour : MonoBehaviour
                         rb.velocity = velocity;
                     }
                     Destroy(gameObject);
-              }
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+              
         
         }
         
@@ -158,11 +166,18 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (collision.tag == "PlayerBody")
         {
-            
-             BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
-             bCollider.enabled = false;
-             EndlessPlayer.instance.ChangeToDeathSprite();
-             Debug.Log("DIE!!!!");
+            if (!EndlessPlayer.instance.IsUsingPowerUp)
+            {
+                BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
+                bCollider.enabled = false;
+                EndlessPlayer.instance.ChangeToDeathSprite();
+                Debug.Log("DIE!!!!");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+             
             
         }
     }

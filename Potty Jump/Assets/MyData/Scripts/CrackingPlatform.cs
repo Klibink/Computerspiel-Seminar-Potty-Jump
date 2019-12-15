@@ -26,6 +26,13 @@ public class CrackingPlatform : MonoBehaviour
     {
         if (collision.relativeVelocity.y <= 0)
         {
+            Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 velocity = rb.velocity;
+                velocity.y = -1;
+                rb.velocity = velocity;
+            }
             transform.GetComponent<EdgeCollider2D>().enabled = false;
             transform.GetComponent<SpriteRenderer>().sprite = brokenSprite;
             StartCoroutine(DestroyPlattform());
