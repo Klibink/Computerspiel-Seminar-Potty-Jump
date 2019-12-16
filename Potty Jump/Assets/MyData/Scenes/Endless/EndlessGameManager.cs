@@ -18,6 +18,7 @@ public class EndlessGameManager : MonoBehaviour
     public int currentLevel = 0;
     public int itemsNeeded = 4;
     public int currentItems = 0;
+    private bool isCountingItems = true;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
     /*
@@ -54,10 +55,26 @@ public class EndlessGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentItems >= itemsNeeded)
+        if(currentItems >= itemsNeeded && isCountingItems)
         {
-            currentItems = 0;
+            isCountingItems=false;
             GameManager.instance.availableLevel++;
+
+            switch (GameManager.instance.availableLevel)
+            {
+                case 1:
+                    GameManager.instance.unlockSkins[0] = true;
+                    break;
+                case 2:
+                    GameManager.instance.unlockSkins[1] = true;
+                    break;
+                case 3:
+                    GameManager.instance.unlockSkins[2] = true;
+                    break;
+                default:
+                    GameManager.instance.unlockSkins[0] = true;
+                    break;
+            }
 
         }
     }

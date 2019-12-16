@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour
     public float highScore = 0;
     public int currentSkin = 0;
     public int currentFlower = 0;
-    //public int availableSkins = 1; 
-    //public int availableFlowers = 1;
+    public int skinsUnlocked = 0;
+    public bool[] unlockSkins = { true, true, true };
+   
 
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
@@ -45,7 +46,6 @@ public class GameManager : MonoBehaviour
         frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight * Camera.main.aspect;
         
-        
     }
 
     // Update is called once per frame
@@ -66,5 +66,6 @@ public class GameManager : MonoBehaviour
         {
             highScore = Mathf.Round(StoryPlayer.instance.Points);
         }
+        
     }
 }

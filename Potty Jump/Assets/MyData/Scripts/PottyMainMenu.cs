@@ -22,7 +22,7 @@ public class PottyMainMenu : MonoBehaviour
         //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
         for (int i = 0; i < skins.Count; i++)
         {
-            if (i == GameManager.instance.currentSkin)
+            if (i == GameManager.instance.currentSkin /*&& GameManager.instance.unlockSkins[i]==true*/)
             {
                 skins[i].SetActive(true);
             }
