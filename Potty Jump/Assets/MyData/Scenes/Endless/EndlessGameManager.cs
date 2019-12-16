@@ -16,6 +16,8 @@ public class EndlessGameManager : MonoBehaviour
     */
     Vector3 targetPos;
     public int currentLevel = 0;
+    public int itemsNeeded = 4;
+    public int currentItems = 0;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
     /*
@@ -52,7 +54,12 @@ public class EndlessGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentItems >= itemsNeeded)
+        {
+            currentItems = 0;
+            GameManager.instance.availableLevel++;
+
+        }
     }
 
     private void LateUpdate()
@@ -80,4 +87,6 @@ public class EndlessGameManager : MonoBehaviour
         deathScreen.SetActive(!deathScreen.activeSelf);
 
     }
+
+    
 }

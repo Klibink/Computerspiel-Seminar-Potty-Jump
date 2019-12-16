@@ -12,6 +12,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     public GameObject breakingPlatformPrefab;
     public GameObject bouncyPlatformPrefab;
     public GameObject movingPlatformPrefab;
+    public GameObject collectableItem;
     public GameObject player;
     public GameObject mainCamera;
     private GameObject[] currentEnemyPrefabs;
@@ -29,6 +30,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     //private bool spawnPlatforms = false;
     private int roundsToWait = 3;
     public int numberOfPlatforms = 15;
+    public int completedLevel = 0;
     public bool spawnSpecialPlaform = true;
     public float specialPlatformChance = 0.2f;
     public bool spawnCrackingPlatform = true;
@@ -39,6 +41,8 @@ public class LevelGeneratorEndless : MonoBehaviour
     public float springPlatformChance = 0.05f;
     public bool spawnMovingPlatform = true;
     public float movingPlatformChance = 0.2f;
+    public bool spawnCollectableItem = true;
+    public float collectableItemChance = 0.1f;
     public bool spawnEnemy = true;
     public float enemySpawnChance = 0.05f;
     public bool spawnPowerUp = true;
@@ -241,6 +245,11 @@ public class LevelGeneratorEndless : MonoBehaviour
             else
             {
                 Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
+            }
+
+            if(GameManager.instance.currentLevel == GameManager.instance.availableLevel - 1 && GameManager.instance.availableLevel < GameManager.instance.maxLevel && Random.Range(0f, 3f) < collectableItemChance && EndlessPlayer.instance.Points > 300)
+            {
+                Instantiate(collectableItem, new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }
 
             if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)

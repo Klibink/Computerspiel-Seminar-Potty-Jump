@@ -391,6 +391,8 @@ MonoBehaviour:
     type: 3}
   movingPlatformPrefab: {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b,
     type: 3}
+  collectableItem: {fileID: 8391643418645915332, guid: f47cdff369fa7704ab7123c3f8144563,
+    type: 3}
   player: {fileID: 0}
   mainCamera: {fileID: 534669902}
   enemyPrefabsLevelEins:
@@ -405,6 +407,7 @@ MonoBehaviour:
   - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
   powerUpPrefabsLevelZwei: []
   numberOfPlatforms: 10
+  completedLevel: 0
   spawnSpecialPlaform: 1
   specialPlatformChance: 0.2
   spawnCrackingPlatform: 1
@@ -415,6 +418,8 @@ MonoBehaviour:
   springPlatformChance: 0.1
   spawnMovingPlatform: 1
   movingPlatformChance: 0.2
+  spawnCollectableItem: 1
+  collectableItemChance: 0.1
   spawnEnemy: 1
   enemySpawnChance: 0.03
   spawnPowerUp: 1
@@ -1366,6 +1371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700601b28c5cd4ab2a38b953d62c9f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skins: []
+  flowers: []
   movementSpeed: 15
   scoreText: {fileID: 1600160656}
   deathSprite: {fileID: 0}
@@ -1563,6 +1570,8 @@ MonoBehaviour:
   camera: {fileID: 534669902}
   deathScreen: {fileID: 1840835174}
   currentLevel: 0
+  itemsNeeded: 4
+  currentItems: 0
 --- !u!4 &1733953451
 Transform:
   m_ObjectHideFlags: 0

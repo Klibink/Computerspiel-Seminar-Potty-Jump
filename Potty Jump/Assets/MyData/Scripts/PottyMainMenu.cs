@@ -5,8 +5,8 @@ using UnityEngine;
 public class PottyMainMenu : MonoBehaviour
 {
     private Transform[] allChildren;
-    public GameObject[] skins;
-    public GameObject[] flowers;
+    public List<GameObject> skins;
+    public List<GameObject> flowers;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class PottyMainMenu : MonoBehaviour
     void Update()
     {
         //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
-        for (int i = 0; i < skins.Length; i++)
+        for (int i = 0; i < skins.Count; i++)
         {
             if (i == GameManager.instance.currentSkin)
             {
@@ -32,7 +32,7 @@ public class PottyMainMenu : MonoBehaviour
             }
         }
         //Das Gleiche für die Blume
-        for (int i = 0; i < flowers.Length; i++)
+        for (int i = 0; i < flowers.Count; i++)
         {
             if (i == GameManager.instance.currentFlower)
             {

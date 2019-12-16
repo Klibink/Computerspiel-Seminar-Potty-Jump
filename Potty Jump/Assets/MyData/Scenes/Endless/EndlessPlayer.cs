@@ -8,8 +8,8 @@ public class EndlessPlayer : MonoBehaviour
 {
     public static EndlessPlayer instance = null;
     private Transform[] allChildren;
-    public GameObject[] skins;
-    public GameObject[] flowers;
+    public List< GameObject> skins;
+    public List<GameObject> flowers;
     public float movementSpeed = 15f;
     private float currentHeight = 0f;
     private float points = 1f;
@@ -46,7 +46,7 @@ public class EndlessPlayer : MonoBehaviour
         allChildren = transform.GetComponentsInChildren<Transform>();
 
         //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
-        for(int i = 0; i < skins.Length; i++)
+        for(int i = 0; i < skins.Count; i++)
         {
             if (i == GameManager.instance.currentSkin)
             {
@@ -58,7 +58,7 @@ public class EndlessPlayer : MonoBehaviour
             }
         }
         //Das Gleiche für die Blume
-        for (int i = 0; i < flowers.Length; i++)
+        for (int i = 0; i < flowers.Count; i++)
         {
             if (i == GameManager.instance.currentFlower)
             {

@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MyData/Scenes/Endless/Main.unity
     guid: 7a0513c37357d6c4188ba841583e4749
-  - enabled: 1
+  - enabled: 0
     path: Assets/MyData/Scenes/Story/StoryModeScene1.unity
     guid: 95c3abb905d794a45a8d9655a24df5dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/MyData/Scenes/Story/StoryModeScene2.unity
     guid: a786ac7242e984d75afa8cf82f179d00
   m_configObjects: {}

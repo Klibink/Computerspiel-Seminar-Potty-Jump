@@ -6,10 +6,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private GameObject panelHolder;
+    public int availableLevel = 1;
+    // muss angepasst werden, wenn Level hinzugefügt werden
+    public int maxLevel = 3;
     public int currentLevel = 0;
     public float highScore = 0;
     public int currentSkin = 0;
     public int currentFlower = 0;
+    //public int availableSkins = 1; 
+    //public int availableFlowers = 1;
 
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
