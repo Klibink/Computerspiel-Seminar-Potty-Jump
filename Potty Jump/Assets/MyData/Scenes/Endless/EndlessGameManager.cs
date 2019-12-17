@@ -9,6 +9,7 @@ public class EndlessGameManager : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public GameObject deathScreen;
+    public Text itemText;
     private bool gameIsRunning = true;
     /*
     private float frustumHeight = 0f;
@@ -77,6 +78,15 @@ public class EndlessGameManager : MonoBehaviour
             }
 
         }
+        if(GameManager.instance.currentLevel + 1 == GameManager.instance.availableLevel)
+        {
+            itemText.text = currentItems.ToString() + " / " + itemsNeeded.ToString();
+        }
+        else
+        {
+            itemText.text = itemsNeeded.ToString() + " / " + itemsNeeded.ToString();
+        }
+
     }
 
     private void LateUpdate()
