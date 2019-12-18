@@ -56,70 +56,78 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (leben <= 0 || Camera.main.transform.position.y > transform.position.y + 6)
+        if (!EndlessGameManager.instance.GamePaused)
         {
-            Destroy(gameObject);
-        }
-        if(EndlessPlayer.instance != null)
-        {
-            if (EndlessPlayer.instance.CanDie || EndlessPlayer.instance.IsUsingPowerUp)
+            if (leben <= 0 || Camera.main.transform.position.y > transform.position.y + 6)
             {
-                transform.GetComponent<BoxCollider2D>().enabled = true;
+                Destroy(gameObject);
             }
-            else
+            if (EndlessPlayer.instance != null)
             {
-                transform.GetComponent<BoxCollider2D>().enabled = false;
+                if (EndlessPlayer.instance.CanDie || EndlessPlayer.instance.IsUsingPowerUp)
+                {
+                    transform.GetComponent<BoxCollider2D>().enabled = true;
+                }
+                else
+                {
+                    transform.GetComponent<BoxCollider2D>().enabled = false;
+                }
             }
-        }
-        else if(StoryPlayer.instance != null)
-        {
-            if (StoryPlayer.instance.CanDie)
+            else if (StoryPlayer.instance != null)
             {
-                transform.GetComponent<BoxCollider2D>().enabled = true;
+                if (StoryPlayer.instance.CanDie)
+                {
+                    transform.GetComponent<BoxCollider2D>().enabled = true;
+                }
+                else
+                {
+                    transform.GetComponent<BoxCollider2D>().enabled = false;
+                }
             }
-            else
-            {
-                transform.GetComponent<BoxCollider2D>().enabled = false;
-            }
-        }
 
-        if(gameObject.name.StartsWith("Abgaswolke"))
-        {
-            Vector2 tempPos = startPos;
-            tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.5f;
-            transform.position = tempPos;
-        }
-        else if (gameObject.name.StartsWith("Flugzeug01"))
-        {
-            float speed = 1.0f;
-            Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) -1f, transform.position.y);
-            Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) +1f, transform.position.y);
-            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
+            if (gameObject.name.StartsWith("Abgaswolke"))
+            {
+                Vector2 tempPos = startPos;
+                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.5f;
+                transform.position = tempPos;
+            }
+            else if (gameObject.name.StartsWith("Flugzeug01"))
+            {
+                float speed = 1.0f;
+                Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) - 1f, transform.position.y);
+                Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) + 1f, transform.position.y);
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
 
-            isMovingRight = GetVelocity();
-            
-            if (isMovingRight && !turnedAlready )
-            {
-                Scale();
+                isMovingRight = GetVelocity();
+
+                if (isMovingRight && !turnedAlready)
+                {
+                    Scale();
+                }
+                else if (!isMovingRight && turnedAlready)
+                {
+                    Scale();
+                }
+
             }
-            else if (!isMovingRight && turnedAlready)
+            else if (gameObject.name.StartsWith("Laus"))
             {
-                Scale();
+
             }
-            
+            else if (gameObject.name.StartsWith("Mistkäfer"))
+            {
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+            }
+            else if (gameObject.name.StartsWith("Feuerball"))
+            {
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.2f, 1.0f));
+            }
         }
-        else if (gameObject.name.StartsWith("Laus"))
+        else
         {
             
         }
-        else if (gameObject.name.StartsWith("Mistkäfer"))
-        {
-            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
-        }
-        else if (gameObject.name.StartsWith("Feuerball"))
-        {
-            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.2f, 1.0f));
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

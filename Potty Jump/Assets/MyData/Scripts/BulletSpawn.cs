@@ -15,7 +15,7 @@ public class BulletSpawn : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EndlessGameManager.instance.GamePaused)
         {
             if (canShoot == true)
             {
