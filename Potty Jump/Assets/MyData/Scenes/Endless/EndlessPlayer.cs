@@ -27,6 +27,8 @@ public class EndlessPlayer : MonoBehaviour
     public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
     public bool IsUsingPowerUp { get => isUsingPowerUp; set => isUsingPowerUp = value; }
 
+    RigidbodyConstraints2D originalConstraints;
+
     private void Awake()
     {
         if (instance == null)
@@ -37,12 +39,14 @@ public class EndlessPlayer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalConstraints = rb.constraints;
         allChildren = transform.GetComponentsInChildren<Transform>();
 
         //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
@@ -75,60 +79,70 @@ public class EndlessPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!EndlessGameManager.instance.GamePaused)
+        {
+            rb.constraints = originalConstraints;
 #if UNITY_EDITOR
-        movement = Input.GetAxis("Horizontal") * movementSpeed;
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
 
 #elif UNITY_ANDROID
         movement = Input.acceleration.x * movementSpeed;
 #endif
-        CheckIfMoving();
-        CheckDeath();
-        Flip();
+            CheckIfMoving();
+            CheckDeath();
+            Flip();
 
-        if (isInvincible)
-        {
-            ActivateInvincibility();
-        }
+            if (isInvincible)
+            {
+                ActivateInvincibility();
+            }
 
-        if (isUsingPowerUp)
-        {
-            StartCoroutine(DeactivatePowerUp());
-        }
-        
-        if(transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
-        {
-            CanDie = false;
-            Debug.Log("Ich bin unsterblich");
+            if (isUsingPowerUp)
+            {
+                StartCoroutine(DeactivatePowerUp());
+            }
+
+            if (transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
+            {
+                CanDie = false;
+                Debug.Log("Ich bin unsterblich");
+            }
+            else
+            {
+                CanDie = true;
+                Debug.Log("Ich kann sterben");
+            }
+
+            //erhöht die Punktzahl und zeigt sie in der Szene an
+            if (rb.velocity.y > 0 && transform.position.y > currentHeight)
+            {
+                currentHeight = transform.position.y;
+                points = currentHeight * 2.5f;
+            }
+            scoreText.text = "Score: " + Mathf.Round(points).ToString();
+
+            //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
+            if (transform.position.x < -GameManager.instance.FrustumWidth / 2f - 0.5f)
+            {
+                Vector2 temp = new Vector2();
+                temp.y = transform.position.y;
+                temp.x = GameManager.instance.FrustumWidth / 2f;
+                transform.position = temp;
+            }
+            else if (transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
+            {
+                Vector2 temp = new Vector2();
+                temp.y = transform.position.y;
+                temp.x = -GameManager.instance.FrustumWidth / 2f;
+                transform.position = temp;
+            }
         }
         else
         {
-            CanDie = true;
-            Debug.Log("Ich kann sterben");
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
 
-        //erhöht die Punktzahl und zeigt sie in der Szene an
-        if (rb.velocity.y > 0 && transform.position.y > currentHeight)
-        {
-            currentHeight = transform.position.y;
-            points = currentHeight * 2.5f;
-        }
-        scoreText.text = "Score: " + Mathf.Round(points).ToString();
 
-        //Wenn Spieler den Bildschirm auf einer Seite verlässt kommt er auf der anderen Seite wieder raus
-        if(transform.position.x < -GameManager.instance.FrustumWidth / 2f - 0.5f)
-        {
-            Vector2 temp = new Vector2();
-            temp.y = transform.position.y;
-            temp.x = GameManager.instance.FrustumWidth / 2f;
-            transform.position = temp;
-        }
-        else if(transform.position.x > GameManager.instance.FrustumWidth / 2f + 0.5f)
-        {
-            Vector2 temp = new Vector2();
-            temp.y = transform.position.y;
-            temp.x = -GameManager.instance.FrustumWidth / 2f;
-            transform.position = temp;
-        }
 
     }
 
@@ -190,7 +204,7 @@ public class EndlessPlayer : MonoBehaviour
 
     private void CheckIfMoving()
     {
-        if (rb.velocity.y == 0)
+        if (rb.velocity.y == 0 && EndlessGameManager.instance.GamePaused)
         {
             Vector2 velocity = rb.velocity;
             velocity.y = 10f;

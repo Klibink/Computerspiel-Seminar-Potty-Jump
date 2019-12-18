@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         //https://docs.unity3d.com/Manual/FrustumSizeAtDistance.html
         frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight * Camera.main.aspect;
+
+        LoadData();
         
     }
 
@@ -66,6 +68,31 @@ public class GameManager : MonoBehaviour
         {
             highScore = Mathf.Round(StoryPlayer.instance.Points);
         }
+        
+    }
+
+    public void SaveData()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadData()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data != null)
+        {
+            Debug.Log("Datei vorhanden");
+            availableLevel = data.availableLevel;
+            highScore = data.highscore;
+        }
+        else
+        {
+            Debug.Log("Datei fehlt");
+            availableLevel = 1;
+            highScore = 0;
+        }
+
         
     }
 }

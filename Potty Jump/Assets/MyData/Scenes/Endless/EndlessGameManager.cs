@@ -11,6 +11,7 @@ public class EndlessGameManager : MonoBehaviour
     public GameObject deathScreen;
     public Text itemText;
     private bool gameIsRunning = true;
+    private bool gamePaused = false;
     /*
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
@@ -22,10 +23,12 @@ public class EndlessGameManager : MonoBehaviour
     private bool isCountingItems = true;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
+    public bool GamePaused { get => gamePaused; set => gamePaused = value; }
+
     /*
-    public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
-    public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
-    */
+public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
+public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
+*/
 
     private void Awake()
     {
@@ -104,6 +107,7 @@ public class EndlessGameManager : MonoBehaviour
         deathScreen.transform.Find("ScoreEndscreenText").GetComponent<Text>().text = "Score: " + Mathf.Round(EndlessPlayer.instance.Points).ToString();
         deathScreen.transform.Find("HighscoreEndscreenText").GetComponent<Text>().text = "Highscore: " + Mathf.Round(GameManager.instance.highScore).ToString();
         StartCoroutine(ShowDeathScreen());
+        GameManager.instance.SaveData();
         
     }
 
@@ -115,5 +119,10 @@ public class EndlessGameManager : MonoBehaviour
 
     }
 
-    
+    public void TogglePauseButton()
+    {
+        gamePaused = !gamePaused;
+        Debug.Log("Button gedrückt");
+    }
+
 }
