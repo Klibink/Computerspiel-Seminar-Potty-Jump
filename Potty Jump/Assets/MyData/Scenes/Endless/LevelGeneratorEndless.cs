@@ -6,9 +6,8 @@ public class LevelGeneratorEndless : MonoBehaviour
 {
     public GameObject background;
     public Sprite[] backgroundSprites;
-    public AudioClip[] songs;
-    public AudioClip clip;
     public AudioSource music;
+    public AudioClip[] songs;
     public GameObject[] platformPrefab;
     public GameObject[] specialPlatformPrefab;
     public GameObject crackingPlatformPrefab;

@@ -573,6 +573,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0ecca56bbd079ae47ac9a1602a85cbd6, type: 3}
   - {fileID: 21300000, guid: 47c678a96f1014142a93917edd297dd2, type: 3}
   - {fileID: 21300000, guid: cb92f95d019641443a6a8bc019affdc9, type: 3}
+  music: {fileID: 279868153}
   songs:
   - {fileID: 8300000, guid: 73bdc1ea6b31948069d7cdac4f82b7bd, type: 3}
   - {fileID: 8300000, guid: a130122084bf741a199aba1ad0251ada, type: 3}
@@ -580,8 +581,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4027531e3e26c4b1ca4b4775395cedfa, type: 3}
   - {fileID: 8300000, guid: cce29b5609c144f028c45e8bbb7fffe9, type: 3}
   - {fileID: 8300000, guid: 53f0f5d274953499aaca72c7d98a31a7, type: 3}
-  clip: {fileID: 0}
-  music: {fileID: 279868153}
   platformPrefab:
   - {fileID: 1846268716812480612, guid: d6dc8d4bdb105db419c14e8de6cbbb00, type: 3}
   - {fileID: 8047136126074471919, guid: 253291f050c162042a63d0436f057467, type: 3}
@@ -2157,7 +2156,7 @@ MonoBehaviour:
   camera: {fileID: 534669902}
   deathScreen: {fileID: 1840835174}
   itemText: {fileID: 926447025}
-  currentLevel: 1
+  currentLevel: 0
   itemsNeeded: 4
   currentItems: 0
 --- !u!4 &1733953451
