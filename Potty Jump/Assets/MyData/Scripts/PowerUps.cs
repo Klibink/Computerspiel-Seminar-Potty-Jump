@@ -54,6 +54,7 @@ public class PowerUps : MonoBehaviour
         {
             if (gameObject.name.StartsWith("Butterfly"))
             {
+                GetComponent<AudioSource>().Play();
                 EndlessPlayer.instance.IsUsingPowerUp = true;
                 isActivated = true;
                 startMoving = true;

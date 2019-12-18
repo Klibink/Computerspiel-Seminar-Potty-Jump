@@ -15,7 +15,7 @@ public class BouncyPlatform : MonoBehaviour
     private void Update()
     {
         //Löscht untere Plattformen, wenn Camera bestimmte Höhe erreicht
-        if (mainCamera.transform.position.y > transform.position.y + 7)
+        if (mainCamera.transform.position.y > transform.position.y + 7 && GetComponent<AudioSource>().isPlaying == false)
         {
             Destroy(gameObject);
         }
@@ -28,6 +28,7 @@ public class BouncyPlatform : MonoBehaviour
             Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
             if (rb != null)
             {
+                GetComponent<AudioSource>().Play();
                 Vector2 velocity = rb.velocity;
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
