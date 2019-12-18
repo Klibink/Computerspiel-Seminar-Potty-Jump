@@ -15,7 +15,7 @@ public class Platform : MonoBehaviour
     private void Update()
     {
         //Löscht untere Plattformen, wenn Camera bestimmte Höhe erreicht
-        if (mainCamera.transform.position.y > transform.position.y + 6 && GetComponent<AudioSource>().isPlaying == false)
+        if (mainCamera.transform.position.y > transform.position.y + 6 /*&& GetComponent<AudioSource>().isPlaying == false*/)
         {
             Destroy(gameObject);
         }
@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour
                 Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    GetComponent<AudioSource>().Play();
+                    //GetComponent<AudioSource>().Play();
                     Vector2 velocity = rb.velocity;
                     velocity.y = jumpForce;
                     rb.velocity = velocity;
