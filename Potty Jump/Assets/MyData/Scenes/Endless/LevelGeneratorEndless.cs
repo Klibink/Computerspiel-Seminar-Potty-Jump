@@ -6,6 +6,9 @@ public class LevelGeneratorEndless : MonoBehaviour
 {
     public GameObject background;
     public Sprite[] backgroundSprites;
+    public AudioClip[] songs;
+    public AudioClip clip;
+    public AudioSource music;
     public GameObject[] platformPrefab;
     public GameObject[] specialPlatformPrefab;
     public GameObject crackingPlatformPrefab;
@@ -63,6 +66,8 @@ public class LevelGeneratorEndless : MonoBehaviour
     {
         player = GameObject.Find("Potty");
         background.GetComponent<SpriteRenderer>().sprite = backgroundSprites[GameManager.instance.currentLevel];
+        music.clip = songs[GameManager.instance.currentLevel];
+        music.Play();
 
         switch (GameManager.instance.currentLevel)
         {
