@@ -229,6 +229,10 @@ public class EndlessPlayer : MonoBehaviour
     {
         if (transform.position.y+10 < Camera.main.transform.position.y && EndlessGameManager.instance.GameIsRunning==true)
         {
+            if (this.transform.Find("DeathSprite").GetComponent<AudioSource>().isPlaying == false)
+            {
+                this.transform.Find("DeathSprite").GetComponent<AudioSource>().Play();
+            }
             EndlessGameManager.instance.PlayerDeath();
         }
     }
@@ -239,6 +243,7 @@ public class EndlessPlayer : MonoBehaviour
         {
             if(child.name == "DeathSprite")
             {
+                child.GetComponent<AudioSource>().Play();
                 child.GetComponent<SpriteRenderer>().enabled = true;
                 //child.GetComponent<SpriteRenderer>().sprite = deathSprite;
                 //Vector3 newScale = new Vector3(1.5f, 1.5f, 0);
