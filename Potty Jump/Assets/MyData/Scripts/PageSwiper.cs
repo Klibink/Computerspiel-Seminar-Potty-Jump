@@ -15,6 +15,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     void Start()
     {
         panelLocation = transform.position;
+        currentPage = GameManager.instance.currentLevel+1;
     }
     public void OnDrag(PointerEventData data)
     {

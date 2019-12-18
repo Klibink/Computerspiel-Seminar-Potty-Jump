@@ -148,9 +148,19 @@ public class EndlessPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 velocity = rb.velocity;
-        velocity.x = movement;
-        rb.velocity = velocity;
+        if (!EndlessGameManager.instance.GamePaused)
+        {
+            Vector2 velocity = rb.velocity;
+            velocity.x = movement;
+            rb.velocity = velocity;
+        }
+        else
+        {
+            Vector2 velocity = rb.velocity;
+            velocity.x = 0;
+            rb.velocity = velocity;
+        }
+            
     }
 
     public void ActivateInvincibility()

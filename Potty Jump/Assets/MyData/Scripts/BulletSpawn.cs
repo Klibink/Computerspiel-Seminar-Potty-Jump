@@ -33,7 +33,7 @@ public class BulletSpawn : MonoBehaviour
 #elif UNITY_ANDROID
         //TODO: Touch input
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !EndlessGameManager.instance.GamePaused)
         {
             if (canShoot == true)
             {
