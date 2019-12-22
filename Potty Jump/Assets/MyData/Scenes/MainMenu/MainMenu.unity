@@ -180,7 +180,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Story Modus
+  m_Text: 'Tutorial
+
+'
 --- !u!222 &25879603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -347,7 +349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74.3, y: -212.9}
+  m_AnchoredPosition: {x: 68.00003, y: -212.9}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453696269
@@ -546,7 +548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &664184664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -615,7 +617,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: StoryModeScene1
+          m_StringArgument: Tutorial
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &664184666
@@ -1267,9 +1269,10 @@ MonoBehaviour:
   currentLevel: 0
   highScore: 0
   currentSkin: 0
-  currentFlower: 0
+  currentFlower: 1
   skinsUnlocked: 0
-  unlockSkins: 010101
+  unlockSkins: 01010101
+  startTransition: 0
 --- !u!1 &1323040363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232, y: -209}
+  m_AnchoredPosition: {x: 225.7, y: -209}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323040365
@@ -1424,7 +1427,7 @@ PrefabInstance:
     - target: {fileID: 1012089639500918443, guid: 66f08c1318363114cbbf201985a7ba71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.63
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 1012089639500918443, guid: 66f08c1318363114cbbf201985a7ba71,
         type: 3}
@@ -1605,7 +1608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ecca56bbd079ae47ac9a1602a85cbd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e50efd2999a6ccf46a75ed59e455c74e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1677,7 +1680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cb92f95d019641443a6a8bc019affdc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 645f9e7167e45be4f9d9c690cfe3f76e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2062,7 +2065,7 @@ PrefabInstance:
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.62
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 1846268716812480615, guid: d6dc8d4bdb105db419c14e8de6cbbb00,
         type: 3}
@@ -2449,7 +2452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47c678a96f1014142a93917edd297dd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41ad17131f8d52241adbbc12d5e9af67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

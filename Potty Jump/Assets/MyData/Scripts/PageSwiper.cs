@@ -15,8 +15,19 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     void Start()
     {
         panelLocation = transform.position;
-        currentPage = GameManager.instance.currentLevel+1;
+        
+
+        /*if (GameManager.instance.startTransition)
+        {
+            GameManager.instance.startTransition = false;
+            StartCoroutine()
+        }*/
+        
+        //currentPage = GameManager.instance.currentLevel+1;
     }
+
+    
+
     public void OnDrag(PointerEventData data)
     {
         float difference = data.pressPosition.x - data.position.x;
@@ -40,6 +51,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             }
             StartCoroutine(SmoothMove(transform.position, newLocation, easing));
             panelLocation = newLocation;
+            //GameManager.instance.CurrentPanelLocation = newLocation;
             Debug.Log(newLocation);
         }
         else

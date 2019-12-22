@@ -8,6 +8,7 @@ public class PottyMainMenu : MonoBehaviour
     public List<GameObject> skins;
     public List<GameObject> flowers;
     private Rigidbody2D rb;
+    public GameObject xmasSkin;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class PottyMainMenu : MonoBehaviour
         //Das Gleiche für die Blume
         for (int i = 0; i < flowers.Count; i++)
         {
-            if (i == GameManager.instance.currentFlower)
+            if (i == GameManager.instance.currentFlower && !xmasSkin.activeSelf)
             {
                 flowers[i].SetActive(true);
             }
@@ -43,5 +44,14 @@ public class PottyMainMenu : MonoBehaviour
                 flowers[i].SetActive(false);
             }
         }
+
+        /*if (GameObject.Find("TannenbaumSkin").activeSelf)
+        {
+            GameObject.Find("BlumenSpriteHolder").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("BlumenSpriteHolder").SetActive(true);
+        }*/
     }
 }

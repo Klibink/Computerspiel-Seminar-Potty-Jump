@@ -24,9 +24,16 @@ public class CollectableItem : MonoBehaviour
     {
         if(collision.tag == "PlayerFeet" || collision.tag == "PlayerBody")
         {
-            EndlessGameManager.instance.currentItems++;
-            Destroy(gameObject);
-            //StartCoroutine(DestroyItem());
+            if (EndlessGameManager.instance != null)
+            {
+                EndlessGameManager.instance.currentItems++;
+                Destroy(gameObject);
+                //StartCoroutine(DestroyItem());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

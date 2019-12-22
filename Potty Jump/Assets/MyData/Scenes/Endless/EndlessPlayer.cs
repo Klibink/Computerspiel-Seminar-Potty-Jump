@@ -10,6 +10,7 @@ public class EndlessPlayer : MonoBehaviour
     private Transform[] allChildren;
     public List< GameObject> skins;
     public List<GameObject> flowers;
+    public GameObject xmasSkin;
     public float movementSpeed = 15f;
     private float currentHeight = 0f;
     private float points = 1f;
@@ -64,7 +65,7 @@ public class EndlessPlayer : MonoBehaviour
         //Das Gleiche für die Blume
         for (int i = 0; i < flowers.Count; i++)
         {
-            if (i == GameManager.instance.currentFlower)
+            if (i == GameManager.instance.currentFlower && !xmasSkin.activeSelf)
             {
                 flowers[i].SetActive(true);
             }
@@ -179,7 +180,7 @@ public class EndlessPlayer : MonoBehaviour
 
     IEnumerator InvincibleTime()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         isInvincible = false;
         if (GameObject.Find("BubbleSprite") != null)
         {
@@ -191,7 +192,7 @@ public class EndlessPlayer : MonoBehaviour
 
     public IEnumerator DeactivatePowerUp()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         isUsingPowerUp = false;
     }
 

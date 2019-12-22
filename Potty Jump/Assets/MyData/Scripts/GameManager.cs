@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private GameObject panelHolder;
     public int availableLevel = 1;
+    private int tempLevel = 1;
     // muss angepasst werden, wenn Level hinzugefügt werden
     public int maxLevel = 3;
     public int currentLevel = 0;
@@ -14,7 +15,9 @@ public class GameManager : MonoBehaviour
     public int currentSkin = 0;
     public int currentFlower = 0;
     public int skinsUnlocked = 0;
-    public bool[] unlockSkins = { true, true, true };
+    public bool[] unlockSkins = { true, true, true, true };
+    public bool startTransition = false;
+    private Vector3 currentPanelLocation;
    
 
     private float frustumHeight = 0f;
@@ -22,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
     public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
-
+    public Vector3 CurrentPanelLocation { get => currentPanelLocation; set => currentPanelLocation = value; }
 
     private void Awake()
     {
@@ -47,6 +50,12 @@ public class GameManager : MonoBehaviour
         frustumWidth = frustumHeight * Camera.main.aspect;
 
         LoadData();
+
+        if (tempLevel < availableLevel)
+        {
+            tempLevel = availableLevel;
+            startTransition = true;
+        }
         
     }
 

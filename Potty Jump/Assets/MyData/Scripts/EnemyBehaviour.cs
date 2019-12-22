@@ -51,6 +51,22 @@ public class EnemyBehaviour : MonoBehaviour
                 tempPos2 = new Vector2(startPos.x + 10, startPos.y - 5);
             }
         }
+        else if (gameObject.name.StartsWith("KäferBrennend"))
+        {
+            leben = 2;
+            tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y);
+            tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y);
+        }
+        else if (gameObject.name.StartsWith("Ölmonster"))
+        {
+            leben = 2;
+            tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y);
+            tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y);
+        }
+        else if (gameObject.name.StartsWith("Kröte"))
+        {
+            leben = 1;
+        }
     }
 
     // Update is called once per frame
@@ -120,7 +136,41 @@ public class EnemyBehaviour : MonoBehaviour
             }
             else if (gameObject.name.StartsWith("Feuerball"))
             {
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.2f, 1.0f));
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.1f, 1.0f));
+            }
+            else if (gameObject.name.StartsWith("KäferBrennend"))
+            {
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+
+                isMovingRight = GetVelocity();
+
+                if (isMovingRight && !turnedAlready)
+                {
+                    Scale();
+                }
+                else if (!isMovingRight && turnedAlready)
+                {
+                    Scale();
+                }
+            }
+            else if (gameObject.name.StartsWith("Ölmonster"))
+            {
+                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+
+                isMovingRight = GetVelocity();
+
+                if (isMovingRight && turnedAlready)
+                {
+                    Scale();
+                }
+                else if (!isMovingRight && !turnedAlready)
+                {
+                    Scale();
+                }
+            }
+            else if (gameObject.name.StartsWith("Kröte"))
+            {
+
             }
         }
         else
@@ -156,7 +206,21 @@ public class EnemyBehaviour : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                if(collision.relativeVelocity.y <= 0)
+                {
+                    Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        Vector2 velocity = rb.velocity;
+                        velocity.y = 15;
+                        rb.velocity = velocity;
+                    }
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
               
         

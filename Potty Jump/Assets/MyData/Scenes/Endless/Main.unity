@@ -503,13 +503,19 @@ MonoBehaviour:
   - {fileID: 5671647870287348162, guid: d21781db9b1ef0540916cae54203c866, type: 3}
   - {fileID: 3424953535111856432, guid: c6d8fb5f8885d8c4ab0b9494bef83f8f, type: 3}
   enemyPrefabsLevelZwei:
-  - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}
+  - {fileID: 4514879589293656103, guid: 1564a91678de3514585b31ad359b93ab, type: 3}
   - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
   - {fileID: 1932980983421894552, guid: 869f436f3453948cab039b383e5d8fa9, type: 3}
+  enemyPrefabsLevelDrei:
+  - {fileID: 3859196848650710353, guid: 8a49f41b053bd95408062243303f4d53, type: 3}
+  - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
   powerUpPrefabsLevelEins:
   - {fileID: 2127826749293689063, guid: b1f945700226b71458e0b86c9902cab6, type: 3}
   - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
-  powerUpPrefabsLevelZwei: []
+  powerUpPrefabsLevelZwei:
+  - {fileID: 2127826749293689063, guid: b1f945700226b71458e0b86c9902cab6, type: 3}
+  - {fileID: 9222532589717010500, guid: 939c19808755148458f1a669c7911082, type: 3}
+  powerUpPrefabsLevelDrei: []
   numberOfPlatforms: 10
   completedLevel: 0
   spawnSpecialPlaform: 1
@@ -1864,6 +1870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skins: []
   flowers: []
+  xmasSkin: {fileID: 0}
   movementSpeed: 15
   scoreText: {fileID: 1600160656}
   deathSprite: {fileID: 0}
@@ -2748,7 +2755,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 0ecca56bbd079ae47ac9a1602a85cbd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fb80142ba2129c46bf894dcb64a13f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

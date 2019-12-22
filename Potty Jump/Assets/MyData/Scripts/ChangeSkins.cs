@@ -23,6 +23,28 @@ public class ChangeSkins : MonoBehaviour
         GameManager.instance.currentSkin = skinNumber;
     }
 
+    public void ChangeFlowerUp()
+    {
+        for (int i = GameManager.instance.currentFlower; i < GameManager.instance.unlockSkins.Length - 1;)
+        {
+            i++;
+            if (GameManager.instance.unlockSkins[i] == true)
+            {
+                GameManager.instance.currentFlower = i;
+                break;
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    public void ChangeFlowerDown()
+    {
+
+    }
+
     public void ChangeSkinUp()
     {
         for(int i= GameManager.instance.currentSkin; i < GameManager.instance.unlockSkins.Length - 1; )

@@ -20,9 +20,11 @@ public class LevelGeneratorEndless : MonoBehaviour
     private GameObject[] currentEnemyPrefabs;
     public GameObject[] enemyPrefabsLevelEins;
     public GameObject[] enemyPrefabsLevelZwei;
+    public GameObject[] enemyPrefabsLevelDrei;
     private GameObject[] currentPowerUps;
     public GameObject[] powerUpPrefabsLevelEins;
     public GameObject[] powerUpPrefabsLevelZwei;
+    public GameObject[] powerUpPrefabsLevelDrei;
 
     //public int numberOfStartPlatforms = 20;
     //public float levelWidth = 3f;
@@ -92,7 +94,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 1:
-                spawnSpecialPlaform = false; ;
+                spawnSpecialPlaform = false; 
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = true;
                 spawnSpringPlaftform = true;
@@ -113,17 +115,17 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 2:
-                spawnSpecialPlaform = false; ;
+                spawnSpecialPlaform = false; 
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = true;
+                spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
                 spawnMovingPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
-                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelZwei.Length];
-                for (int i = 0; i < enemyPrefabsLevelZwei.Length; i++)
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelDrei.Length];
+                for (int i = 0; i < enemyPrefabsLevelDrei.Length; i++)
                 {
-                    currentEnemyPrefabs[i] = enemyPrefabsLevelZwei[i];
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelDrei[i];
                 }
 
                 currentPowerUps = new GameObject[powerUpPrefabsLevelZwei.Length];
@@ -272,7 +274,7 @@ public class LevelGeneratorEndless : MonoBehaviour
 
             if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
             {
-                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(crackingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y + 0.2f, 0f), Quaternion.identity);
             }
 
             if (spawnBreakingPlatform && Random.Range(0f, 1f) < breakingPlatformChance)
@@ -282,7 +284,7 @@ public class LevelGeneratorEndless : MonoBehaviour
 
             if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
             {
-                Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y + 0.2f, 0f), Quaternion.identity);
             }
 
             
@@ -389,7 +391,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                     case 2:
                         spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = true;
+                        spawnBreakingPlatform = false;
                         spawnSpringPlaftform = true;
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
