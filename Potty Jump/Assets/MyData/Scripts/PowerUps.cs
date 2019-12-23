@@ -100,7 +100,7 @@ public class PowerUps : MonoBehaviour
         yield return new WaitForSeconds(2f);
         EndlessPlayer.instance.IsInvincible = false;
         GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
-        Debug.Log(EndlessPlayer.instance.IsInvincible);
+        //Debug.Log(EndlessPlayer.instance.IsInvincible);
         yield return StartCoroutine(DestroyPlattform(1f));
     }
 }

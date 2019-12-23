@@ -48,7 +48,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     public bool spawnCollectableItem = true;
     public float collectableItemChance = 0.1f;
     public bool spawnEnemy = true;
-    public float enemySpawnChance = 0.05f;
+    public float enemySpawnChance = 0.1f;
     public bool spawnPowerUp = true;
     public float powerUpSpawnChance = 0.0005f;
     
@@ -229,6 +229,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     {
         Debug.Log("Spawnsection");
         Debug.Log(GameManager.instance.FrustumWidth);
+        completedLevel++;
         float startY = entryPlatform.y;
         float avgOff = SECTION_HEIGHT / numberOfPlatforms;
         bool powerUpSpawned;
@@ -236,6 +237,11 @@ public class LevelGeneratorEndless : MonoBehaviour
         if (avgOff >= MAX_JUMP_HEIGHT)
         {
             Debug.Log("Fehler. Zu wenige Plattformen in Section");
+        }
+
+        if (completedLevel > 30)
+        {
+            enemySpawnChance = 0.2f;
         }
 
         tmp.Set(entryPlatform.x, entryPlatform.y);
@@ -258,7 +264,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                 Instantiate(collectableItem, new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }
 
-            if (spawnEnemy && Random.Range(0f, 1f) < enemySpawnChance)
+            if (spawnEnemy && Random.Range(0f, 2f) < enemySpawnChance)
             {
                 Instantiate(currentEnemyPrefabs[Random.Range(0, currentEnemyPrefabs.Length)], new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
             }

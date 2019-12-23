@@ -91,7 +91,10 @@ public class EndlessPlayer : MonoBehaviour
 #endif
             CheckIfMoving();
             CheckDeath();
-            Flip();
+            if (movement <= -1f || movement > 1f)
+            {
+                Flip();
+            }
 
             if (isInvincible)
             {
@@ -180,7 +183,7 @@ public class EndlessPlayer : MonoBehaviour
 
     IEnumerator InvincibleTime()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         isInvincible = false;
         if (GameObject.Find("BubbleSprite") != null)
         {
@@ -192,7 +195,7 @@ public class EndlessPlayer : MonoBehaviour
 
     public IEnumerator DeactivatePowerUp()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         isUsingPowerUp = false;
     }
 
