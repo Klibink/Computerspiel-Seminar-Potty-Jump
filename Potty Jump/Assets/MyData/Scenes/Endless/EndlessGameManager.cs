@@ -9,6 +9,7 @@ public class EndlessGameManager : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public GameObject deathScreen;
+    public GameObject notification;
     public Text itemText;
     private bool gameIsRunning = true;
     private bool gamePaused = false;
@@ -20,7 +21,7 @@ public class EndlessGameManager : MonoBehaviour
     public int currentLevel = 0;
     public int itemsNeeded = 4;
     public int currentItems = 0;
-    private bool isCountingItems = true;
+    public bool isCountingItems = true;
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
     public bool GamePaused { get => gamePaused; set => gamePaused = value; }
@@ -63,6 +64,8 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
         {
             isCountingItems=false;
             GameManager.instance.availableLevel++;
+            Debug.Log("Test");
+            StartCoroutine(ShowNotification());
 
             switch (GameManager.instance.availableLevel)
             {
@@ -117,6 +120,14 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
         yield return new WaitForSeconds(2f);
         deathScreen.SetActive(!deathScreen.activeSelf);
 
+    }
+
+    IEnumerator ShowNotification()
+    {
+        Debug.Log("Aktiv");
+        notification.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        notification.SetActive(false);
     }
 
     public void TogglePauseButton()

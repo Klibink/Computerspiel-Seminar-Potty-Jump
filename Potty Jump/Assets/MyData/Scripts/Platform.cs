@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour
                 Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    //GetComponent<AudioSource>().Play();
+                    GetComponent<AudioSource>().Play();
                     Vector2 velocity = rb.velocity;
                     velocity.y = jumpForce;
                     rb.velocity = velocity;

@@ -8,7 +8,7 @@ public class EndlessPlayer : MonoBehaviour
 {
     public static EndlessPlayer instance = null;
     private Transform[] allChildren;
-    public List< GameObject> skins;
+    public List<GameObject> skins;
     public List<GameObject> flowers;
     public GameObject xmasSkin;
     public float movementSpeed = 15f;
@@ -106,12 +106,12 @@ public class EndlessPlayer : MonoBehaviour
             if (transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
             {
                 CanDie = false;
-                Debug.Log("Ich bin unsterblich");
+                //Debug.Log("Ich bin unsterblich");
             }
             else
             {
                 CanDie = true;
-                Debug.Log("Ich kann sterben");
+                //Debug.Log("Ich kann sterben");
             }
 
             //erhöht die Punktzahl und zeigt sie in der Szene an
