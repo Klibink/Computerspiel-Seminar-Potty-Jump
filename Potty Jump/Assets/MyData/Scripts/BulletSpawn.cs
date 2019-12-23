@@ -15,7 +15,7 @@ public class BulletSpawn : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0) && !EndlessGameManager.instance.GamePaused)
+        if (Input.GetMouseButtonDown(0) && !EndlessGameManager.instance.GamePaused && EndlessGameManager.instance.GameIsRunning)
         {
             if (canShoot == true)
             {
@@ -41,6 +41,7 @@ public class BulletSpawn : MonoBehaviour
                 if(touch.phase == TouchPhase.Began)
                     {
                         GameObject spawn = GameObject.Find("Spawn");
+                        GetComponent<AudioSource>().Play();
                         rot = -(rot_range * (touch.position.x / Screen.width) - (rot_range/2));
                         transform.rotation = Quaternion.Euler(0f, 0f, rot);
                         Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);

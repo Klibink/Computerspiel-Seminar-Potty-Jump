@@ -232,6 +232,7 @@ public class EndlessPlayer : MonoBehaviour
         {
             if (this.transform.Find("DeathSprite").GetComponent<AudioSource>().isPlaying == false)
             {
+                GameObject.Find("LevelGenerator").GetComponent<AudioSource>().Stop();
                 this.transform.Find("DeathSprite").GetComponent<AudioSource>().Play();
             }
             EndlessGameManager.instance.PlayerDeath();
