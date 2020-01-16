@@ -47,8 +47,7 @@ public class BulletSpawn : MonoBehaviour
                         Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation);
                         canShoot = false;
                         StartCoroutine(ShootDelay());
-                    }
-                
+                    }                
             }
         }
 #endif
