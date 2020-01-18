@@ -7,7 +7,7 @@ public class PowerUps : MonoBehaviour
     public GameObject player;
     private Vector2 startPos;
     private float jumpForce = 10f;
-    private float distance = 20f;
+    private float distance = 30f;
     private bool startMoving = false;
     private bool isActivated = false;
     // Start is called before the first frame update

@@ -19,6 +19,7 @@ public class EndlessPlayer : MonoBehaviour
     private bool canDie = true;
     private bool isInvincible = false;
     private bool isUsingPowerUp = false;
+    private bool justActivated = false;
     Rigidbody2D rb;
     public Text scoreText;
     public Sprite deathSprite;
@@ -27,6 +28,7 @@ public class EndlessPlayer : MonoBehaviour
     public bool CanDie { get => canDie; set => canDie = value; }
     public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
     public bool IsUsingPowerUp { get => isUsingPowerUp; set => isUsingPowerUp = value; }
+    public bool JustActivated { get => justActivated; set => justActivated = value; }
 
     RigidbodyConstraints2D originalConstraints;
 
@@ -95,16 +97,23 @@ public class EndlessPlayer : MonoBehaviour
             {
                 Flip();
             }
+            
 
-            if (isInvincible)
+            if (isUsingPowerUp || isInvincible)
             {
-                ActivateInvincibility();
-            }
+                Debug.Log("PowerUp: " + isUsingPowerUp + ", Invincible: " + isInvincible);
+                if (!justActivated)
+                {
 
-            if (isUsingPowerUp)
-            {
-                StartCoroutine(DeactivatePowerUp());
+                    if (isInvincible)
+                    {
+                        GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    StartCoroutine(Offload(isInvincible, isUsingPowerUp, 4));
+                    justActivated = true;
+                }
             }
+            
 
             if (transform.GetComponent<Rigidbody2D>().velocity.y > 10 || isInvincible)
             {
@@ -166,37 +175,27 @@ public class EndlessPlayer : MonoBehaviour
         }
             
     }
+    
+    
 
-    public void ActivateInvincibility()
+    IEnumerator Offload(bool invincible, bool deactivate, float sleepTime)
     {
-        foreach (Transform child in allChildren)
+        
+        yield return new WaitForSeconds(sleepTime);
+        justActivated = false;
+        if (deactivate)
         {
-            if (child.name == "SpriteHolder")
+            isUsingPowerUp = false;
+        }
+        if (invincible)
+        {
+            isInvincible = false;
+            if (GameObject.Find("BubbleSprite") != null)
             {
-                //child.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = true;
-                isInvincible = true;
-                StartCoroutine(InvincibleTime());
+                GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
             }
+            Debug.Log(EndlessPlayer.instance.IsInvincible);
         }
-    }
-
-    IEnumerator InvincibleTime()
-    {
-        yield return new WaitForSeconds(4f);
-        isInvincible = false;
-        if (GameObject.Find("BubbleSprite") != null)
-        {
-            GameObject.Find("BubbleSprite").GetComponent<SpriteRenderer>().enabled = false;
-        }
-        Debug.Log(EndlessPlayer.instance.IsInvincible);
-
-    }
-
-    public IEnumerator DeactivatePowerUp()
-    {
-        yield return new WaitForSeconds(4f);
-        isUsingPowerUp = false;
     }
 
     public void SetDeathStatus()

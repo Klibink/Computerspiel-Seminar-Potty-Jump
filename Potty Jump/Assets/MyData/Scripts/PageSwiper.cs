@@ -10,31 +10,47 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float easing = 0.5f;
     public int totalPages = 1;
     public int currentPage = 0;
+    public float buttonSize;
 
     // Start is called before the first frame update
     void Start()
     {
         panelLocation = transform.position;
-        
+        foreach(Transform child in transform)
+        {
+            if (child.name.StartsWith("Panel"))
+            {
+                buttonSize =Mathf.Abs(child.GetComponent<RectTransform>().rect.x);
+                break;
+            }
+        }
 
         /*if (GameManager.instance.startTransition)
         {
             GameManager.instance.startTransition = false;
             StartCoroutine()
         }*/
-        
-        //currentPage = GameManager.instance.currentLevel+1;
+
+        currentPage = GameManager.instance.currentLevel+1;
+        if (currentPage > 1)
+        {
+            Vector3 newLocation = panelLocation + new Vector3(-Screen.width * (currentPage - 1), 0, 0);
+            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
+            panelLocation = newLocation;
+        }
     }
 
     
 
     public void OnDrag(PointerEventData data)
     {
+        Debug.Log(buttonSize);
         float difference = data.pressPosition.x - data.position.x;
         transform.position = panelLocation - new Vector3(difference, 0, 0);
     }
     public void OnEndDrag(PointerEventData data)
     {
+
         float percentage = (data.pressPosition.x - data.position.x) / Screen.width;
         if (Mathf.Abs(percentage) >= percentThreshold)
         {
