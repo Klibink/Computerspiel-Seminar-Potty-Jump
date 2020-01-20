@@ -8,7 +8,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     private Vector3 panelLocation;
     public float percentThreshold = 0.2f;
     public float easing = 0.5f;
-    public int totalPages = 1;
+    public int totalPages = 4;
     public int currentPage = 0;
     public float buttonSize;
 

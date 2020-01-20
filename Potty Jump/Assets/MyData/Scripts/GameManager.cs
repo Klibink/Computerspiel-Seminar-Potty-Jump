@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public int availableLevel = 1;
     private int tempLevel = 1;
     // muss angepasst werden, wenn Level hinzugefügt werden
-    public int maxLevel = 3;
+    public int maxLevel = 4;
     public int currentLevel = 0;
     public float highScore = 0;
     public int currentSkin = 0;

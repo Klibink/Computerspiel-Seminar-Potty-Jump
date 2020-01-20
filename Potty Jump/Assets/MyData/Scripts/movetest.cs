@@ -10,12 +10,19 @@ public class movetest : MonoBehaviour
     private Vector2 tempPos2;
     private Animator animator;
 
+    bool isMovingRight = false;
+    bool turnedAlready = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
-        animator = GetComponent<Animator>();
+
+        if (GetComponent<Animator>() != null)
+        {
+            animator = GetComponent<Animator>();
+        }
         speed = Random.Range(0.2f, 0.45f);
 
         if (startPos.x > 0)
@@ -34,27 +41,86 @@ public class movetest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1f));
+        if (gameObject.name.StartsWith("MovingPlatform"))
+        {
+            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1f));
 
+            float velocity = 0f;
+            if (transform.position.x != startPos.x)
+            {
+                velocity = transform.position.x - startPos.x;
+                startPos.x = transform.position.x;
+            }
+
+            if (velocity >= 0)
+            {
+
+                //Debug.Log("rechts");
+
+            }
+            else
+            {
+                //Debug.Log("links");
+            }
+
+            animator.SetFloat("Velocity", velocity);
+        }
+        else if (gameObject.name.StartsWith("Surfboard"))
+        {
+            transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1f));
+
+            /*float velocity = 0f;
+            if (transform.position.x != startPos.x)
+            {
+                velocity = transform.position.x - startPos.x;
+                startPos.x = transform.position.x;
+            }
+            */
+            isMovingRight = GetVelocity();
+
+            if (isMovingRight && !turnedAlready)
+            {
+                Scale();
+            }
+            else if (!isMovingRight && turnedAlready)
+            {
+                Scale();
+            }
+
+        }
+
+        
+    }
+
+    private bool GetVelocity()
+    {
+        bool direction;
         float velocity = 0f;
         if (transform.position.x != startPos.x)
         {
-            velocity = transform.position.x - startPos.x;
+            velocity = startPos.x - transform.position.x;
             startPos.x = transform.position.x;
         }
 
         if (velocity >= 0)
         {
-            
-            //Debug.Log("rechts");
+            direction = false;
 
         }
         else
         {
-            //Debug.Log("links");
+            direction = true;
         }
 
-        animator.SetFloat("Velocity", velocity);
+        return direction;
+    }
+
+    private void Scale()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+        turnedAlready = !turnedAlready;
     }
 }
       

@@ -54,7 +54,10 @@ public class PowerUps : MonoBehaviour
         {
             if (gameObject.name.StartsWith("Butterfly"))
             {
-                GetComponent<AudioSource>().Play();
+                if (GetComponent<AudioSource>() != null)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
                 EndlessPlayer.instance.IsUsingPowerUp = true;
                 isActivated = true;
                 startMoving = true;
@@ -84,7 +87,45 @@ public class PowerUps : MonoBehaviour
                 EndlessPlayer.instance.IsInvincible = true;
                 StartCoroutine(DestroyPlattform(0.5f));
             }
-
+            else if (gameObject.name.StartsWith("Fertilizer"))
+            {
+                Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = 25f;
+                    rb.velocity = velocity;
+                }
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
+            else if (gameObject.name.StartsWith("Muschel"))
+            {
+                EndlessPlayer.instance.IsUsingPowerUp = true;
+                isActivated = true;
+                EndlessPlayer.instance.IsInvincible = true;
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
+            else if (gameObject.name.StartsWith("Regenbogenfisch"))
+            {
+                if (GetComponent<AudioSource>() != null)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                EndlessPlayer.instance.IsUsingPowerUp = true;
+                isActivated = true;
+                startMoving = true;
+                transform.position = player.transform.position;
+                transform.parent = player.transform;
+                //transform.Translate(transform.up * Time.deltaTime * 6f);
+                Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                }
+                StartCoroutine(DestroyPlattform(2.5f));
+            }
         }
         
     }

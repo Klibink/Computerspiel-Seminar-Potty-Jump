@@ -37,6 +37,12 @@ public class StartPlatform : MonoBehaviour
                 edgeCol.points = colliderPoints;
                 transform.localScale = new Vector3(1.2f, 1f, 1f);
                 break;
+            case 3:
+                colliderPoints[0] = new Vector2(-0.4622137f, 0.04650591f);
+                colliderPoints[1] = new Vector2(0.4887137f, 0.04650591f);
+                edgeCol.points = colliderPoints;
+                transform.localScale = new Vector3(1.2f, 1f, 1f);
+                break;
         }
     }
 
