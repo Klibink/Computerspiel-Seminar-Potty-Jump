@@ -67,6 +67,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             leben = 1;
         }
+        else if (gameObject.name.StartsWith("BrennendesBlatt"))
+        {
+            leben = 1;
+        }
     }
 
     // Update is called once per frame
@@ -171,6 +175,10 @@ public class EnemyBehaviour : MonoBehaviour
             else if (gameObject.name.StartsWith("Kröte"))
             {
 
+            }
+            else if (gameObject.name.StartsWith("BrennendesBlatt"))
+            {
+                transform.Translate(-transform.up * Time.deltaTime * 3f);
             }
         }
         else

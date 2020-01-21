@@ -541,7 +541,7 @@ MonoBehaviour:
   - {fileID: 3424953535111856432, guid: c6d8fb5f8885d8c4ab0b9494bef83f8f, type: 3}
   enemyPrefabsLevelZwei:
   - {fileID: 4514879589293656103, guid: 1564a91678de3514585b31ad359b93ab, type: 3}
-  - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
+  - {fileID: 7888478486893274047, guid: d8bedd273fac40548a624fd040fe5828, type: 3}
   - {fileID: 1932980983421894552, guid: 869f436f3453948cab039b383e5d8fa9, type: 3}
   enemyPrefabsLevelDrei:
   - {fileID: 3859196848650710353, guid: 8a49f41b053bd95408062243303f4d53, type: 3}
