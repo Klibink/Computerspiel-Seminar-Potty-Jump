@@ -64,6 +64,7 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
         {
             isCountingItems=false;
             GameManager.instance.availableLevel++;
+            GameManager.instance.goToNewSlide = true;
             Debug.Log("Test");
             StartCoroutine(ShowNotification());
 

@@ -514,16 +514,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a130122084bf741a199aba1ad0251ada, type: 3}
   - {fileID: 8300000, guid: eea15c490993c499f93c3245894dbdf3, type: 3}
   - {fileID: 8300000, guid: 4027531e3e26c4b1ca4b4775395cedfa, type: 3}
+  - {fileID: 8300000, guid: cce29b5609c144f028c45e8bbb7fffe9, type: 3}
   platformPrefab:
   - {fileID: 1846268716812480612, guid: d6dc8d4bdb105db419c14e8de6cbbb00, type: 3}
   - {fileID: 8047136126074471919, guid: 253291f050c162042a63d0436f057467, type: 3}
   - {fileID: 5010303841788242855, guid: db98d1025835244418c7ba7be03993df, type: 3}
   - {fileID: 5631301763082247336, guid: 1ba221a8e6201764a853dd1b6efca387, type: 3}
+  - {fileID: 1220641032299553507, guid: 964425a0f3298f44d800f38b20481c8f, type: 3}
   specialPlatformPrefab:
   - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
   - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
   - {fileID: 164240827180098627, guid: 47136c67690d274429a1728c8dc778e4, type: 3}
   - {fileID: 164240827180098627, guid: 47136c67690d274429a1728c8dc778e4, type: 3}
+  - {fileID: 1220641032299553507, guid: 964425a0f3298f44d800f38b20481c8f, type: 3}
   crackingPlatformPrefab: {fileID: 1033969436225753990, guid: a3a6d5233d8562542830c60a776ba251,
     type: 3}
   breakingPlatformPrefab: {fileID: 2784190005922349481, guid: fc71e33d116318044a0c8eef9d1095f8,
@@ -551,6 +554,9 @@ MonoBehaviour:
   enemyPrefabsLevelVier:
   - {fileID: 3859196848650710353, guid: 8a49f41b053bd95408062243303f4d53, type: 3}
   - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
+  "enemyPrefabsLevelF\xFCnf":
+  - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
+  - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}
   powerUpPrefabsLevelEins:
   - {fileID: 2127826749293689063, guid: b1f945700226b71458e0b86c9902cab6, type: 3}
   - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
@@ -565,6 +571,9 @@ MonoBehaviour:
   powerUpPrefabsLevelVier:
   - {fileID: 1087115642433162501, guid: 58aeef868780fbb4496884bb5dc5b2c4, type: 3}
   - {fileID: 7682121854626734416, guid: 3d1dcb28bdccede4fbaff0b893162605, type: 3}
+  "powerUpPrefabsLevelF\xFCnf":
+  - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
+  - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
   numberOfPlatforms: 10
   completedLevel: 0
   spawnSpecialPlaform: 1

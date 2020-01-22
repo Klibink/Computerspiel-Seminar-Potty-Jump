@@ -22,11 +22,13 @@ public class LevelGeneratorEndless : MonoBehaviour
     public GameObject[] enemyPrefabsLevelZwei;
     public GameObject[] enemyPrefabsLevelDrei;
     public GameObject[] enemyPrefabsLevelVier;
+    public GameObject[] enemyPrefabsLevelFünf;
     private GameObject[] currentPowerUps;
     public GameObject[] powerUpPrefabsLevelEins;
     public GameObject[] powerUpPrefabsLevelZwei;
     public GameObject[] powerUpPrefabsLevelDrei;
     public GameObject[] powerUpPrefabsLevelVier;
+    public GameObject[] powerUpPrefabsLevelFünf;
 
     //public int numberOfStartPlatforms = 20;
     //public float levelWidth = 3f;
@@ -155,6 +157,27 @@ public class LevelGeneratorEndless : MonoBehaviour
                 for (int i = 0; i < powerUpPrefabsLevelVier.Length; i++)
                 {
                     currentPowerUps[i] = powerUpPrefabsLevelVier[i];
+                }
+                break;
+
+            case 4:
+                spawnSpecialPlaform = true;
+                spawnCrackingPlatform = false;
+                spawnBreakingPlatform = false;
+                spawnSpringPlaftform = true;
+                spawnMovingPlatform = false;
+                spawnEnemy = false;
+                spawnPowerUp = false;
+                currentEnemyPrefabs = new GameObject[enemyPrefabsLevelFünf.Length];
+                for (int i = 0; i < enemyPrefabsLevelFünf.Length; i++)
+                {
+                    currentEnemyPrefabs[i] = enemyPrefabsLevelFünf[i];
+                }
+
+                currentPowerUps = new GameObject[powerUpPrefabsLevelFünf.Length];
+                for (int i = 0; i < powerUpPrefabsLevelFünf.Length; i++)
+                {
+                    currentPowerUps[i] = powerUpPrefabsLevelFünf[i];
                 }
                 break;
 
@@ -390,6 +413,17 @@ public class LevelGeneratorEndless : MonoBehaviour
 
                         break;
 
+                    case 4:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = false;
+                        spawnPowerUp = false;
+
+                        break;
+
                     default:
                         spawnSpecialPlaform = true;
                         spawnCrackingPlatform = false;
@@ -444,6 +478,17 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnCrackingPlatform = false;
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = true;
+                        spawnMovingPlatform = false;
+                        spawnEnemy = true;
+                        spawnPowerUp = true;
+
+                        break;
+
+                    case 4:
+                        spawnSpecialPlaform = false;
+                        spawnCrackingPlatform = false;
+                        spawnBreakingPlatform = false;
+                        spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;

@@ -7,7 +7,7 @@ public class PowerUps : MonoBehaviour
     public GameObject player;
     private Vector2 startPos;
     private float jumpForce = 10f;
-    private float distance = 30f;
+    private float distance = 40f;
     private bool startMoving = false;
     private bool isActivated = false;
     // Start is called before the first frame update
@@ -71,7 +71,7 @@ public class PowerUps : MonoBehaviour
                     velocity.y = jumpForce;
                     rb.velocity = velocity;
                 }
-                StartCoroutine(DestroyPlattform(2.5f));
+                StartCoroutine(DestroyPlattform(3.5f));
             }
             else if (gameObject.name.StartsWith("Gießkanne"))
             {
@@ -124,7 +124,7 @@ public class PowerUps : MonoBehaviour
                     velocity.y = jumpForce;
                     rb.velocity = velocity;
                 }
-                StartCoroutine(DestroyPlattform(2.5f));
+                StartCoroutine(DestroyPlattform(3.5f));
             }
         }
         

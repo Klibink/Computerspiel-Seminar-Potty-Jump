@@ -8,7 +8,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     private Vector3 panelLocation;
     public float percentThreshold = 0.2f;
     public float easing = 0.5f;
-    public int totalPages = 4;
+    public int totalPages = 5;
     public int currentPage = 0;
     public float buttonSize;
 
@@ -30,17 +30,29 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             GameManager.instance.startTransition = false;
             StartCoroutine()
         }*/
-
         currentPage = GameManager.instance.currentLevel+1;
-        if (currentPage > 1)
+
+        
+
+        if (currentPage > 1 )
         {
             Vector3 newLocation = panelLocation + new Vector3(-Screen.width * (currentPage - 1), 0, 0);
             StartCoroutine(SmoothMove(transform.position, newLocation, easing));
             panelLocation = newLocation;
         }
+
+         /*if (GameManager.instance.goToNewSlide)
+        {
+            currentPage = GameManager.instance.currentLevel + 1;
+            GameManager.instance.currentLevel = currentPage;
+            Vector3 newLocation = panelLocation + new Vector3(-Screen.width * (currentPage ), 0, 0);
+            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
+            panelLocation = newLocation;
+            GameManager.instance.goToNewSlide = false;
+        }*/
     }
 
-    
+
 
     public void OnDrag(PointerEventData data)
     {
