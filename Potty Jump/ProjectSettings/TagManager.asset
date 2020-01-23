@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerFeet
   - PlayerBody
+  - MonsterBullet
   layers:
   - Default
   - TransparentFX

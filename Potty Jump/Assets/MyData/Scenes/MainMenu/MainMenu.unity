@@ -1346,8 +1346,9 @@ MonoBehaviour:
   currentSkin: 0
   currentFlower: 1
   skinsUnlocked: 0
-  unlockSkins: 01010101
+  unlockSkins: 01010101010101
   startTransition: 0
+  goToNewSlide: 0
 --- !u!1 &1323040363
 GameObject:
   m_ObjectHideFlags: 0

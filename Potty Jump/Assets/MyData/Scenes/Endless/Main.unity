@@ -541,7 +541,8 @@ MonoBehaviour:
   mainCamera: {fileID: 534669902}
   enemyPrefabsLevelEins:
   - {fileID: 5671647870287348162, guid: d21781db9b1ef0540916cae54203c866, type: 3}
-  - {fileID: 3424953535111856432, guid: c6d8fb5f8885d8c4ab0b9494bef83f8f, type: 3}
+  - {fileID: 2388993276720977613, guid: 95df1bce1e5f90f44844b97bbfdeb2cc, type: 3}
+  - {fileID: 1733235949639262966, guid: d10b4a2581f47d440ae258018f1f8ffa, type: 3}
   enemyPrefabsLevelZwei:
   - {fileID: 4514879589293656103, guid: 1564a91678de3514585b31ad359b93ab, type: 3}
   - {fileID: 7888478486893274047, guid: d8bedd273fac40548a624fd040fe5828, type: 3}
@@ -549,11 +550,11 @@ MonoBehaviour:
   enemyPrefabsLevelDrei:
   - {fileID: 3859196848650710353, guid: 8a49f41b053bd95408062243303f4d53, type: 3}
   - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
-  - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
-  - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
   enemyPrefabsLevelVier:
-  - {fileID: 3859196848650710353, guid: 8a49f41b053bd95408062243303f4d53, type: 3}
-  - {fileID: 1019601095165631879, guid: 024c2c6f830f5ab4d8c9e332ab513e3f, type: 3}
+  - {fileID: 2062919401325199519, guid: a67772808dedce641b8d8663589a801f, type: 3}
+  - {fileID: 6821499787561660243, guid: 941c9a05680e33941ad84ee4d8d03468, type: 3}
+  - {fileID: 5096654945721942225, guid: 4bf19decb15870d4a8cc968b91f9fd93, type: 3}
+  - {fileID: 1142638551113270065, guid: a8a3f5ce97f851f4aad16475b541daec, type: 3}
   "enemyPrefabsLevelF\xFCnf":
   - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
   - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}

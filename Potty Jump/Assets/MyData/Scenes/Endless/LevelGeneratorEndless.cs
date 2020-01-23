@@ -122,7 +122,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                 spawnSpecialPlaform = true; 
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
-                spawnSpringPlaftform = true;
+                spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
@@ -143,7 +143,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
-                spawnSpringPlaftform = true;
+                spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
@@ -164,7 +164,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
-                spawnSpringPlaftform = true;
+                spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
@@ -466,7 +466,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnSpecialPlaform = true;
                         spawnCrackingPlatform = false;
                         spawnBreakingPlatform = false;
-                        spawnSpringPlaftform = true;
+                        spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
@@ -477,7 +477,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnSpecialPlaform = true;
                         spawnCrackingPlatform = false;
                         spawnBreakingPlatform = false;
-                        spawnSpringPlaftform = true;
+                        spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;

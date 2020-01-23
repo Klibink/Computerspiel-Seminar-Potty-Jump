@@ -10,6 +10,8 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector2 tempPos2;
     bool isMovingRight = false;
     bool turnedAlready = false;
+    public GameObject bullet;
+    private bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +36,8 @@ public class EnemyBehaviour : MonoBehaviour
         else if (gameObject.name.StartsWith("Mistkäfer"))
         {
             leben = 2;
-            tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y);
-            tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y);
+            tempPos1 = new Vector2(startPos.x - 0.2f, startPos.y + 0.1f);
+            tempPos2 = new Vector2(startPos.x + 0.2f, startPos.y + 0.1f);
         }
         else if (gameObject.name.StartsWith("Feuerball"))
         {
@@ -70,6 +72,36 @@ public class EnemyBehaviour : MonoBehaviour
         else if (gameObject.name.StartsWith("BrennendesBlatt"))
         {
             leben = 1;
+        }
+        else if (gameObject.name.StartsWith("Killerpflanze"))
+        {
+            leben = 1;
+        }
+        else if (gameObject.name.StartsWith("PlastiktüteBlau"))
+        {
+            leben = 1;
+        }
+        else if (gameObject.name.StartsWith("PlastiktüteRot"))
+        {
+            leben = 1;
+        }
+        else if (gameObject.name.StartsWith("Müllmonster"))
+        {
+            leben = 1;
+            if(transform.position.x > 0)
+            {
+                Vector3 scale = new Vector3(-0.3f, 0.3f, 0.3f);
+                transform.localScale = scale;
+            }
+            else
+            {
+                Vector3 scale = new Vector3(0.3f, 0.3f, 0.3f);
+                transform.localScale = scale;
+            }
+        }
+        else if (gameObject.name.StartsWith("Pufferfisch"))
+        {
+            leben = 2;
         }
     }
 
@@ -137,6 +169,16 @@ public class EnemyBehaviour : MonoBehaviour
             else if (gameObject.name.StartsWith("Mistkäfer"))
             {
                 transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+                isMovingRight = GetVelocity();
+
+                if (isMovingRight && !turnedAlready)
+                {
+                    Scale();
+                }
+                else if (!isMovingRight && turnedAlready)
+                {
+                    Scale();
+                }
             }
             else if (gameObject.name.StartsWith("Feuerball"))
             {
@@ -179,6 +221,35 @@ public class EnemyBehaviour : MonoBehaviour
             else if (gameObject.name.StartsWith("BrennendesBlatt"))
             {
                 transform.Translate(-transform.up * Time.deltaTime * 3f);
+            }
+            else if (gameObject.name.StartsWith("Killerpflanze"))
+            {
+
+            }
+            else if (gameObject.name.StartsWith("PlastiktüteBlau"))
+            {
+                Vector2 tempPos = startPos;
+                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                transform.position = tempPos;
+            }
+            else if (gameObject.name.StartsWith("PlastiktüteRot"))
+            {
+                Vector2 tempPos = startPos;
+                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                transform.position = tempPos;
+            }
+            else if (gameObject.name.StartsWith("Müllmonster"))
+            {
+                if (canShoot)
+                {
+                    canShoot = false;
+                    Instantiate(bullet,transform.position,transform.rotation);
+                    StartCoroutine(MonsterShoot());
+                }
+            }
+            else if (gameObject.name.StartsWith("Pufferfisch"))
+            {
+
             }
         }
         else
@@ -291,5 +362,11 @@ public class EnemyBehaviour : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
         turnedAlready = !turnedAlready;
+    }
+
+    IEnumerator MonsterShoot()
+    {
+        yield return new WaitForSeconds(3f);
+        canShoot = true;
     }
 }

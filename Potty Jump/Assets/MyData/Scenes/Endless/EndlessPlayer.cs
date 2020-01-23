@@ -259,4 +259,15 @@ public class EndlessPlayer : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "MonsterBullet")
+        {
+            //EndlessGameManager.instance.PlayerDeath();
+            BoxCollider2D bCollider = GameObject.FindGameObjectWithTag("PlayerFeet").transform.GetComponent<BoxCollider2D>();
+            bCollider.enabled = false;
+            EndlessPlayer.instance.ChangeToDeathSprite();
+        }
+    }
 }
