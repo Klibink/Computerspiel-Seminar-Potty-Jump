@@ -305,9 +305,10 @@ public class LevelGeneratorEndless : MonoBehaviour
                 Instantiate(platformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
             }
 
-            if(GameManager.instance.currentLevel == GameManager.instance.availableLevel - 1 && GameManager.instance.availableLevel < GameManager.instance.maxLevel && Random.Range(0f, 3f) < collectableItemChance && EndlessPlayer.instance.Points > 300)
+            if(spawnCollectableItem && GameManager.instance.currentLevel == GameManager.instance.availableLevel - 1 && GameManager.instance.availableLevel < GameManager.instance.maxLevel && Random.Range(0f, 3f) < collectableItemChance && EndlessPlayer.instance.Points > 300)
             {
                 Instantiate(collectableItem, new Vector3(xPos, yPos + tmp.y + 0.4f, 0f), Quaternion.identity);
+                spawnCollectableItem = false;
             }
 
             if (spawnEnemy && Random.Range(0f, 2f) < enemySpawnChance)
@@ -377,6 +378,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
                         
                         break;
 
@@ -388,6 +390,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
 
                         break;
 
@@ -399,6 +402,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
 
                         break;
 
@@ -410,6 +414,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
 
                         break;
 
@@ -421,6 +426,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
 
                         break;
 
@@ -432,6 +438,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
+                        spawnCollectableItem = false;
 
                         break;
                 }
@@ -448,6 +455,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
 
@@ -459,6 +467,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
 
@@ -470,6 +479,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
 
@@ -481,6 +491,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
 
@@ -492,6 +503,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = false;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
 
@@ -503,6 +515,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnMovingPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
+                        spawnCollectableItem = true;
 
                         break;
                 }

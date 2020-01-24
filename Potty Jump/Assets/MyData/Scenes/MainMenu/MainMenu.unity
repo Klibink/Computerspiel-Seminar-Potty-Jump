@@ -1339,6 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db7b6750624cf84ca0b40c5cf05e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTime: 1
   availableLevel: 1
   maxLevel: 5
   currentLevel: 0
@@ -2081,8 +2082,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 217101817}
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: CheckGameStatus
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

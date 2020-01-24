@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public bool firstTime = true;
     private GameObject panelHolder;
     public int availableLevel = 1;
     private int tempLevel = 1;
@@ -95,12 +96,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Datei vorhanden");
             availableLevel = data.availableLevel;
             highScore = data.highscore;
+            firstTime = data.firstTime;
         }
         else
         {
             Debug.Log("Datei fehlt");
             availableLevel = 1;
             highScore = 0;
+            firstTime = true;
         }
 
         
