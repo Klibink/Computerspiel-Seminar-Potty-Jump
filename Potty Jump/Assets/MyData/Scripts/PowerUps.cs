@@ -62,12 +62,13 @@ public class PowerUps : MonoBehaviour
     {
         if (collision.tag == "PlayerBody" && !EndlessPlayer.instance.IsUsingPowerUp || collision.tag == "PlayerFeet" && !EndlessPlayer.instance.IsUsingPowerUp)
         {
+            if (GetComponent<AudioSource>() != null)
+            {
+                GetComponent<AudioSource>().Play();
+            }
+
             if (gameObject.name.StartsWith("Butterfly"))
             {
-                if (GetComponent<AudioSource>() != null)
-                {
-                    GetComponent<AudioSource>().Play();
-                }
                 EndlessPlayer.instance.IsUsingPowerUp = true;
                 isActivated = true;
                 startMoving = true;

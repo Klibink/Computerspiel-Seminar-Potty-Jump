@@ -20,7 +20,7 @@ public class BulletSpawnTutorial : MonoBehaviour
             if (canShoot == true)
             {
                 GameObject spawn = GameObject.Find("Spawn");
-                //GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
                 //Rotation des Spawn-Objects zwischen 45 und -45 Grad, lässt sich durch rot_range ändern
                 rot = -(rot_range * (Input.mousePosition.x / Screen.width) - (rot_range / 2));
                 transform.rotation = Quaternion.Euler(0f, 0f, rot);
