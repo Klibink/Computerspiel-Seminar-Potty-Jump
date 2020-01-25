@@ -70,7 +70,7 @@ public class EndlessPlayer : MonoBehaviour
         //Das Gleiche für die Blume
         for (int i = 0; i < flowers.Count; i++)
         {
-            if (i == GameManager.instance.currentFlower && !xmasSkin.activeSelf)
+            if (i == GameManager.instance.currentFlower)
             {
                 flowers[i].SetActive(true);
             }
