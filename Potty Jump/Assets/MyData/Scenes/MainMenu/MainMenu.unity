@@ -2611,7 +2611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundOn: 1
-  camera: {fileID: 2132080045}
 --- !u!114 &2025118471
 MonoBehaviour:
   m_ObjectHideFlags: 0

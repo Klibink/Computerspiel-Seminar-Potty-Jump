@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class VolumeButton : MonoBehaviour
 {
-    public bool soundOn = true;
-    public GameObject camera;
+    public bool soundOn;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        soundOn = true;
     }
 
     public void ToggleAudio()
     {
-        if (soundOn)
+        if (soundOn == true)
         {
-            camera.GetComponent<AudioListener>().enabled = false;
             soundOn = false;
+            ToggleAudioSources();
         }
         else
         {
-            camera.GetComponent<AudioListener>().enabled = true;
             soundOn = true;
+            ToggleAudioSources();
+        }
+    }
+
+    private void ToggleAudioSources()
+    {
+        AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+        for (int index = 0; index < sources.Length; ++index)
+        {
+            sources[index].mute = !soundOn;
         }
     }
 }
