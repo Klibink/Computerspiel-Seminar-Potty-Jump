@@ -42,6 +42,15 @@ public class MainMenuUIManager : MonoBehaviour
                 panels[3].SetActive(true);
                 panels[4].SetActive(true);
                 break;
+            case 6:
+                pageSwiper.totalPages = 6;
+                panels[0].SetActive(true);
+                panels[1].SetActive(true);
+                panels[2].SetActive(true);
+                panels[3].SetActive(true);
+                panels[4].SetActive(true);
+                panels[5].SetActive(true);
+                break;
             default:
                 pageSwiper.totalPages = 1;
                 panels[0].SetActive(true);

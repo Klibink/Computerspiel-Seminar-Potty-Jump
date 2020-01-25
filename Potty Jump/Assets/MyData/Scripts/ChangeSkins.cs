@@ -28,7 +28,7 @@ public class ChangeSkins : MonoBehaviour
         for (int i = GameManager.instance.currentFlower; i < GameManager.instance.unlockSkins.Length - 1;)
         {
             i++;
-            if (GameManager.instance.unlockSkins[i] == true)
+            if (GameManager.instance.unlockFlowers[i] == true)
             {
                 GameManager.instance.currentFlower = i;
                 break;
@@ -42,7 +42,19 @@ public class ChangeSkins : MonoBehaviour
 
     public void ChangeFlowerDown()
     {
+        for (int i = GameManager.instance.currentFlower; i > 0;)
+        {
+            i--;
+            if (GameManager.instance.unlockFlowers[i] == true)
+            {
+                GameManager.instance.currentFlower = i;
+                break;
+            }
+            else
+            {
 
+            }
+        }
     }
 
     public void ChangeSkinUp()

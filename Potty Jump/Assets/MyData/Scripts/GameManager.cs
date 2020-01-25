@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     public int availableLevel = 1;
     private int tempLevel = 1;
     // muss angepasst werden, wenn Level hinzugefügt werden
-    public int maxLevel = 5;
+    public int maxLevel = 6;
     public int currentLevel = 0;
     public float highScore = 0;
     public int currentSkin = 0;
     public int currentFlower = 0;
     public int skinsUnlocked = 0;
     public bool[] unlockSkins = { true, true, true, true, true, true};
+    public bool[] unlockFlowers = { true, true, true, true, true, true };
     public bool startTransition = false;
     public bool goToNewSlide = false;
     private Vector3 currentPanelLocation;

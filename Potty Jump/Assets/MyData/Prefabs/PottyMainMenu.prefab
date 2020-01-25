@@ -438,6 +438,9 @@ MonoBehaviour:
   - {fileID: 2573522093320818464}
   - {fileID: 1806122875242836195}
   - {fileID: 6875716565946937983}
+  - {fileID: 8239025220797006536}
+  - {fileID: 7174019583067670921}
+  - {fileID: 5971366675476144448}
   xmasSkin: {fileID: 3496981412961117392}
 --- !u!1 &1012089639695599120
 GameObject:
@@ -1411,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9042973509389771619
 Transform:
   m_ObjectHideFlags: 0
@@ -2688,7 +2691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4120905974291115373
 Transform:
   m_ObjectHideFlags: 0
