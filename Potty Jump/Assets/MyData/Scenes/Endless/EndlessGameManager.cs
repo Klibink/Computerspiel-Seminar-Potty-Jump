@@ -13,6 +13,7 @@ public class EndlessGameManager : MonoBehaviour
     public Text itemText;
     private bool gameIsRunning = true;
     private bool gamePaused = false;
+    private bool enemysFrozen = false;
     /*
     private float frustumHeight = 0f;
     private float frustumWidth = 0f;
@@ -25,6 +26,7 @@ public class EndlessGameManager : MonoBehaviour
 
     public bool GameIsRunning { get => gameIsRunning; set => gameIsRunning = value; }
     public bool GamePaused { get => gamePaused; set => gamePaused = value; }
+    public bool EnemysFrozen { get => enemysFrozen; set => enemysFrozen = value; }
 
     /*
 public float FrustumHeight { get => frustumHeight; set => frustumHeight = value; }
@@ -94,6 +96,11 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
             itemText.text = itemsNeeded.ToString() + " / " + itemsNeeded.ToString();
         }
 
+        //Checkt ob Gegner eingefroren sind und startet dann den Entfrierungscountdown
+        if (enemysFrozen)
+        {
+            StartCoroutine(UnfreezeEnemys());
+        }
     }
 
     private void LateUpdate()
@@ -129,6 +136,12 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
         notification.SetActive(true);
         yield return new WaitForSeconds(2f);
         notification.SetActive(false);
+    }
+
+    IEnumerator UnfreezeEnemys()
+    {
+        yield return new WaitForSeconds(4f);
+        enemysFrozen = false;
     }
 
     public void TogglePauseButton()

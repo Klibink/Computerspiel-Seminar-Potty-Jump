@@ -11,6 +11,7 @@ public class EndlessPlayer : MonoBehaviour
     public List<GameObject> skins;
     public List<GameObject> flowers;
     public GameObject xmasSkin;
+    public GameObject flowerSpriteHolder;
     public float movementSpeed = 15f;
     private float currentHeight = 0f;
     private float points = 1f;
@@ -20,6 +21,7 @@ public class EndlessPlayer : MonoBehaviour
     private bool isInvincible = false;
     private bool isUsingPowerUp = false;
     private bool justActivated = false;
+    private bool showFlowers = true;
     Rigidbody2D rb;
     public Text scoreText;
     public Sprite deathSprite;
@@ -29,6 +31,7 @@ public class EndlessPlayer : MonoBehaviour
     public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
     public bool IsUsingPowerUp { get => isUsingPowerUp; set => isUsingPowerUp = value; }
     public bool JustActivated { get => justActivated; set => justActivated = value; }
+    public bool ShowFlowers { get => showFlowers; set => showFlowers = value; }
 
     RigidbodyConstraints2D originalConstraints;
 
@@ -148,6 +151,15 @@ public class EndlessPlayer : MonoBehaviour
                 temp.y = transform.position.y;
                 temp.x = -GameManager.instance.FrustumWidth / 2f;
                 transform.position = temp;
+            }
+            //De- bzw. aktiviert das BlumenSpriteHolder-Gameobject
+            if (!showFlowers)
+            {
+                flowerSpriteHolder.SetActive(false);
+            }
+            else
+            {
+                flowerSpriteHolder.SetActive(true);
             }
         }
         else

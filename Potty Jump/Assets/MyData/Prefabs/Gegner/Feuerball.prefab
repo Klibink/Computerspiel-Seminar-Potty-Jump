@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 95770540134610814}
   m_Layer: 0
   m_Name: Feuerball
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leben: 0
+  bullet: {fileID: 0}
 --- !u!60 &60978131427055258
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int currentSkin = 0;
     public int currentFlower = 0;
     public int skinsUnlocked = 0;
-    public bool[] unlockSkins = { true, true, true, true, true, true, true };
+    public bool[] unlockSkins = { true, true, true, true, true, true};
     public bool startTransition = false;
     public bool goToNewSlide = false;
     private Vector3 currentPanelLocation;

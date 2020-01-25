@@ -428,7 +428,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skins:
-  - {fileID: 3496981412961117392}
   - {fileID: 8599629387554817044}
   - {fileID: 926510744784074381}
   - {fileID: 1733552732650091370}

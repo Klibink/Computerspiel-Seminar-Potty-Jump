@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         startPos = transform.position;
 
-        if (gameObject.name.StartsWith("Abgaswolke"))
+        if (gameObject.name.StartsWith("Abgaswolke") || gameObject.name.StartsWith("MrGewitterWolke"))
         {
             leben = 3;
         }
@@ -103,6 +103,23 @@ public class EnemyBehaviour : MonoBehaviour
         {
             leben = 2;
         }
+        else if (gameObject.name.StartsWith("Rauchi"))
+        {
+            leben = 2;
+        }
+        else if (gameObject.name.StartsWith("Droid"))
+        {
+            leben = 1;
+        }
+        else if (gameObject.name.StartsWith("GlaSSIO"))
+        {
+            leben = 3;
+        }
+        else if (gameObject.name.StartsWith("RoboArmo"))
+        {
+            leben = 2;
+        }
+
     }
 
     // Update is called once per frame
@@ -110,147 +127,174 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!EndlessGameManager.instance.GamePaused)
         {
-            if (leben <= 0 || Camera.main.transform.position.y > transform.position.y + 6)
+            if (!EndlessGameManager.instance.EnemysFrozen)
             {
-                Destroy(gameObject);
-            }
-            if (EndlessPlayer.instance != null)
-            {
-                if (EndlessPlayer.instance.CanDie || EndlessPlayer.instance.IsUsingPowerUp)
+                if (leben <= 0 || Camera.main.transform.position.y > transform.position.y + 6)
                 {
-                    transform.GetComponent<BoxCollider2D>().enabled = true;
+                    Destroy(gameObject);
                 }
-                else
+                if (EndlessPlayer.instance != null)
                 {
-                    transform.GetComponent<BoxCollider2D>().enabled = false;
+                    if (EndlessPlayer.instance.CanDie || EndlessPlayer.instance.IsUsingPowerUp)
+                    {
+                        transform.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                    else
+                    {
+                        transform.GetComponent<BoxCollider2D>().enabled = false;
+                    }
                 }
-            }
-            else if (StoryPlayer.instance != null)
-            {
-                if (StoryPlayer.instance.CanDie)
+                else if (StoryPlayer.instance != null)
                 {
-                    transform.GetComponent<BoxCollider2D>().enabled = true;
-                }
-                else
-                {
-                    transform.GetComponent<BoxCollider2D>().enabled = false;
-                }
-            }
-
-            if (gameObject.name.StartsWith("Abgaswolke"))
-            {
-                Vector2 tempPos = startPos;
-                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.5f;
-                transform.position = tempPos;
-            }
-            else if (gameObject.name.StartsWith("Flugzeug01"))
-            {
-                float speed = 1.0f;
-                Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) - 1f, transform.position.y);
-                Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) + 1f, transform.position.y);
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
-
-                isMovingRight = GetVelocity();
-
-                if (isMovingRight && !turnedAlready)
-                {
-                    Scale();
-                }
-                else if (!isMovingRight && turnedAlready)
-                {
-                    Scale();
+                    if (StoryPlayer.instance.CanDie)
+                    {
+                        transform.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                    else
+                    {
+                        transform.GetComponent<BoxCollider2D>().enabled = false;
+                    }
                 }
 
-            }
-            else if (gameObject.name.StartsWith("Laus"))
-            {
-
-            }
-            else if (gameObject.name.StartsWith("Mistkäfer"))
-            {
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
-                isMovingRight = GetVelocity();
-
-                if (isMovingRight && !turnedAlready)
+                if (gameObject.name.StartsWith("Abgaswolke") || gameObject.name.StartsWith("MrGewitterWolke"))
                 {
-                    Scale();
+                    Vector2 tempPos = startPos;
+                    tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.5f;
+                    transform.position = tempPos;
                 }
-                else if (!isMovingRight && turnedAlready)
+                else if (gameObject.name.StartsWith("Flugzeug01"))
                 {
-                    Scale();
+                    float speed = 1.0f;
+                    Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) - 1f, transform.position.y);
+                    Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) + 1f, transform.position.y);
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
+
+                    isMovingRight = GetVelocity();
+
+                    if (isMovingRight && !turnedAlready)
+                    {
+                        Scale();
+                    }
+                    else if (!isMovingRight && turnedAlready)
+                    {
+                        Scale();
+                    }
+
                 }
-            }
-            else if (gameObject.name.StartsWith("Feuerball"))
-            {
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.1f, 1.0f));
-            }
-            else if (gameObject.name.StartsWith("KäferBrennend"))
-            {
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
-
-                isMovingRight = GetVelocity();
-
-                if (isMovingRight && !turnedAlready)
+                else if (gameObject.name.StartsWith("Laus"))
                 {
-                    Scale();
+
                 }
-                else if (!isMovingRight && turnedAlready)
+                else if (gameObject.name.StartsWith("Mistkäfer"))
                 {
-                    Scale();
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+                    isMovingRight = GetVelocity();
+
+                    if (isMovingRight && !turnedAlready)
+                    {
+                        Scale();
+                    }
+                    else if (!isMovingRight && turnedAlready)
+                    {
+                        Scale();
+                    }
                 }
-            }
-            else if (gameObject.name.StartsWith("Ölmonster"))
-            {
-                transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
-
-                isMovingRight = GetVelocity();
-
-                if (isMovingRight && turnedAlready)
+                else if (gameObject.name.StartsWith("Feuerball"))
                 {
-                    Scale();
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.1f, 1.0f));
                 }
-                else if (!isMovingRight && !turnedAlready)
+                else if (gameObject.name.StartsWith("KäferBrennend"))
                 {
-                    Scale();
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+
+                    isMovingRight = GetVelocity();
+
+                    if (isMovingRight && !turnedAlready)
+                    {
+                        Scale();
+                    }
+                    else if (!isMovingRight && turnedAlready)
+                    {
+                        Scale();
+                    }
                 }
-            }
-            else if (gameObject.name.StartsWith("Kröte"))
-            {
-
-            }
-            else if (gameObject.name.StartsWith("BrennendesBlatt"))
-            {
-                transform.Translate(-transform.up * Time.deltaTime * 3f);
-            }
-            else if (gameObject.name.StartsWith("Killerpflanze"))
-            {
-
-            }
-            else if (gameObject.name.StartsWith("PlastiktüteBlau"))
-            {
-                Vector2 tempPos = startPos;
-                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
-                transform.position = tempPos;
-            }
-            else if (gameObject.name.StartsWith("PlastiktüteRot"))
-            {
-                Vector2 tempPos = startPos;
-                tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
-                transform.position = tempPos;
-            }
-            else if (gameObject.name.StartsWith("Müllmonster"))
-            {
-                if (canShoot)
+                else if (gameObject.name.StartsWith("Ölmonster"))
                 {
-                    canShoot = false;
-                    Instantiate(bullet,transform.position,transform.rotation);
-                    StartCoroutine(MonsterShoot());
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * 0.5f, 1.0f));
+
+                    isMovingRight = GetVelocity();
+
+                    if (isMovingRight && turnedAlready)
+                    {
+                        Scale();
+                    }
+                    else if (!isMovingRight && !turnedAlready)
+                    {
+                        Scale();
+                    }
+                }
+                else if (gameObject.name.StartsWith("Kröte"))
+                {
+
+                }
+                else if (gameObject.name.StartsWith("BrennendesBlatt"))
+                {
+                    transform.Translate(-transform.up * Time.deltaTime * 3f);
+                }
+                else if (gameObject.name.StartsWith("Killerpflanze"))
+                {
+
+                }
+                else if (gameObject.name.StartsWith("PlastiktüteBlau"))
+                {
+                    Vector2 tempPos = startPos;
+                    tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                    transform.position = tempPos;
+                }
+                else if (gameObject.name.StartsWith("PlastiktüteRot"))
+                {
+                    Vector2 tempPos = startPos;
+                    tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                    transform.position = tempPos;
+                }
+                else if (gameObject.name.StartsWith("Müllmonster"))
+                {
+                    if (canShoot)
+                    {
+                        canShoot = false;
+                        Instantiate(bullet, transform.position, transform.rotation);
+                        StartCoroutine(MonsterShoot());
+                    }
+                }
+                else if (gameObject.name.StartsWith("Pufferfisch"))
+                {
+
+                }
+                else if (gameObject.name.StartsWith("Rauchi"))
+                {
+                    Vector2 tempPos = startPos;
+                    tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                    transform.position = tempPos;
+                }
+                else if (gameObject.name.StartsWith("Droid"))
+                {
+                    Vector2 tempPos = startPos;
+                    tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.15f;
+                    transform.position = tempPos;
+                }
+                else if (gameObject.name.StartsWith("GlaSSIO"))
+                {
+                    float speed = 0.5f;
+                    Vector2 tempPos1 = new Vector2((GameManager.instance.FrustumWidth / 2f) - 1f, transform.position.y);
+                    Vector2 tempPos2 = new Vector2((-GameManager.instance.FrustumWidth / 2f) + 1f, transform.position.y);
+                    transform.position = Vector3.Lerp(tempPos1, tempPos2, Mathf.PingPong(Time.time * speed, 1.0f));
+                }
+                else if (gameObject.name.StartsWith("RoboArmo"))
+                {
+
                 }
             }
-            else if (gameObject.name.StartsWith("Pufferfisch"))
-            {
-
-            }
+            
         }
         else
         {
