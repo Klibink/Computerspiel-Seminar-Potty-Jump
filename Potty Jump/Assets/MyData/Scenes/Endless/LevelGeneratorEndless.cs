@@ -77,6 +77,8 @@ public class LevelGeneratorEndless : MonoBehaviour
         switch (GameManager.instance.currentLevel)
         {
             case 0:
+                Vector3 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;
@@ -98,6 +100,8 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 1:
+                theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = false; 
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = true;
@@ -119,6 +123,8 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 2:
+                theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = true; 
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
@@ -140,6 +146,8 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 3:
+                theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
@@ -161,6 +169,8 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 4:
+                theScale = new Vector3(background.transform.position.x, background.transform.position.y, 4);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = false;
                 spawnBreakingPlatform = false;
@@ -182,6 +192,8 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             default:
+                theScale = new Vector3(background.transform.position.x, background.transform.position.y, 16);
+                background.transform.position = theScale;
                 spawnSpecialPlaform = true;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;

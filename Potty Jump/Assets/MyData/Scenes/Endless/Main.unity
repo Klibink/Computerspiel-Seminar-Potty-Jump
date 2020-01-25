@@ -557,7 +557,8 @@ MonoBehaviour:
   - {fileID: 1142638551113270065, guid: a8a3f5ce97f851f4aad16475b541daec, type: 3}
   "enemyPrefabsLevelF\xFCnf":
   - {fileID: 1967916075497025462, guid: 2a6a19e8f0b7b5b4f99ac31871600688, type: 3}
-  - {fileID: 5468052616117280981, guid: 8ef24bfe6b6c04d4685430b0f0076258, type: 3}
+  - {fileID: 2043984266665198994, guid: 2ecd4242404679145b1147c7d6810013, type: 3}
+  - {fileID: 6549461454040420917, guid: da1b1b0cb1535ba4db8d69b03f41981d, type: 3}
   powerUpPrefabsLevelEins:
   - {fileID: 2127826749293689063, guid: b1f945700226b71458e0b86c9902cab6, type: 3}
   - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
@@ -570,10 +571,11 @@ MonoBehaviour:
   - {fileID: 7682121854626734416, guid: 3d1dcb28bdccede4fbaff0b893162605, type: 3}
   - {fileID: 7682121854626734416, guid: 3d1dcb28bdccede4fbaff0b893162605, type: 3}
   powerUpPrefabsLevelVier:
-  - {fileID: 1087115642433162501, guid: 58aeef868780fbb4496884bb5dc5b2c4, type: 3}
-  - {fileID: 7682121854626734416, guid: 3d1dcb28bdccede4fbaff0b893162605, type: 3}
+  - {fileID: 3600250280052370041, guid: 7ff8c8b28bdc09346bd5dd10cc5272d5, type: 3}
+  - {fileID: 4650246665338476472, guid: 1b00f2f64419f9f48a13b19418303391, type: 3}
+  - {fileID: 4268536488873504118, guid: 49f4582804151bb49ab237e748099470, type: 3}
   "powerUpPrefabsLevelF\xFCnf":
-  - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
+  - {fileID: 3384317115135905150, guid: 9c036cb1fe6405d4a9508f04fbb2f5f2, type: 3}
   - {fileID: 2308579724766401370, guid: 7d54e82f4dd6ff64e9d0330fb8cf7d95, type: 3}
   numberOfPlatforms: 10
   completedLevel: 0
@@ -2025,6 +2027,7 @@ MonoBehaviour:
   skins: []
   flowers: []
   xmasSkin: {fileID: 0}
+  flowerSpriteHolder: {fileID: 0}
   movementSpeed: 15
   scoreText: {fileID: 1600160656}
   deathSprite: {fileID: 0}
@@ -3154,6 +3157,16 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1600160656}
+    - target: {fileID: 5338016174134226363, guid: 9363f320bf613774882bf2f5c3865eef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421769083747150944, guid: 9363f320bf613774882bf2f5c3865eef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9363f320bf613774882bf2f5c3865eef, type: 3}
 --- !u!1001 &3998714693931325951

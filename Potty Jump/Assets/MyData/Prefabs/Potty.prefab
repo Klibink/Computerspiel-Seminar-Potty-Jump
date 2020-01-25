@@ -1428,7 +1428,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skins:
-  - {fileID: 2421769083747150944}
   - {fileID: 5338016174134226363}
   - {fileID: 3573558672507772706}
   - {fileID: 2684889980701792965}
@@ -1443,6 +1442,7 @@ MonoBehaviour:
   - {fileID: 7072630507786296272}
   - {fileID: 7072630507786296272}
   xmasSkin: {fileID: 2421769083747150944}
+  flowerSpriteHolder: {fileID: 3695166224734878545}
   movementSpeed: 15
   scoreText: {fileID: 0}
   deathSprite: {fileID: 21300000, guid: ee04c7a22d9af98458b1e498f1e262f2, type: 3}

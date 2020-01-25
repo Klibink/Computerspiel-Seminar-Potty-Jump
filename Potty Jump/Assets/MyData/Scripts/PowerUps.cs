@@ -10,17 +10,27 @@ public class PowerUps : MonoBehaviour
     private float distance = 40f;
     private bool startMoving = false;
     private bool isActivated = false;
+    private GameObject[] enemys;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Potty");
         startPos = transform.position;
+        anim = transform.GetComponent<Animator>();
 
         if (gameObject.name.StartsWith("Butterfly"))
         {
             Vector2 temp = transform.position;
             temp.x = Random.Range((GameManager.instance.FrustumWidth / 2f) - 1f, (-GameManager.instance.FrustumWidth / 2f) + 1f);
             transform.position = temp;
+        }
+        else if (gameObject.name.StartsWith("Bombe"))
+        {
+            if(enemys == null)
+            {
+                enemys = GameObject.FindGameObjectsWithTag("Enemy");
+            }
         }
     }
 
@@ -127,6 +137,64 @@ public class PowerUps : MonoBehaviour
                 }
                 StartCoroutine(DestroyPlattform(3.5f));
             }
+            else if (gameObject.name.StartsWith("Rettungsring"))
+            {
+                Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = 25f;
+                    rb.velocity = velocity;
+                }
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
+            else if (gameObject.name.StartsWith("Seestern"))
+            {
+                EndlessPlayer.instance.IsUsingPowerUp = true;
+                isActivated = true;
+                EndlessPlayer.instance.IsInvincible = true;
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
+            else if (gameObject.name.StartsWith("Bombe"))
+            {
+                foreach(GameObject enemy in enemys)
+                {
+                    Destroy(enemy);
+                }
+
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
+            else if (gameObject.name.StartsWith("Propellerhelm"))
+            {
+                EndlessPlayer.instance.ShowFlowers = false;
+                Vector3 scale = new Vector3(0.07f, 0.07f, 0.07f);
+                transform.localScale = scale;
+                anim.SetBool("startAnim", true);
+                if (GetComponent<AudioSource>() != null)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                EndlessPlayer.instance.IsUsingPowerUp = true;
+                isActivated = true;
+                startMoving = true;
+                Vector3 itemPos = new Vector3(player.transform.position.x, player.transform.position.y+0.77f, player.transform.position.z);
+                transform.position = itemPos;
+                transform.parent = player.transform;
+                //transform.Translate(transform.up * Time.deltaTime * 6f);
+                Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                }
+                StartCoroutine(DestroyPlattform(3.5f));
+            }
+            else if (gameObject.name.StartsWith("Stoppuhr"))
+            {
+                EndlessGameManager.instance.EnemysFrozen = true;
+                StartCoroutine(DestroyPlattform(0.5f));
+            }
         }
         
     }
@@ -134,6 +202,10 @@ public class PowerUps : MonoBehaviour
     IEnumerator DestroyPlattform(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        if (!EndlessPlayer.instance.ShowFlowers)
+        {
+            EndlessPlayer.instance.ShowFlowers = true;
+        }
         Destroy(gameObject);
     }
 
@@ -145,4 +217,6 @@ public class PowerUps : MonoBehaviour
         //Debug.Log(EndlessPlayer.instance.IsInvincible);
         yield return StartCoroutine(DestroyPlattform(1f));
     }
+
+    
 }

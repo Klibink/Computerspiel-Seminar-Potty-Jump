@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1019601095165631872}
   m_Layer: 0
   m_Name: "\xD6lmonster"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leben: 0
+  bullet: {fileID: 0}
 --- !u!82 &2342523272041378847
 AudioSource:
   m_ObjectHideFlags: 0
