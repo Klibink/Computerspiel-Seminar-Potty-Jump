@@ -5,6 +5,8 @@ using UnityEngine;
 public class VolumeButton : MonoBehaviour
 {
     public bool soundOn;
+    public GameObject image_on;
+    public GameObject image_off;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +19,15 @@ public class VolumeButton : MonoBehaviour
         if (soundOn == true)
         {
             soundOn = false;
+            image_on.SetActive(true);
+            image_off.SetActive(false);
             ToggleAudioSources();
         }
         else
         {
             soundOn = true;
+            image_on.SetActive(false);
+            image_off.SetActive(true);
             ToggleAudioSources();
         }
     }
