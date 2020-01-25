@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstTime: 1
-  availableLevel: 1
+  availableLevel: 6
   maxLevel: 6
   currentLevel: 0
   highScore: 0
