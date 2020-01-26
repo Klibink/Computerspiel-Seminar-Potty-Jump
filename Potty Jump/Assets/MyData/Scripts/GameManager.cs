@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public int currentSkin = 0;
     public int currentFlower = 0;
     public int skinsUnlocked = 0;
-    public bool[] unlockSkins = { true, true, true, true, true, true};
-    public bool[] unlockFlowers = { true, true, true, true, true, true };
+    public bool[] unlockSkins = { true, false, false, false, false, false};
+    public bool[] unlockFlowers = { true, false, false, false, false, false };
     public bool startTransition = false;
     public bool goToNewSlide = false;
     private Vector3 currentPanelLocation;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight * Camera.main.aspect;
 
-        LoadData();
+        //LoadData();
 
         if (tempLevel < availableLevel)
         {
