@@ -195,6 +195,13 @@ public class PowerUps : MonoBehaviour
                 EndlessGameManager.instance.EnemysFrozen = true;
                 StartCoroutine(DestroyPlattform(0.5f));
             }
+            else if (gameObject.name.StartsWith("Plasmaschild"))
+            {
+                EndlessPlayer.instance.IsUsingPowerUp = true;
+                isActivated = true;
+                EndlessPlayer.instance.IsInvincible = true;
+                StartCoroutine(DestroyPlattform(0.2f));
+            }
         }
         
     }

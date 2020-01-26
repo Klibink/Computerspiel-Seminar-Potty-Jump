@@ -680,6 +680,7 @@ MonoBehaviour:
   powerUpPrefabsLevelSechs:
   - {fileID: 3384317115135905150, guid: 9c036cb1fe6405d4a9508f04fbb2f5f2, type: 3}
   - {fileID: 6760154551541556171, guid: 087e974ed8cc99843b51db4466ec9150, type: 3}
+  - {fileID: 5799112931070637878, guid: 278019ba6f2b3d9408d631edb5ed9cb5, type: 3}
   numberOfPlatforms: 10
   completedLevel: 0
   spawnSpecialPlaform: 1
