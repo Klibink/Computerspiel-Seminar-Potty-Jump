@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         frustumHeight = 20f * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight * Camera.main.aspect;
 
-        //LoadData();
+        LoadData();
 
         if (tempLevel < availableLevel)
         {
