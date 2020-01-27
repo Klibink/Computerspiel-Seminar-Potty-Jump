@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -611,23 +611,35 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 53f0f5d274953499aaca72c7d98a31a7, type: 3}
   platformPrefab:
   - {fileID: 1846268716812480612, guid: d6dc8d4bdb105db419c14e8de6cbbb00, type: 3}
-  - {fileID: 8047136126074471919, guid: 253291f050c162042a63d0436f057467, type: 3}
+  - {fileID: 3758205965269000310, guid: ec4a22698ccc95a44a7a6978f6fcf183, type: 3}
   - {fileID: 5010303841788242855, guid: db98d1025835244418c7ba7be03993df, type: 3}
   - {fileID: 5631301763082247336, guid: 1ba221a8e6201764a853dd1b6efca387, type: 3}
   - {fileID: 1220641032299553507, guid: 964425a0f3298f44d800f38b20481c8f, type: 3}
   - {fileID: 495201809000737686, guid: 2f1199fd041cc50418e4ad30144ea39a, type: 3}
   specialPlatformPrefab:
   - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
-  - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
+  - {fileID: 2784190005922349481, guid: e25f47c86d71d7f4da3949d39ff39c4a, type: 3}
   - {fileID: 164240827180098627, guid: c30ca0dc9cf2fd14e8d6f6377711c91a, type: 3}
   - {fileID: 4931179477816946189, guid: 1b3558aafab50a44d902329a32159089, type: 3}
   - {fileID: 2674849039951725882, guid: b86c30e35f6188f478c5470a236dea5f, type: 3}
   - {fileID: 6941756324664741913, guid: 49a508e61c4d66d46bf7cd302aea3831, type: 3}
   crackingPlatformPrefab: {fileID: 1033969436225753990, guid: a3a6d5233d8562542830c60a776ba251,
     type: 3}
-  breakingPlatformPrefab: {fileID: 2784190005922349481, guid: e25f47c86d71d7f4da3949d39ff39c4a,
-    type: 3}
-  bouncyPlatformPrefab: {fileID: 2468471202045593482, guid: 4b3e823384d7a4f7582d0cbefc085a03,
+  breakingPlatformPrefab:
+  - {fileID: 2784190005922349481, guid: fc71e33d116318044a0c8eef9d1095f8, type: 3}
+  - {fileID: 2784190005922349481, guid: e25f47c86d71d7f4da3949d39ff39c4a, type: 3}
+  - {fileID: 3912750406082675370, guid: a5e3bb54cc6abfd49a2edfedb2ccfc26, type: 3}
+  - {fileID: 5542801443127443030, guid: ad979a5fc6d64d84b99a49de48a48e73, type: 3}
+  - {fileID: 7995667020993682917, guid: 940f18bb2234d7a4bacf1be45017a78f, type: 3}
+  - {fileID: 2541927458563774929, guid: 9e18f8a5447334d47a1ce4e705efc4d7, type: 3}
+  bouncyPlatformPrefab:
+  - {fileID: 7750182373268339168, guid: 530186f8e2da5674c894b9b759816d66, type: 3}
+  - {fileID: 8205916805290938598, guid: 860ce91f8a1ac0f4ba46018efd5afc6b, type: 3}
+  - {fileID: 5010303841788242855, guid: db98d1025835244418c7ba7be03993df, type: 3}
+  - {fileID: 5631301763082247336, guid: 1ba221a8e6201764a853dd1b6efca387, type: 3}
+  - {fileID: 46573830269922859, guid: 40d60d1c301a40844af88af28dccb41b, type: 3}
+  - {fileID: 6189303698504553048, guid: 218c006beacf9d6469ff2137693912a7, type: 3}
+  springPlatformPrefab: {fileID: 2468471202045593482, guid: 4b3e823384d7a4f7582d0cbefc085a03,
     type: 3}
   movingPlatformPrefab: {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b,
     type: 3}
@@ -693,6 +705,8 @@ MonoBehaviour:
   springPlatformChance: 0.1
   spawnMovingPlatform: 1
   movingPlatformChance: 0.2
+  spawnBouncyPlatform: 1
+  bouncyPlatformChance: 0.05
   spawnCollectableItem: 1
   collectableItemChance: 0.2
   spawnEnemy: 1

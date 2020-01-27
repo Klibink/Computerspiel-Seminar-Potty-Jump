@@ -25,10 +25,10 @@ public class StartPlatform : MonoBehaviour
 
                 break;
             case 1:
-                colliderPoints[0] = new Vector2(-4.594831f, 0.3405508f);
-                colliderPoints[1] = new Vector2(4.596944f, 0.3405508f);
-                edgeCol.points = colliderPoints;
-                transform.localScale = new Vector3(0.13f, 0.13f, 0.13f);
+                //colliderPoints[0] = new Vector2(-4.594831f, 0.3405508f);
+                //colliderPoints[1] = new Vector2(4.596944f, 0.3405508f);
+                //edgeCol.points = colliderPoints;
+                transform.localScale = new Vector3(1.2f, 1f, 1f);
 
                 break;
             case 2:
@@ -49,6 +49,10 @@ public class StartPlatform : MonoBehaviour
             case 5:
                 //eventuell noch ändern, wenn neue Plattform vorhanden ist
                 transform.localScale = new Vector3(1.2f, 1, 1);
+                break;
+            default:
+                transform.localScale = new Vector3(1.2f, 1, 1);
+
                 break;
         }
     }

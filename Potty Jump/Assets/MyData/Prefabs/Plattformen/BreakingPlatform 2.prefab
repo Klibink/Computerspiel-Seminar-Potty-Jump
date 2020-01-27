@@ -586,8 +586,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -4.669253, y: 2.3467648}
-  - {x: 4.8106246, y: 2.2902167}
+  - {x: -4.551971, y: 1.4671502}
+  - {x: 0.01844913, y: 1.46715}
+  - {x: 4.8985853, y: 1.46715}
 --- !u!251 &1825996181631755241
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -664,8 +665,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52d4b6ed454ec408582f9617f731f77d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

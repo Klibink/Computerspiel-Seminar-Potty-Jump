@@ -11,8 +11,9 @@ public class LevelGeneratorEndless : MonoBehaviour
     public GameObject[] platformPrefab;
     public GameObject[] specialPlatformPrefab;
     public GameObject crackingPlatformPrefab;
-    public GameObject breakingPlatformPrefab;
-    public GameObject bouncyPlatformPrefab;
+    public GameObject[] breakingPlatformPrefab;
+    public GameObject[] bouncyPlatformPrefab;
+    public GameObject springPlatformPrefab;
     public GameObject movingPlatformPrefab;
     public GameObject collectableItem;
     public GameObject player;
@@ -42,7 +43,7 @@ public class LevelGeneratorEndless : MonoBehaviour
     public int numberOfPlatforms = 15;
     public int completedLevel = 0;
     public bool spawnSpecialPlaform = true;
-    public float specialPlatformChance = 0.2f;
+    public int specialPlatformChance = 0;
     public bool spawnCrackingPlatform = true;
     public float crackingPlatformChance = 0.1f;
     public bool spawnBreakingPlatform = true;
@@ -51,6 +52,8 @@ public class LevelGeneratorEndless : MonoBehaviour
     public float springPlatformChance = 0.05f;
     public bool spawnMovingPlatform = true;
     public float movingPlatformChance = 0.2f;
+    public bool spawnBouncyPlatform = true;
+    public float bouncyPlatformChance = 0.05f;
     public bool spawnCollectableItem = true;
     public float collectableItemChance = 0.1f;
     public bool spawnEnemy = true;
@@ -81,11 +84,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             case 0:
                 Vector3 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true;
+                spawnSpecialPlaform = false;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = true;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
@@ -102,13 +106,15 @@ public class LevelGeneratorEndless : MonoBehaviour
                 break;
 
             case 1:
+                MAX_JUMP_HEIGHT = 2.8f;
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
                 background.transform.position = theScale;
                 spawnSpecialPlaform = false; 
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = true;
+                spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = true;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelZwei.Length];
@@ -127,11 +133,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             case 2:
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true; 
+                spawnSpecialPlaform = false; 
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = false;
+                spawnBreakingPlatform = true;
                 spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelDrei.Length];
@@ -150,11 +157,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             case 3:
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 6);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true;
+                spawnSpecialPlaform = false;
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = false;
+                spawnBreakingPlatform = true;
                 spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = false;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelVier.Length];
@@ -173,11 +181,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             case 4:
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 4);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true;
+                spawnSpecialPlaform = false;
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = false;
+                spawnBreakingPlatform = true;
                 spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = true;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelFünf.Length];
@@ -196,11 +205,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             case 5:
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 4);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true;
+                spawnSpecialPlaform = false;
                 spawnCrackingPlatform = false;
-                spawnBreakingPlatform = false;
+                spawnBreakingPlatform = true;
                 spawnSpringPlaftform = false;
                 spawnMovingPlatform = false;
+                spawnBouncyPlatform = true;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelSechs.Length];
@@ -219,11 +229,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             default:
                 theScale = new Vector3(background.transform.position.x, background.transform.position.y, 16);
                 background.transform.position = theScale;
-                spawnSpecialPlaform = true;
+                spawnSpecialPlaform = false;
                 spawnCrackingPlatform = true;
                 spawnBreakingPlatform = false;
                 spawnSpringPlaftform = true;
                 spawnMovingPlatform = true;
+                spawnBouncyPlatform = true;
                 spawnEnemy = false;
                 spawnPowerUp = false;
                 currentEnemyPrefabs = new GameObject[enemyPrefabsLevelEins.Length];
@@ -319,7 +330,7 @@ public class LevelGeneratorEndless : MonoBehaviour
 
         if (avgOff >= MAX_JUMP_HEIGHT)
         {
-            Debug.Log("Fehler. Zu wenige Plattformen in Section");
+            Debug.Log("Fehler. Zu wenige Plattformen in Section. Avg= " + avgOff);
         }
 
         if (completedLevel > 30)
@@ -333,7 +344,7 @@ public class LevelGeneratorEndless : MonoBehaviour
         {
             float yPos = Mathf.Min(RandomY(avgOff), MAX_JUMP_HEIGHT);
             float xPos = RandomX();
-            if(numberOfPlatforms < 7 && spawnSpecialPlaform) 
+            if(spawnSpecialPlaform) 
             {
                 Instantiate(specialPlatformPrefab[GameManager.instance.currentLevel], new Vector3(xPos, yPos + tmp.y, 0f), Quaternion.identity);
             }
@@ -369,12 +380,12 @@ public class LevelGeneratorEndless : MonoBehaviour
 
             if (spawnBreakingPlatform && Random.Range(0f, 1f) < breakingPlatformChance)
             {
-                Instantiate(breakingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+                Instantiate(breakingPlatformPrefab[GameManager.instance.currentLevel], new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
 
             if (spawnSpringPlaftform && Random.Range(0f, 1f) < springPlatformChance)
             {
-                Instantiate(bouncyPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y + 0.2f, 0f), Quaternion.identity);
+                Instantiate(springPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y + 0.2f, 0f), Quaternion.identity);
             }
 
             
@@ -382,7 +393,12 @@ public class LevelGeneratorEndless : MonoBehaviour
             {
                 Instantiate(movingPlatformPrefab, new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
             }
-            
+
+            if (spawnBouncyPlatform && Random.Range(0f, 1f) < bouncyPlatformChance)
+            {
+                Instantiate(bouncyPlatformPrefab[GameManager.instance.currentLevel], new Vector3(RandomX(), Random.Range(0f, avgOff) + tmp.y, 0f), Quaternion.identity);
+            }
+
 
             /*
            if (spawnCrackingPlatform && Random.Range(0f, 1f) < crackingPlatformChance)
@@ -401,10 +417,44 @@ public class LevelGeneratorEndless : MonoBehaviour
         }
         else
         {
-            numberOfPlatforms = Random.Range(5, 20);
-            //bei geringer Anzahl von Plattformen wird Standard-Prefab mit Special-Prefab ausgetauscht und verhindert, dass zusätzliche Plattformen spawnen
-            if (numberOfPlatforms < 7)
+            specialPlatformChance = Random.Range(1, 11);
+
+            if (specialPlatformChance < 2)
             {
+                if (GameManager.instance.currentLevel == 1)
+                {
+                    numberOfPlatforms = Random.Range(6, 14);
+                }
+                else
+                {
+                    numberOfPlatforms = Random.Range(5, 14);
+                }
+            }
+            else
+            {
+                if (GameManager.instance.currentLevel == 1)
+                {
+                    numberOfPlatforms = Random.Range(6, 22);
+                }
+                else
+                {
+                    numberOfPlatforms = Random.Range(5, 22);
+                }
+            }
+            
+            //bei geringer Anzahl von Plattformen wird Standard-Prefab mit Special-Prefab ausgetauscht und verhindert, dass zusätzliche Plattformen spawnen
+            if (specialPlatformChance < 2 && specialPlatformChance != 0)
+            {
+                spawnSpecialPlaform = true;
+                spawnCrackingPlatform = false;
+                spawnBreakingPlatform = false;
+                spawnSpringPlaftform = false;
+                spawnMovingPlatform = false;
+                spawnBouncyPlatform = false;
+                spawnEnemy = false;
+                spawnPowerUp = false;
+                spawnCollectableItem = false;
+                /*
                 switch (GameManager.instance.currentLevel)
                 {
                     case 0:
@@ -413,6 +463,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -420,11 +471,12 @@ public class LevelGeneratorEndless : MonoBehaviour
                         break;
 
                     case 1:
-                        spawnSpecialPlaform = false;
+                        spawnSpecialPlaform = true;
                         spawnCrackingPlatform = false;
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -437,6 +489,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -449,6 +502,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -461,6 +515,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -473,6 +528,7 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
@@ -485,23 +541,26 @@ public class LevelGeneratorEndless : MonoBehaviour
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = false;
                         spawnEnemy = false;
                         spawnPowerUp = false;
                         spawnCollectableItem = false;
 
                         break;
-                }
+                
+            }*/
             }
             else
             {
                 switch (GameManager.instance.currentLevel)
                 {
                     case 0:
-                        spawnSpecialPlaform = true;
+                        spawnSpecialPlaform = false;
                         spawnCrackingPlatform = true;
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = true;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -511,9 +570,10 @@ public class LevelGeneratorEndless : MonoBehaviour
                     case 1:
                         spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = true;
+                        spawnBreakingPlatform = false;
                         spawnSpringPlaftform = true;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -521,11 +581,12 @@ public class LevelGeneratorEndless : MonoBehaviour
                         break;
 
                     case 2:
-                        spawnSpecialPlaform = true;
+                        spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = false;
+                        spawnBreakingPlatform = true;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -533,11 +594,12 @@ public class LevelGeneratorEndless : MonoBehaviour
                         break;
 
                     case 3:
-                        spawnSpecialPlaform = true;
+                        spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = false;
+                        spawnBreakingPlatform = true;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -547,9 +609,10 @@ public class LevelGeneratorEndless : MonoBehaviour
                     case 4:
                         spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = false;
+                        spawnBreakingPlatform = true;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -559,9 +622,10 @@ public class LevelGeneratorEndless : MonoBehaviour
                     case 5:
                         spawnSpecialPlaform = false;
                         spawnCrackingPlatform = false;
-                        spawnBreakingPlatform = false;
+                        spawnBreakingPlatform = true;
                         spawnSpringPlaftform = false;
                         spawnMovingPlatform = false;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
@@ -569,11 +633,12 @@ public class LevelGeneratorEndless : MonoBehaviour
                         break;
 
                     default:
-                        spawnSpecialPlaform = true;
+                        spawnSpecialPlaform = false;
                         spawnCrackingPlatform = true;
                         spawnBreakingPlatform = false;
                         spawnSpringPlaftform = true;
                         spawnMovingPlatform = true;
+                        spawnBouncyPlatform = true;
                         spawnEnemy = true;
                         spawnPowerUp = true;
                         spawnCollectableItem = true;
