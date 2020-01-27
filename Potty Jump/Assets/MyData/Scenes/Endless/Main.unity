@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -619,13 +619,13 @@ MonoBehaviour:
   specialPlatformPrefab:
   - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
   - {fileID: 7432548205176384313, guid: 449fbdcd55f68ab4eb3e0ef9b039a11b, type: 3}
-  - {fileID: 164240827180098627, guid: 47136c67690d274429a1728c8dc778e4, type: 3}
-  - {fileID: 164240827180098627, guid: 47136c67690d274429a1728c8dc778e4, type: 3}
-  - {fileID: 1220641032299553507, guid: 964425a0f3298f44d800f38b20481c8f, type: 3}
-  - {fileID: 495201809000737686, guid: 2f1199fd041cc50418e4ad30144ea39a, type: 3}
+  - {fileID: 164240827180098627, guid: c30ca0dc9cf2fd14e8d6f6377711c91a, type: 3}
+  - {fileID: 4931179477816946189, guid: 1b3558aafab50a44d902329a32159089, type: 3}
+  - {fileID: 2674849039951725882, guid: b86c30e35f6188f478c5470a236dea5f, type: 3}
+  - {fileID: 6941756324664741913, guid: 49a508e61c4d66d46bf7cd302aea3831, type: 3}
   crackingPlatformPrefab: {fileID: 1033969436225753990, guid: a3a6d5233d8562542830c60a776ba251,
     type: 3}
-  breakingPlatformPrefab: {fileID: 2784190005922349481, guid: fc71e33d116318044a0c8eef9d1095f8,
+  breakingPlatformPrefab: {fileID: 2784190005922349481, guid: e25f47c86d71d7f4da3949d39ff39c4a,
     type: 3}
   bouncyPlatformPrefab: {fileID: 2468471202045593482, guid: 4b3e823384d7a4f7582d0cbefc085a03,
     type: 3}

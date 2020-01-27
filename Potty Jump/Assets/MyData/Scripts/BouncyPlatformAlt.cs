@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouncyPlatform : MonoBehaviour
+public class BouncyPlatformAlt : MonoBehaviour
 {
     public GameObject mainCamera;
     public float jumpForce = 20f;
-    private Animator animator;
 
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -30,27 +28,6 @@ public class BouncyPlatform : MonoBehaviour
             Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
             if (rb != null)
             {
-
-                if (gameObject.name.StartsWith("PlattformBouncy_1"))
-                {
-                    animator.SetTrigger("bouncy1");
-                }
-
-                else if (gameObject.name.StartsWith("PlattformBouncy_2"))
-                {
-                    animator.SetTrigger("bouncy2");
-                }
-
-                else if (gameObject.name.StartsWith("PlattformBouncy_5"))
-                {
-                    animator.SetTrigger("bouncy5");
-                }
-
-                else if (gameObject.name.StartsWith("PlattformBouncy_6"))
-                {
-                    animator.SetTrigger("bouncy6");
-                }
-
                 GetComponent<AudioSource>().Play();
                 Vector2 velocity = rb.velocity;
                 velocity.y = jumpForce;

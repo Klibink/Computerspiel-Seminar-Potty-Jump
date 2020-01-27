@@ -5,40 +5,75 @@ using UnityEngine;
 public class BreakingPlatform : MonoBehaviour
 {
     public GameObject mainCamera;
-    private bool movePlattform = false;
-    //public Sprite brokenSprite;
+    public float jumpForce = 10f;
+    private Animator animator;
 
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         //Löscht untere Plattformen, wenn Camera bestimmte Höhe erreicht
-        if (mainCamera.transform.position.y > transform.position.y + 7)
+        if (mainCamera.transform.position.y > transform.position.y + 6 /*&& GetComponent<AudioSource>().isPlaying == false*/)
         {
             Destroy(gameObject);
-        }
-
-        if (movePlattform)
-        {
-            //solange keine Zerfallanimation vorhanden ist fällt die Plattform einfach nach unten
-            transform.Translate(-transform.up * Time.deltaTime * 3f);
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.relativeVelocity.y <= 0)
+        if (collision.collider.tag == "PlayerFeet")
         {
-            transform.GetComponent<EdgeCollider2D>().enabled = false;
-            movePlattform = true;
-            StartCoroutine(DestroyPlattform());
+            if (collision.relativeVelocity.y <= 0)
+            {
+                Rigidbody2D rb = collision.collider.GetComponentInParent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    if (GetComponent<AudioSource>() != null)
+                    {
+                        GetComponent<AudioSource>().Play();
+                    }
+
+
+                    if (gameObject.name.StartsWith("BreakingPlatform 2"))
+                    {
+                        animator.SetTrigger("breaking2");
+                    }
+
+                    else if (gameObject.name.StartsWith("BreakingPlatform 3"))
+                    {
+                        animator.SetTrigger("breaking3");
+                    }
+
+                    else if (gameObject.name.StartsWith("BreakingPlatform 4"))
+                    {
+                        animator.SetTrigger("breaking4");
+                    }
+
+                    else if (gameObject.name.StartsWith("BreakingPlatform 5"))
+                    {
+                        animator.SetTrigger("breaking5");
+                    }
+
+                    else if (gameObject.name.StartsWith("BreakingPlatform 6"))
+                    {
+                        animator.SetTrigger("breaking6");
+                    }
+
+
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                    transform.GetComponent<EdgeCollider2D>().enabled = false;
+                    StartCoroutine(DestroyPlattform());
+                }
+            }
         }
 
     }
-
     IEnumerator DestroyPlattform()
     {
         yield return new WaitForSeconds(1.5f);
