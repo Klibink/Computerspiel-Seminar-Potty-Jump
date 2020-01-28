@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public bool firstTime = true;
+    public bool mute = false;
     private GameObject panelHolder;
     public int availableLevel = 1;
     private int tempLevel = 1;
@@ -59,7 +60,6 @@ public class GameManager : MonoBehaviour
             tempLevel = availableLevel;
             startTransition = true;
         }
-        
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1967916075497025460}
   - component: {fileID: 1967916075497025461}
   - component: {fileID: 1967916075497025466}
-  - component: {fileID: 473790167842690970}
+  - component: {fileID: 82645877671706888}
   m_Layer: 0
   m_Name: Flugzeug01
   m_TagString: Enemy
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leben: 0
   bullet: {fileID: 0}
---- !u!82 &473790167842690970
+--- !u!82 &82645877671706888
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,20 +132,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 968edc52f001f4a8e9f66c19841f4ba7, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 19d0e663a7e1b45baaeb94ace0e5e7db, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -178,7 +178,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

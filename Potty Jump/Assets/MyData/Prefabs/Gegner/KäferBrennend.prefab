@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1156328181371527615}
   - component: {fileID: 934387507711446308}
   m_Layer: 0
-  m_Name: "K\xE4ferBrennend"
+  m_Name: "Ka\u0308ferBrennend"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

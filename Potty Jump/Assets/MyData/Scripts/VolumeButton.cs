@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class VolumeButton : MonoBehaviour
 {
-    public bool soundOn;
     public GameObject image_on;
     public GameObject image_off;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        soundOn = true;
-    }
-
     public void ToggleAudio()
     {
-        if (soundOn == true)
+        if (GameManager.instance.mute == false)
         {
-            soundOn = false;
+            GameManager.instance.mute = true;
             image_on.SetActive(true);
             image_off.SetActive(false);
             ToggleAudioSources();
         }
         else
         {
-            soundOn = true;
+            GameManager.instance.mute = false;
             image_on.SetActive(false);
             image_off.SetActive(true);
             ToggleAudioSources();
@@ -37,7 +30,8 @@ public class VolumeButton : MonoBehaviour
         AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
         for (int index = 0; index < sources.Length; ++index)
         {
-            sources[index].mute = !soundOn;
+            sources[index].mute = GameManager.instance.mute;
+            Debug.Log(!GameManager.instance.mute);
         }
     }
 }

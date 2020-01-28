@@ -17,17 +17,20 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnPlatforms());
+        CheckMute();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckMute();
         if (enemy == null)
         {
             for(int i=0;i< platforms2.Length; i++)
             {
                 platforms2[i].SetActive(true);
             }
+
             if (item != null)
             {
                 item.SetActive(true);
@@ -41,6 +44,23 @@ public class TutorialManager : MonoBehaviour
             }
             uiElement1.SetActive(false);
             //uiElement2.SetActive(true);
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    void CheckMute()
+    {
+        if (GameManager.instance.mute == true)
+        {
+            AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            for (int index = 0; index < sources.Length; ++index)
+            {
+                sources[index].mute = GameManager.instance.mute;
+            }
         }
     }
 

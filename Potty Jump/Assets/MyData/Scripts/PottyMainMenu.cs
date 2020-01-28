@@ -20,6 +20,15 @@ public class PottyMainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.mute == true)
+        {
+            AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            for (int index = 0; index < sources.Length; ++index)
+            {
+                sources[index].mute = GameManager.instance.mute;
+            }
+        }
+
         //Beim Beginn der Szene wird der gewünschte Skin in der Hierarchy aktivert
         for (int i = 0; i < skins.Count; i++)
         {

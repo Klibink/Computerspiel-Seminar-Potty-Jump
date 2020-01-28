@@ -647,10 +647,21 @@ public class LevelGeneratorEndless : MonoBehaviour
                 }
             }
 
-            
+           
         }
 
         entryPlatform.Set(tmp.x, tmp.y);
+
+        //Workaround mute bug
+        if (GameManager.instance.mute == true)
+        {
+            AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            for (int index = 0; index < sources.Length; ++index)
+            {
+                sources[index].mute = GameManager.instance.mute;
+                Debug.Log(!GameManager.instance.mute);
+            }
+        }
 
         return tmp.y - startY;
     }
