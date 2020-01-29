@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6209103873219453894}
   - component: {fileID: 82162198837175166}
   m_Layer: 0
-  m_Name: "Kro\u0308te"
+  m_Name: "Kr\xF6te"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,19 +153,19 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 19d0e663a7e1b45baaeb94ace0e5e7db, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -198,7 +198,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public int currentSkin = 0;
     public int currentFlower = 0;
     public int skinsUnlocked = 0;
-    public bool[] unlockSkins = { true, false, false, false, false, false};
-    public bool[] unlockFlowers = { true, false, false, false, false, false };
+    public bool[] unlockSkins = { true, false, false, false, false, false, false, false};
+    public bool[] unlockFlowers = { true, false, false, false, false, false, false };
     public bool startTransition = false;
     public bool goToNewSlide = false;
     private Vector3 currentPanelLocation;
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Datei fehlt");
-            availableLevel = 1;
+            availableLevel = 6;
             highScore = 0;
             firstTime = true;
         }

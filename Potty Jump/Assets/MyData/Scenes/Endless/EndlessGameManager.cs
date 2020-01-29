@@ -77,24 +77,57 @@ public float FrustumWidth { get => frustumWidth; set => frustumWidth = value; }
                     GameManager.instance.unlockFlowers[0] = true;
                     break;
                 case 2:
+                    GameManager.instance.unlockSkins[0] = true;
+                    GameManager.instance.unlockFlowers[0] = true;
                     GameManager.instance.unlockSkins[1] = true;
                     GameManager.instance.unlockFlowers[1] = true;
                     break;
                 case 3:
+                    GameManager.instance.unlockSkins[0] = true;
+                    GameManager.instance.unlockFlowers[0] = true;
+                    GameManager.instance.unlockSkins[1] = true;
+                    GameManager.instance.unlockFlowers[1] = true;
                     GameManager.instance.unlockSkins[2] = true;
                     GameManager.instance.unlockFlowers[2] = true;
                     break;
                 case 4:
+                    GameManager.instance.unlockSkins[0] = true;
+                    GameManager.instance.unlockFlowers[0] = true;
+                    GameManager.instance.unlockSkins[1] = true;
+                    GameManager.instance.unlockFlowers[1] = true;
+                    GameManager.instance.unlockSkins[2] = true;
+                    GameManager.instance.unlockFlowers[2] = true;
                     GameManager.instance.unlockSkins[3] = true;
                     GameManager.instance.unlockFlowers[3] = true;
                     break;
                 case 5:
+                    GameManager.instance.unlockSkins[0] = true;
+                    GameManager.instance.unlockFlowers[0] = true;
+                    GameManager.instance.unlockSkins[1] = true;
+                    GameManager.instance.unlockFlowers[1] = true;
+                    GameManager.instance.unlockSkins[2] = true;
+                    GameManager.instance.unlockFlowers[2] = true;
+                    GameManager.instance.unlockSkins[3] = true;
+                    GameManager.instance.unlockFlowers[3] = true;
                     GameManager.instance.unlockSkins[4] = true;
                     GameManager.instance.unlockFlowers[4] = true;
                     break;
                 case 6:
+                    GameManager.instance.unlockSkins[0] = true;
+                    GameManager.instance.unlockFlowers[0] = true;
+                    GameManager.instance.unlockSkins[1] = true;
+                    GameManager.instance.unlockFlowers[1] = true;
+                    GameManager.instance.unlockSkins[2] = true;
+                    GameManager.instance.unlockFlowers[2] = true;
+                    GameManager.instance.unlockSkins[3] = true;
+                    GameManager.instance.unlockFlowers[3] = true;
+                    GameManager.instance.unlockSkins[4] = true;
+                    GameManager.instance.unlockFlowers[4] = true;
                     GameManager.instance.unlockSkins[5] = true;
                     GameManager.instance.unlockFlowers[5] = true;
+                    GameManager.instance.unlockSkins[6] = true;
+                    GameManager.instance.unlockFlowers[6] = true;
+                    GameManager.instance.unlockSkins[7] = true;
                     break;
                 default:
                     GameManager.instance.unlockSkins[0] = true;

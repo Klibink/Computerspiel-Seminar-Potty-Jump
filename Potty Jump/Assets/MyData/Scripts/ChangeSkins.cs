@@ -25,7 +25,7 @@ public class ChangeSkins : MonoBehaviour
 
     public void ChangeFlowerUp()
     {
-        for (int i = GameManager.instance.currentFlower; i < GameManager.instance.unlockSkins.Length - 1;)
+        for (int i = GameManager.instance.currentFlower; i < GameManager.instance.unlockFlowers.Length - 1;)
         {
             i++;
             if (GameManager.instance.unlockFlowers[i] == true)
